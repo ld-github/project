@@ -1,5 +1,7 @@
 package com.ld.web.dao;
 
+import java.util.List;
+
 public interface BaseDao<T> {
     /**
      * save
@@ -8,4 +10,13 @@ public interface BaseDao<T> {
      * @return
      */
     boolean save(T t);
+
+    /**
+     * 
+     * @param hql
+     * @param order
+     * @param params
+     * @return
+     */
+    List<T> getList(String hql, Object... params);
 }

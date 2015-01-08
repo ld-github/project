@@ -46,17 +46,17 @@ function initMenu() {
     $('#menu-panel').accordion({
         fit : true
     });
-    for (var i = 0; i < MENU.length; i++) {
+    for ( var i = 0; i < MENU.length; i++) {
         var title = MENU[i].title;
         var submenus = $('<UL>').addClass('submenus-panel');
-        for (var j = 0; j < MENU[i].submenus.length; j++) {
+        for ( var j = 0; j < MENU[i].submenus.length; j++) {
             var menu = MENU[i].submenus[j];
             $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
         }
         $('#menu-panel').accordion('add', {
             title : title,
             selected : false,
-            content : submenus
+            content : submenus,
         });
     }
     $('.submenu-item-panel').click(function() {
@@ -66,6 +66,7 @@ function initMenu() {
         if (menu.url) {
             addTab(menu.title, menu.url);
         }
+        ;
     });
 }
 
@@ -88,14 +89,14 @@ function initTabs() {
  * @param closable
  */
 function addTab(title, url, closable) {
-    closable = closable ? true : closable;
+    closable = !closable ? true : closable;
     var tab = $('#content-panel');
     if (tab.tabs('exists', title)) {
         tab.tabs('select', title);
     } else {
         var content = $('<IFRAME>').attr({
             frameborder : 0,
-            src : url
+            src : url,
         });
         tab.tabs('add', {
             title : title,
@@ -103,6 +104,7 @@ function addTab(title, url, closable) {
             content : content,
         });
     }
+    ;
 }
 
 $(function() {

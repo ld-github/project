@@ -51,8 +51,7 @@ function initMenu() {
         var submenus = $('<UL>').addClass('submenus-panel');
         for (var j = 0; j < MENU[i].submenus.length; j++) {
             var menu = MENU[i].submenus[j];
-            $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data(
-                    'menu', menu);
+            $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
         }
         $('#menu-panel').accordion('add', {
             title : title,

@@ -19,4 +19,13 @@ public interface BaseDao<T> {
      * @return
      */
     List<T> getList(String hql, Object... params);
+
+    /**
+     * get uniqueResult
+     * 
+     * @param hql
+     * @param params
+     * @return
+     */
+    T getUniqueResult(String hql, Object... params);
 }

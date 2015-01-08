@@ -9,6 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ *<p>Title: User</p>
+ *<p>Copyright: Copyright (c) 2015</p>
+ *<p>Description: </p>
+ *
+ *@author LD
+ *
+ *@date 2015-1-8
+ */
+
 @Entity
 @Table(name = "TAB_USER")
 public class User implements Serializable {
@@ -30,7 +41,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    @Column(length = 10)
+    @Column(length = 16, nullable = false, unique = true)
     public String getUsername() {
         return username;
     }
@@ -39,13 +50,16 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @Column
+    @Column(length = 16, nullable = false)
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User() {
     }
 
     public User(String username, String password) {

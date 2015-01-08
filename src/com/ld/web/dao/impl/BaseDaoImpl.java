@@ -30,11 +30,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<T> getList(String hql, Object... params) {
         Query q = getSession().createQuery(hql);
         setParams(q, params);
-        return null;
+        return q.list();
     }
 
     /**
@@ -47,6 +48,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         for (int i = 0; i < params.length; i++) {
             q.setParameter(i, params[i]);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T getUniqueResult(String hql, Object... params) {
+        Query q = getSession().createQuery(hql);
+        setParams(q, params);
+        return (T) q.uniqueResult();
     }
 
 }

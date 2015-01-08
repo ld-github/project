@@ -39,6 +39,9 @@ var MENU = [ {
     } ]
 } ];
 
+/**
+ * init menu to menu-panel
+ */
 function initMenu() {
     $('#menu-panel').accordion({
         fit : true
@@ -48,7 +51,8 @@ function initMenu() {
         var submenus = $('<UL>').addClass('submenus-panel');
         for (var j = 0; j < MENU[i].submenus.length; j++) {
             var menu = MENU[i].submenus[j];
-            $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
+            $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data(
+                    'menu', menu);
         }
         $('#menu-panel').accordion('add', {
             title : title,
@@ -66,6 +70,9 @@ function initMenu() {
     });
 }
 
+/**
+ * init Tabs
+ */
 function initTabs() {
     $('#content-panel').tabs({
         fit : true,
@@ -74,8 +81,15 @@ function initTabs() {
     });
 }
 
+/**
+ * add page to content-panel
+ * 
+ * @param title
+ * @param url
+ * @param closable
+ */
 function addTab(title, url, closable) {
-    closable = closable == undefined ? true : closable;
+    closable = closable ? true : closable;
     var tab = $('#content-panel');
     if (tab.tabs('exists', title)) {
         tab.tabs('select', title);

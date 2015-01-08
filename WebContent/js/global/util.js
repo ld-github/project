@@ -23,6 +23,9 @@ var ActionForm = function() {
     };
 };
 
+/**
+ * show message
+ */
 var Message = function(msg, title) {
     this.ICONS = {
         ERROR : 'error',

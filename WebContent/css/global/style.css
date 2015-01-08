@@ -1,4 +1,6 @@
 body {
+    min-width: 1024px;
+    min-height: 600px;
     margin: 0px;
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;

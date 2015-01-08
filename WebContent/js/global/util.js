@@ -9,7 +9,7 @@ var ActionForm = function() {
         }
         try {
             var json = {};
-            for ( var i = 0; i < ids.length; i++) {
+            for (var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 var key = obj.attr('name');
                 var val = obj.val();

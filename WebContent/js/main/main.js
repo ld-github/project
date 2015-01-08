@@ -43,10 +43,10 @@ function initMenu() {
     $('#menu-panel').accordion({
         fit : true
     });
-    for ( var i = 0; i < MENU.length; i++) {
+    for (var i = 0; i < MENU.length; i++) {
         var title = MENU[i].title;
         var submenus = $('<UL>').addClass('submenus-panel');
-        for ( var j = 0; j < MENU[i].submenus.length; j++) {
+        for (var j = 0; j < MENU[i].submenus.length; j++) {
             var menu = MENU[i].submenus[j];
             $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
         }

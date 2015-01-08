@@ -32,11 +32,11 @@ import com.opensymphony.xwork2.ActionSupport;
 })
 public class UserAction extends ActionSupport {
 
-    private static final long   serialVersionUID = -4369317987413706899L;
+    private static final long serialVersionUID = -4369317987413706899L;
     @Resource
-    private UserBiz             userBiz;
+    private UserBiz userBiz;
 
-    public final static String  RESULT_SAVE      = "SAVE";
+    public final static String RESULT_SAVE = "SAVE";
 
     private Map<String, Object> data;
 

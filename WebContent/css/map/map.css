@@ -1,6 +1,47 @@
 #main-panel {
     width: 100%;
     height: 100%;
-    background-image: url('../../images/fresh_bg.png');
-    background-repeat: repeat;
+}
+
+.copy-right {
+    text-align: center;
+    font-size: 12px;
+    color: #BDBDBD;
+}
+
+#menu-panel {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border: 1px solid #BBBBBB;
+    background: #E8E8E8;
+    border-radius: 5px;
+    border-bottom: none;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px 3px #888888;
+    overflow: hidden;
+    display: none;
+}
+
+#menu-panel li {
+    width: 100%;
+    height: 28px;
+    padding-left: 10px;
+    line-height: 28px;
+    cursor: pointer;
+    border-bottom: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    font-size: 12px;
+    background: #EEEEEE;
+    font-weight: bold;
+    color: #808080;
+}
+
+#menu-panel li:hover {
+    background: #BDBDBD;
+    filter: alpha(opacity = 70);
+    -moz-opacity: 0.7;
+    opacity: 0.7;
 }

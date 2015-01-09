@@ -1,0 +1,10 @@
+var Config = function() {
+    this.MAP_FOLDER_NAME_DEFAULT = 'leshan';
+    this.MAX_LEVEL_PIXEL_WIDTH_DEFAULT = 10000;
+    this.MAX_LEVEL_PIXEL_HEIGHT_DEFAULT = 6670;
+    this.MAP_LEVELS_DEFAULT = 5;
+    this.MAP_FACTOR_DEFAULT = 100;
+    this.TILE_PIXEL_WIDTH_DEFAULT = 200;
+    this.TILE_PIXEL_HEIGHT_DEFAULT = 200;
+    this.ZOOM_DEFAULT = 1;
+};

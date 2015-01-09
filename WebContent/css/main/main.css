@@ -1,3 +1,7 @@
+body {
+    min-width: 1024px;
+    min-height: 600px;
+}
 .top-panel {
     height: 100px;
     background: #F0F0F0;

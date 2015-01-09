@@ -4,8 +4,8 @@
 var MENU = [ {
     title : '主菜单',
     submenus : [ {
-        title : '主页',
-        url : 'index.html'
+        title : '地图',
+        url : 'map.html'
     }, {
         title : '登录',
         url : 'login.html'

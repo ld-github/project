@@ -1,3 +1,3 @@
 var Config = function() {
-    this.MAP_FOLDER_NAME = "leshan";
+    this.MAP_FOLDER_NAME_DEFAULT = "leshan";
 };

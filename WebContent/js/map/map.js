@@ -30,7 +30,7 @@ var showMenu = function(e, geo) {
     menu.empty();
 
     $('<li>').html('添加二维码').click(function() {
-        $('#cover-panel').css('display', 'block');
+        $('#cover-panel').css('display', 'none');
         menu.css('display', 'none');
         $('#code-panel').dialog('open');
         setGeo(geo);
@@ -51,22 +51,31 @@ var showMenu = function(e, geo) {
 };
 
 /**
+ * operate device when user mousedown the point
+ */
+var deviceOperate = function(e, id, type) {
+    if (e.which == 3) {
+        console.log('show device info by id and type!');
+        console.log('e.which:' + e.which + '\tid:' + id + '\ttype:' + type);
+    } else {
+        if (e.stopPropagation()) {
+            e.stopPropagation();
+        }
+    }
+};
+
+/**
  * add point to map
  */
-var appendPoint = function(type, title, geo) {
+var appendPoint = function(id, type, title, longitude, latitude) {
     var src = type == TYPES.WIFI ? IMG_URLS.WIFI : IMG_URLS.CODE;
     var point = {
         type : 'Point',
-        coordinates : geo.coordinates,
+        coordinates : [ longitude, latitude ],
     };
-    var div = $('<DIV>');
-    $('<IMG>').attr({
-        title : title,
-        src : src,
-    }).addClass('device-item').data({
-        id : 5000
-    }).appendTo(div);
-    g_map.geomap("append", point, div.html());
+
+    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event,' + id + ',' + type + ')">';
+    g_map.geomap("append", point, img);
 };
 
 /**
@@ -93,7 +102,9 @@ var initEditPanel = function() {
                 var latitude = geo.coordinates[1];
                 console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
                 $('#wifi-panel').dialog('close');
-                appendPoint(TYPES.WIFI, 'title', geo);
+                // 此处作为测试, 该id为保存到数据库的id
+                var id = Math.floor(Math.random() * 1000 + 1);
+                appendPoint(id, TYPES.WIFI, 'title', longitude, latitude);
             }
         }, {
             text : '取消',
@@ -176,7 +187,4 @@ $(function() {
         $('#menu-panel').css('display', 'none');
     });
 
-    $('.device-item').bind('mousedown', function() {
-        alert($(this).data('id'));
-    });
 });

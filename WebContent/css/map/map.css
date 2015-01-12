@@ -3,6 +3,11 @@
     height: 100%;
 }
 
+#cover-panel {
+    display: none;
+    z-index: 10;
+}
+
 .copy-right {
     text-align: center;
     font-size: 12px;
@@ -23,6 +28,7 @@
     box-shadow: 5px 5px 5px 3px #888888;
     overflow: hidden;
     display: none;
+    z-index: 20;
 }
 
 #menu-panel li {

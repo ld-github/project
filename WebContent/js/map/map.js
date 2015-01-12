@@ -9,6 +9,16 @@ var getGeo = function() {
     return g_geo;
 };
 
+var IMG_URLS = {
+    WIFI : '../images/wifi.png',
+    CODE : '../images/code.png',
+};
+
+var TYPES = {
+    WIFI : 1,
+    CODE : 2,
+};
+
 /**
  * show menu when click map
  */
@@ -41,6 +51,25 @@ var showMenu = function(e, geo) {
 };
 
 /**
+ * add point to map
+ */
+var appendPoint = function(type, title, geo) {
+    var src = type == TYPES.WIFI ? IMG_URLS.WIFI : IMG_URLS.CODE;
+    var point = {
+        type : 'Point',
+        coordinates : geo.coordinates,
+    };
+    var div = $('<DIV>');
+    $('<IMG>').attr({
+        title : title,
+        src : src,
+    }).addClass('device-item').data({
+        id : 5000
+    }).appendTo(div);
+    g_map.geomap("append", point, div.html());
+};
+
+/**
  * init wifi and code edit panel
  */
 var initEditPanel = function() {
@@ -62,7 +91,9 @@ var initEditPanel = function() {
                 }
                 var longitude = geo.coordinates[0];
                 var latitude = geo.coordinates[1];
-                
+                console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
+                $('#wifi-panel').dialog('close');
+                appendPoint(TYPES.WIFI, 'title', geo);
             }
         }, {
             text : '取消',
@@ -145,4 +176,7 @@ $(function() {
         $('#menu-panel').css('display', 'none');
     });
 
+    $('.device-item').bind('mousedown', function() {
+        alert($(this).data('id'));
+    });
 });

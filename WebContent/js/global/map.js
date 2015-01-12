@@ -44,7 +44,7 @@ var Map = function() {
             },
         });
 
-        // change geo style
+        // Change geo style
         var shapeOption = {
             width : 0,
             height : 0,

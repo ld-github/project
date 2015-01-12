@@ -24,7 +24,7 @@ var ActionForm = function() {
 };
 
 /**
- * show message
+ * Show message
  */
 var Message = function(msg, title) {
     this.ICONS = {

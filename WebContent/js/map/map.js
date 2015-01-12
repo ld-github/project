@@ -20,7 +20,7 @@ var TYPES = {
 };
 
 /**
- * show menu when click map
+ * Show menu when click map
  */
 var showMenu = function(e, geo) {
     $("#cover-panel").css({
@@ -51,7 +51,7 @@ var showMenu = function(e, geo) {
 };
 
 /**
- * operate device when user mousedown the point
+ * Operate device when user mousedown the point
  */
 var deviceOperate = function(e, id, type) {
     if (e.which == 3) {
@@ -65,7 +65,7 @@ var deviceOperate = function(e, id, type) {
 };
 
 /**
- * add point to map
+ * Add point to map
  */
 var appendPoint = function(id, type, title, longitude, latitude) {
     var src = type == TYPES.WIFI ? IMG_URLS.WIFI : IMG_URLS.CODE;
@@ -79,7 +79,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
 };
 
 /**
- * init wifi and code edit panel
+ * Init wifi and code edit panel
  */
 var initEditPanel = function() {
     $('#wifi-panel').dialog({
@@ -102,7 +102,7 @@ var initEditPanel = function() {
                 var latitude = geo.coordinates[1];
                 console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
                 $('#wifi-panel').dialog('close');
-                // 此处作为测试, 该id为保存到数据库的id
+                // Here, as a test of the id is saved to the database id
                 var id = Math.floor(Math.random() * 1000 + 1);
                 appendPoint(id, TYPES.WIFI, 'title', longitude, latitude);
             }
@@ -148,12 +148,12 @@ $(function() {
     };
 
     /**
-     * init wifi and code edit panel
+     * Init wifi and code edit panel
      */
     initEditPanel();
 
     /**
-     * create map begin
+     * Create map begin
      */
     var config = new Config();
     var container = '#main-panel';
@@ -179,7 +179,7 @@ $(function() {
     g_map = new Map().createMap(container, zoom, maxLevelPixelWidth, maxLevelPixelHeight, mapFactor, tilePixelWidth,
             tilePixelHeight, mapLevels, mapFolderName, shapeFunction, positionEventHandler);
     /**
-     * create map end
+     * Create map end
      */
 
     $('#cover-panel').click(function() {

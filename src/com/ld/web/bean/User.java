@@ -8,20 +8,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * 
- *<p>Title: User</p>
- *<p>Copyright: Copyright (c) 2015</p>
- *<p>Description: </p>
+ * <p>
+ * Title: User
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2015
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  *
- *@author LD
+ * @author LD
  *
- *@date 2015-1-8
+ * @date 2015-1-8
  */
 
 @Entity
-@Table(name = "TAB_USER")
+@Table(name = "TAB_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class User implements Serializable {
     private static final long serialVersionUID = 4284572555216108008L;
 

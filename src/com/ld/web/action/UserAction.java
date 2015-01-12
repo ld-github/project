@@ -13,6 +13,16 @@ import org.apache.struts2.convention.annotation.Results;
 import com.ld.web.bean.User;
 import com.ld.web.biz.UserBiz;
 
+/**
+ * 
+ * <p>Title: UserAction</p>
+ * <p>Copyright: Copyright (c) 2015</p>
+ * <p>Description:</p>
+ *
+ * @author LD
+ *
+ * @date 2015-1-8
+ */
 @Action(value = "user")
 @Results({ @Result(type = "json",
                                     name = UserAction.RESULT_SAVE,

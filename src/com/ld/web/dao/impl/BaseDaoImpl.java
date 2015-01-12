@@ -9,7 +9,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.ld.web.dao.BaseDao;
-
+/**
+ * 
+ * <p>Title: BaseDaoImpl</p>
+ * <p>Copyright: Copyright (c) 2015</p>
+ * <p>Description:</p>
+ *
+ * @author LD
+ *
+ * @date 2015-1-8
+ */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Resource

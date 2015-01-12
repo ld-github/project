@@ -10,6 +10,16 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 
+ * <p>Title: BaseAction</p>
+ * <p>Copyright: Copyright (c) 2015</p>
+ * <p>Description:</p>
+ *
+ * @author LD
+ *
+ * @date 2015-1-8
+ */
 @Controller
 @ParentPackage("json-default")
 @Results({ @Result(type = "json", name = UserAction.SUCCESS, params = { "root", "result" }) })

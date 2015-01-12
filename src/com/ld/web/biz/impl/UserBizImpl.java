@@ -9,6 +9,16 @@ import com.ld.web.bean.User;
 import com.ld.web.biz.UserBiz;
 import com.ld.web.dao.UserDao;
 
+/**
+ * 
+ * <p>Title: UserBizImpl</p>
+ * <p>Copyright: Copyright (c) 2015</p>
+ * <p>Description:</p>
+ *
+ * @author LD
+ *
+ * @date 2015-1-8
+ */
 @Service
 @Transactional
 public class UserBizImpl implements UserBiz {

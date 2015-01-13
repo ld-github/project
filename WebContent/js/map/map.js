@@ -118,7 +118,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
  */
 var initEditPanel = function() {
     $('#wifi-panel').dialog({
-        title : '添加wifi设备',
+        title : '编辑wifi设备',
         iconCls : 'icon-save',
         width : 400,
         height : 500,
@@ -151,7 +151,7 @@ var initEditPanel = function() {
     });
 
     $('#code-panel').dialog({
-        title : '添加二维码',
+        title : '编辑二维码',
         iconCls : 'icon-save',
         width : 400,
         height : 500,

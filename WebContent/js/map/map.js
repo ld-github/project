@@ -162,7 +162,17 @@ var initEditPanel = function() {
             text : '保存',
             iconCls : 'icon-ok',
             handler : function() {
-                alert('ok');
+                var geo = getGeo();
+                if (null == geo) {
+                    return;
+                }
+                var longitude = geo.coordinates[0];
+                var latitude = geo.coordinates[1];
+                console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
+                $('#code-panel').dialog('close');
+                // Here, as a test of the id is saved to the database id
+                var id = Math.floor(Math.random() * 1000 + 1);
+                appendPoint(id, TYPES.CODE, 'title', longitude, latitude);
             }
         }, {
             text : '取消',

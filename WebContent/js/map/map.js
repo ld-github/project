@@ -58,12 +58,40 @@ var KEY_WHICH = {
 /**
  * Operate device when user mousedown the point
  */
-var deviceOperate = function(e, obj, id) {
-    if (e.which == KEY_WHICH.LEFT) {
+var deviceOperate = function(e, obj, id, type, longitude, latitude) {
+    if (e.which == KEY_WHICH.RIGHT) {
         console.log('show device info by id and type!');
-        var type = $(obj).attr('deviceType');
-        console.log('e.which:' + e.which + '\tid:' + id + "\ttype:" + type);
+        console.log('e.which:' + e.which + '\tid:' + id + '\ttype:' + type + "\tlongitude:" + longitude + "\tlatitude:" + latitude);
         e.stopPropagation();
+    }
+    if (e.which == KEY_WHICH.LEFT) {
+        var isDraging = true;
+        var isMove = false;
+        var dragObj = $(obj);
+        var iX = e.pageX - dragObj.offset().left;
+        var iY = e.pageY - dragObj.offset().top;
+        e.stopPropagation();
+        e.preventDefault();
+
+        document.onmousemove = function(e) {
+            if (isDraging) {
+                isMove = true;
+                var oX = e.pageX - iX;
+                var oY = e.pageY - iY;
+                dragObj.offset({
+                    top : oY,
+                    left : oX
+                });
+                return false;
+            }
+        };
+        document.onmouseup = function(e) {
+            isDraging = false;
+            if (isMove) {
+                isMove = false;
+                console.log('Point position changed');
+            }
+        };
     } else {
         if (e.stopPropagation()) {
             e.stopPropagation();
@@ -81,7 +109,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event, this, ' + id + ')" deviceType="' + type + '" longitude="' + longitude + '" longitude="' + longitude + '">';
+    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
 };
 

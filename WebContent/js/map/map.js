@@ -109,7 +109,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
+    var img = '<img src="' + src + '" title="' + title + '" class="device-item" onmousedown="deviceOperate(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
 };
 

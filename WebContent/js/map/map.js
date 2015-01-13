@@ -50,13 +50,20 @@ var showMenu = function(e, geo) {
     });
 };
 
+var KEY_WHICH = {
+    LEFT : 1,
+    RIGHT : 3,
+};
+
 /**
  * Operate device when user mousedown the point
  */
-var deviceOperate = function(e, id, type) {
-    if (e.which == 3) {
+var deviceOperate = function(e, obj, id) {
+    if (e.which == KEY_WHICH.LEFT) {
         console.log('show device info by id and type!');
-        console.log('e.which:' + e.which + '\tid:' + id + '\ttype:' + type);
+        var type = $(obj).attr('deviceType');
+        console.log('e.which:' + e.which + '\tid:' + id + "\ttype:" + type);
+        e.stopPropagation();
     } else {
         if (e.stopPropagation()) {
             e.stopPropagation();
@@ -74,7 +81,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event,' + id + ',' + type + ')">';
+    var img = '<img src="' + src + '" class="device-item" onmousedown="deviceOperate(event, this, ' + id + ')" deviceType="' + type + '" longitude="' + longitude + '" longitude="' + longitude + '">';
     g_map.geomap("append", point, img);
 };
 

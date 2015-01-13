@@ -82,7 +82,6 @@ var deviceOperate = function(e, obj, id, type, longitude, latitude) {
                     top : oY,
                     left : oX
                 });
-                return false;
             }
         };
         document.onmouseup = function(e) {

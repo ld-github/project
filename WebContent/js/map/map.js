@@ -1,5 +1,5 @@
-var g_geo = null;
 var g_map = null;
+var g_geo = null;
 
 var setGeo = function(geo) {
     g_geo = geo;

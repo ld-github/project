@@ -40,7 +40,7 @@ var MENU = [ {
 } ];
 
 /**
- * init menu to menu-panel
+ * Init menu to menu-panel
  */
 function initMenu() {
     $('#menu-panel').accordion({
@@ -70,7 +70,7 @@ function initMenu() {
 }
 
 /**
- * init Tabs
+ * Init Tabs
  */
 function initTabs() {
     $('#content-panel').tabs({
@@ -81,7 +81,7 @@ function initTabs() {
 }
 
 /**
- * add page to content-panel
+ * Add page to content-panel
  * 
  * @param title
  * @param url

@@ -123,9 +123,7 @@ var appendPoint = function(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" title="' + title
-            + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude
-            + ', ' + latitude + ')">';
+    var img = '<img src="' + src + '" title="' + title + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
 };
 
@@ -148,7 +146,7 @@ var deleteDevices = function(params) {
     var type = params.type;
 
     console.log('delete id:' + id);
-    new Message('删除成功!', '温馨提示').show();
+    new Message('删除成功!', '温馨提示').show(true);
     if (type == DEVICE_TYPES.WIFI) {
         $('#wifi-panel').dialog('close');
     }
@@ -237,8 +235,8 @@ var initWifiEditor = function(editorStatus, wifi) {
     $('#wifi-panel').dialog({
         title : this.title,
         iconCls : this.iconCls,
-        width : 400,
-        height : 500,
+        width : 300,
+        height : 400,
         cache : false,
         modal : true,
         buttons : this.buttons
@@ -325,8 +323,8 @@ var initCodeEditor = function(editorStatus, code) {
     $('#code-panel').dialog({
         title : this.title,
         iconCls : this.iconCls,
-        width : 400,
-        height : 500,
+        width : 300,
+        height : 400,
         cache : false,
         modal : true,
         buttons : this.buttons

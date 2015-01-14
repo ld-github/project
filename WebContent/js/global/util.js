@@ -9,7 +9,7 @@ var ActionForm = function() {
         }
         try {
             var json = {};
-            for (var i = 0; i < ids.length; i++) {
+            for ( var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 var key = obj.attr('name');
                 var val = obj.val();
@@ -37,7 +37,9 @@ var Message = function(msg, title) {
     this.msg = msg == undefined ? '确定当前操作?' : msg;
     this.title = title == undefined ? '提示消息' : title;
 
-    this.show = function(timeout) {
+    this.show = function(flag, timeout) {
+        var color = flag == undefined ? 'green' : flag ? 'green' : 'red';
+        this.msg = '<span style="color:' + color + '">' + this.msg + '</span>';
         timeout = (timeout != undefined && !isNaN(timeout)) ? timeout : 3000;
         $.messager.show({
             title : this.title,

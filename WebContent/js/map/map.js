@@ -146,7 +146,7 @@ var deleteDevices = function(params) {
     var type = params.type;
 
     console.log('delete id:' + id);
-    new Message('删除成功!', '操作提示').show();
+    new Message('删除成功!', '温馨提示').show();
     if (type == TYPES.WIFI) {
         $('#wifi-panel').dialog('close');
     }
@@ -201,7 +201,7 @@ var initWifiEditor = function(editorStatus, wifi) {
             text : '删除',
             iconCls : 'icon-remove',
             handler : function() {
-                new Message('确定删除当前wifi设备信息', '删除提示').confirm(deleteDevices, {
+                new Message('确定删除当前wifi设备信息?', '温馨提示').confirm(deleteDevices, {
                     id : wifi.id,
                     type : TYPES.WIFI
                 });
@@ -289,7 +289,7 @@ var initCodeEditor = function(editorStatus, code) {
             text : '删除',
             iconCls : 'icon-remove',
             handler : function() {
-                new Message('确定删除当前二维码信息?', '删除提示').confirm(deleteDevices, {
+                new Message('确定删除当前二维码信息?', '温馨提示').confirm(deleteDevices, {
                     id : code.id,
                     type : TYPES.CODE
                 });

@@ -84,6 +84,7 @@ var deviceOperate = function(e, obj, id, type, longitude, latitude) {
                 });
             }
         };
+
         document.onmouseup = function(e) {
             isDraging = false;
             if (isMove) {

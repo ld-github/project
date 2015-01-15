@@ -51,7 +51,7 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @Column(nullable = false)
+    @Column(length = 32, nullable = false)
     public String getPassword() {
         return password;
     }
@@ -74,7 +74,7 @@ public class User implements Serializable {
      * @param input
      * @return
      */
-    public static final String sha(String input) {
+    public static String sha(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(input.getBytes("UTF-8"));
@@ -89,4 +89,5 @@ public class User implements Serializable {
             throw new RuntimeException(e);
         }
     }
+
 }

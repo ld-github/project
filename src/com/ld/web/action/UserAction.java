@@ -2,7 +2,6 @@ package com.ld.web.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -36,10 +35,9 @@ public class UserAction extends BaseAction {
     @Resource
     private UserBiz userBiz;
 
-    public final static String RESULT_SAVE = "SAVE";
+    public final static String RESULT_SAVE = "save";
 
     public String save() throws Exception {
-        Map<String, Object> result = getResult();
         try {
             User u1 = new User("Tom1", "TomC1");
             User u2 = new User("Tom2", "TomC2");
@@ -48,13 +46,13 @@ public class UserAction extends BaseAction {
                 List<User> users = new ArrayList<User>();
                 users.add(u1);
                 users.add(u2);
-                result.put("users", users);
-                result.put("user", u1);
+                super.putResult("users", users);
+                super.putResult("user", u1);
             }
-            result.put("flag", result);
+            super.putResult(flag);
         } catch (Exception e) {
             e.printStackTrace();
-            result.put("flag", false);
+            super.putResult(false);
         }
         return RESULT_SAVE;
     }

@@ -26,10 +26,31 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = 624599246438196900L;
 
+    public static final String KEY_CODE = "code";
+    public static final String KEY_FLAG = "success";
+    public static final String KEY_MESSAGE = "message";
+
     private Map<String, Object> result = new HashMap<String, Object>();
 
     public Map<String, Object> getResult() {
         return result;
     }
 
+    public void putResult(String key, Object obj) {
+        result.put(key, obj);
+    }
+
+    public void putResult(boolean success) {
+        result.put(KEY_FLAG, success);
+    }
+
+    public void putResult(boolean success, String message) {
+        putResult(success);
+        result.put(KEY_MESSAGE, message);
+    }
+
+    public void putResult(boolean success, String message, String code) {
+        putResult(success, message);
+        result.put(KEY_CODE, code);
+    }
 }

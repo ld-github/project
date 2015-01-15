@@ -27,8 +27,7 @@ import com.ld.web.biz.UserBiz;
 @Results({ @Result(type = "json",
                                     name = UserAction.RESULT_SAVE,
                                     params = {"root", "result",
-                                                       "excludeProperties", "users\\[\\d+\\].(password|username){1}, "
-                                                                                      + "user.(id|password){1}"
+                                                       "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
                                                       }),
 })
 public class UserAction extends BaseAction {

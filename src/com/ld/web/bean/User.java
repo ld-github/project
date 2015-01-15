@@ -12,9 +12,15 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * 
- * <p>Title: User</p>
- * <p>Copyright: Copyright (c) 2015</p>
- * <p>Description:</p>
+ * <p>
+ * Title: User
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2015
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  *
  * @author LD
  *

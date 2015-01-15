@@ -141,7 +141,7 @@ var EDITOR_STATUS = {
  * 
  * params = { id:id, type :type }
  */
-var deleteDevices = function(params) {
+var deleteDevice = function(params) {
     var id = params.id;
     var type = params.type;
 
@@ -201,7 +201,7 @@ var initWifiEditor = function(editorStatus, wifi) {
             text : '删除',
             iconCls : 'icon-remove',
             handler : function() {
-                new Message('确定删除当前wifi设备信息?', '温馨提示').confirm(deleteDevices, {
+                new Message('确定删除当前wifi设备信息?', '温馨提示').confirm(deleteDevice, {
                     id : wifi.id,
                     type : DEVICE_TYPES.WIFI
                 });
@@ -289,7 +289,7 @@ var initCodeEditor = function(editorStatus, code) {
             text : '删除',
             iconCls : 'icon-remove',
             handler : function() {
-                new Message('确定删除当前二维码信息?', '温馨提示').confirm(deleteDevices, {
+                new Message('确定删除当前二维码信息?', '温馨提示').confirm(deleteDevice, {
                     id : code.id,
                     type : DEVICE_TYPES.CODE
                 });

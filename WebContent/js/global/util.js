@@ -9,7 +9,7 @@ var ActionForm = function() {
         }
         try {
             var json = {};
-            for ( var i = 0; i < ids.length; i++) {
+            for (var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 var key = obj.attr('name');
                 var val = obj.val();
@@ -23,17 +23,17 @@ var ActionForm = function() {
     };
 };
 
+var MSSAGE_ICOS = {
+    ERROR : 'error',
+    QUESTION : 'question',
+    INFO : 'info',
+    WARNING : 'warning'
+};
+
 /**
  * Show message
  */
 var Message = function(msg, title) {
-    this.ICONS = {
-        ERROR : 'error',
-        QUESTION : 'question',
-        INFO : 'info',
-        WARNING : 'warning'
-    };
-
     this.msg = msg == undefined ? '确定当前操作?' : msg;
     this.title = title == undefined ? '提示消息' : title;
 
@@ -52,7 +52,7 @@ var Message = function(msg, title) {
     };
 
     this.alert = function(icon) {
-        icon = icon == undefined ? this.ICON.INFO : icon;
+        icon = icon == undefined ? MSSAGE_ICOS.INFO : icon;
         $.messager.alert(this.title, this.msg, icon);
     };
 

@@ -181,10 +181,10 @@ function deleteDevice(params) {
     console.log('delete id:' + id);
     new Message('删除成功!', '温馨提示').show(true);
     if (type == DEVICE_TYPES.WIFI) {
-        $('#wifi-panel').dialog('close');
+        $(EDITOR_CONTAINER.WIFI).dialog('close');
     }
     if (type == DEVICE_TYPES.CODE) {
-        $('#code-panel').dialog('close');
+        $(EDITOR_CONTAINER.CODE).dialog('close');
     }
 };
 
@@ -194,8 +194,7 @@ function deleteDevice(params) {
  * @param editorStatus
  * @param wifi
  */
-var WifiEditor = function() {
-    this.container = '#wifi-panel';
+var WifiEditor = function(container) {
     this.title = '';
     this.iconCls = '';
     this.buttons = [];
@@ -215,7 +214,7 @@ var WifiEditor = function() {
                     var longitude = geo.coordinates[0];
                     var latitude = geo.coordinates[1];
                     console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
-                    $(this.container).dialog('close');
+                    $(container).dialog('close');
                     // Here, as a test of the id is saved to the database id
                     var id = Math.floor(Math.random() * 1000 + 1);
                     appendPoint(id, DEVICE_TYPES.WIFI, 'title', longitude, latitude);
@@ -230,7 +229,7 @@ var WifiEditor = function() {
                 text : '保存',
                 iconCls : 'icon-save',
                 handler : function() {
-                    $(this.container).dialog('close');
+                    $(container).dialog('close');
                 }
             };
             var deleteBtn = {
@@ -263,12 +262,12 @@ var WifiEditor = function() {
             text : '取消',
             iconCls : 'icon-cancel',
             handler : function() {
-                close();
+                $(container).dialog('close');
             }
         };
         this.buttons.push(cancelBtn);
 
-        $(this.container).dialog({
+        $(container).dialog({
             title : this.title,
             iconCls : this.iconCls,
             width : 300,
@@ -286,8 +285,7 @@ var WifiEditor = function() {
  * @param editorStatus
  * @param code
  */
-var CodeEditor = function() {
-    this.container = '#code-panel';
+var CodeEditor = function(container) {
     this.title = '';
     this.iconCls = '';
     this.buttons = [];
@@ -307,7 +305,7 @@ var CodeEditor = function() {
                     var longitude = geo.coordinates[0];
                     var latitude = geo.coordinates[1];
                     console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
-                    $(this.container).dialog('close');
+                    $(container).dialog('close');
                     // Here, as a test of the id is saved to the database id
                     var id = Math.floor(Math.random() * 1000 + 1);
                     appendPoint(id, DEVICE_TYPES.CODE, 'title', longitude, latitude);
@@ -322,7 +320,7 @@ var CodeEditor = function() {
                 text : '保存',
                 iconCls : 'icon-save',
                 handler : function() {
-                    $(this.container).dialog('close');
+                    $(container).dialog('close');
                 }
             };
             var deleteBtn = {
@@ -355,12 +353,12 @@ var CodeEditor = function() {
             text : '取消',
             iconCls : 'icon-cancel',
             handler : function() {
-                $(this.container).dialog('close');
+                $(container).dialog('close');
             }
         };
         this.buttons.push(cancelBtn);
 
-        $(this.container).dialog({
+        $(container).dialog({
             title : this.title,
             iconCls : this.iconCls,
             width : 300,
@@ -372,6 +370,11 @@ var CodeEditor = function() {
     };
 };
 
+var EDITOR_CONTAINER = {
+    WIFI : '#wifi-panel',
+    CODE : '#code-panel',
+};
+
 /**
  * Init wifi or code editor panel
  * 
@@ -381,10 +384,10 @@ var CodeEditor = function() {
  */
 function initEditorPanel(editorStatus, type, data) {
     if (type == DEVICE_TYPES.WIFI) {
-        new WifiEditor().init(editorStatus, data);
+        new WifiEditor(EDITOR_CONTAINER.WIFI).init(editorStatus, data);
     }
     if (type == DEVICE_TYPES.CODE) {
-        new CodeEditor().init(editorStatus, data);
+        new CodeEditor(EDITOR_CONTAINER.CODE).init(editorStatus, data);
     }
 };
 

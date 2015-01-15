@@ -1,11 +1,21 @@
 var g_map = null;
 var g_geo = null;
 
-var setGeo = function(geo) {
+/**
+ * Set g_geo
+ * 
+ * @param geo
+ */
+function setGeo(geo) {
     g_geo = geo;
 };
 
-var getGeo = function() {
+/**
+ * get g_geo
+ * 
+ * @returns {___anonymous_g_geo}
+ */
+function getGeo() {
     return g_geo;
 };
 
@@ -21,8 +31,11 @@ var DEVICE_TYPES = {
 
 /**
  * Show menu when click map
+ * 
+ * @param e
+ * @param geo
  */
-var showMenu = function(e, geo) {
+function showMenu(e, geo) {
     $("#cover-panel").css({
         'display' : 'block',
     });
@@ -55,7 +68,13 @@ var KEY_WHICH = {
     RIGHT : 3,
 };
 
-var showDeviceInfo = function(id, type) {
+/**
+ * Show device info
+ * 
+ * @param id
+ * @param type
+ */
+function showDeviceInfo(id, type) {
     console.log('id:' + id + '\ttype:' + type);
     if (type == DEVICE_TYPES.WIFI) {
         initEditorPanel(EDITOR_STATUS.VIEW, DEVICE_TYPES.WIFI, {
@@ -71,8 +90,15 @@ var showDeviceInfo = function(id, type) {
 
 /**
  * Operate device when user mousedown the point
+ * 
+ * @param e
+ * @param obj
+ * @param id
+ * @param type
+ * @param longitude
+ * @param latitude
  */
-var operateDevice = function(e, obj, id, type, longitude, latitude) {
+function operateDevice(e, obj, id, type, longitude, latitude) {
     if (e.which == KEY_WHICH.RIGHT) {
         console.log('show device info by id and type!');
         showDeviceInfo(id, type);
@@ -115,8 +141,14 @@ var operateDevice = function(e, obj, id, type, longitude, latitude) {
 
 /**
  * Add point to map
+ * 
+ * @param id
+ * @param type
+ * @param title
+ * @param longitude
+ * @param latitude
  */
-var appendPoint = function(id, type, title, longitude, latitude) {
+function appendPoint(id, type, title, longitude, latitude) {
     var src = type == DEVICE_TYPES.WIFI ? IMG_URLS.WIFI : IMG_URLS.CODE;
     var point = {
         type : 'Point',
@@ -139,9 +171,10 @@ var EDITOR_STATUS = {
 /**
  * Delete Devices by id and type
  * 
- * params = { id:id, type :type }
+ * @param :{id:id,
+ *            type :type }
  */
-var deleteDevice = function(params) {
+function deleteDevice(params) {
     var id = params.id;
     var type = params.type;
 
@@ -161,86 +194,90 @@ var deleteDevice = function(params) {
  * @param editorStatus
  * @param wifi
  */
-var initWifiEditor = function(editorStatus, wifi) {
+var WifiEditor = function() {
+    this.container = '#wifi-panel';
     this.title = '';
     this.iconCls = '';
     this.buttons = [];
-    if (editorStatus == EDITOR_STATUS.NEW) {
-        this.title = '添加wifi设备信息';
-        this.iconCls = "icon-add";
-        var saveBtn = {
-            text : '保存',
-            iconCls : 'icon-save',
-            handler : function() {
-                var geo = getGeo();
-                if (null == geo) {
-                    return;
+
+    this.init = function(editorStatus, wifi) {
+        if (editorStatus == EDITOR_STATUS.NEW) {
+            this.title = '添加wifi设备信息';
+            this.iconCls = "icon-add";
+            var saveBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                    var geo = getGeo();
+                    if (null == geo) {
+                        return;
+                    }
+                    var longitude = geo.coordinates[0];
+                    var latitude = geo.coordinates[1];
+                    console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
+                    $(this.container).dialog('close');
+                    // Here, as a test of the id is saved to the database id
+                    var id = Math.floor(Math.random() * 1000 + 1);
+                    appendPoint(id, DEVICE_TYPES.WIFI, 'title', longitude, latitude);
                 }
-                var longitude = geo.coordinates[0];
-                var latitude = geo.coordinates[1];
-                console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
-                $('#wifi-panel').dialog('close');
-                // Here, as a test of the id is saved to the database id
-                var id = Math.floor(Math.random() * 1000 + 1);
-                appendPoint(id, DEVICE_TYPES.WIFI, 'title', longitude, latitude);
-            }
-        };
-        this.buttons.push(saveBtn);
-    }
-    if (editorStatus == EDITOR_STATUS.EDIT) {
-        this.title = '编辑wifi设备信息';
-        this.iconCls = 'icon-edit';
-        var updateBtn = {
-            text : '保存',
-            iconCls : 'icon-save',
-            handler : function() {
-                $('#wifi-panel').dialog('close');
-            }
-        };
-        var deleteBtn = {
-            text : '删除',
-            iconCls : 'icon-remove',
-            handler : function() {
-                new Message('确定删除当前wifi设备信息?', '温馨提示').confirm(deleteDevice, {
-                    id : wifi.id,
-                    type : DEVICE_TYPES.WIFI
-                });
-            }
-        };
-        this.buttons.push(updateBtn);
-        this.buttons.push(deleteBtn);
-    }
-    if (editorStatus == EDITOR_STATUS.VIEW) {
-        this.title = '查看wifi设备信息';
-        this.iconCls = 'icon-print';
-        var editBtn = {
-            text : '编辑',
-            iconCls : 'icon-edit',
-            handler : function() {
-                initEditorPanel(EDITOR_STATUS.EDIT, DEVICE_TYPES.WIFI, wifi);
-            }
-        };
-        this.buttons.push(editBtn);
-    }
-
-    var cancelBtn = {
-        text : '取消',
-        iconCls : 'icon-cancel',
-        handler : function() {
-            $('#wifi-panel').dialog('close');
+            };
+            this.buttons.push(saveBtn);
         }
-    };
-    this.buttons.push(cancelBtn);
+        if (editorStatus == EDITOR_STATUS.EDIT) {
+            this.title = '编辑wifi设备信息';
+            this.iconCls = 'icon-edit';
+            var updateBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                    $(this.container).dialog('close');
+                }
+            };
+            var deleteBtn = {
+                text : '删除',
+                iconCls : 'icon-remove',
+                handler : function() {
+                    new Message('确定删除当前wifi设备信息?', '温馨提示').confirm(deleteDevice, {
+                        id : wifi.id,
+                        type : DEVICE_TYPES.WIFI
+                    });
+                }
+            };
+            this.buttons.push(updateBtn);
+            this.buttons.push(deleteBtn);
+        }
+        if (editorStatus == EDITOR_STATUS.VIEW) {
+            this.title = '查看wifi设备信息';
+            this.iconCls = 'icon-print';
+            var editBtn = {
+                text : '编辑',
+                iconCls : 'icon-edit',
+                handler : function() {
+                    initEditorPanel(EDITOR_STATUS.EDIT, DEVICE_TYPES.WIFI, wifi);
+                }
+            };
+            this.buttons.push(editBtn);
+        }
 
-    $('#wifi-panel').dialog({
-        title : this.title,
-        iconCls : this.iconCls,
-        width : 300,
-        height : 400,
-        cache : false,
-        modal : true,
-        buttons : this.buttons
-    });
+        var cancelBtn = {
+            text : '取消',
+            iconCls : 'icon-cancel',
+            handler : function() {
+                close();
+            }
+        };
+        this.buttons.push(cancelBtn);
+
+        $(this.container).dialog({
+            title : this.title,
+            iconCls : this.iconCls,
+            width : 300,
+            height : 400,
+            cache : false,
+            modal : true,
+            buttons : this.buttons
+        });
+    };
 };
 
 /**
@@ -249,97 +286,105 @@ var initWifiEditor = function(editorStatus, wifi) {
  * @param editorStatus
  * @param code
  */
-var initCodeEditor = function(editorStatus, code) {
+var CodeEditor = function() {
+    this.container = '#code-panel';
     this.title = '';
     this.iconCls = '';
     this.buttons = [];
-    if (editorStatus == EDITOR_STATUS.NEW) {
-        this.title = '添加二维码信息';
-        this.iconCls = "icon-add";
-        var saveBtn = {
-            text : '保存',
-            iconCls : 'icon-save',
-            handler : function() {
-                var geo = getGeo();
-                if (null == geo) {
-                    return;
+
+    this.init = function(editorStatus, code) {
+        if (editorStatus == EDITOR_STATUS.NEW) {
+            this.title = '添加二维码信息';
+            this.iconCls = "icon-add";
+            var saveBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                    var geo = getGeo();
+                    if (null == geo) {
+                        return;
+                    }
+                    var longitude = geo.coordinates[0];
+                    var latitude = geo.coordinates[1];
+                    console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
+                    $(this.container).dialog('close');
+                    // Here, as a test of the id is saved to the database id
+                    var id = Math.floor(Math.random() * 1000 + 1);
+                    appendPoint(id, DEVICE_TYPES.CODE, 'title', longitude, latitude);
                 }
-                var longitude = geo.coordinates[0];
-                var latitude = geo.coordinates[1];
-                console.log('longitude: ' + longitude + '\t latitude: ' + latitude);
-                $('#code-panel').dialog('close');
-                // Here, as a test of the id is saved to the database id
-                var id = Math.floor(Math.random() * 1000 + 1);
-                appendPoint(id, DEVICE_TYPES.CODE, 'title', longitude, latitude);
-            }
-        };
-        this.buttons.push(saveBtn);
-    }
-    if (editorStatus == EDITOR_STATUS.EDIT) {
-        this.title = '编辑二维码信息';
-        this.iconCls = 'icon-edit';
-        var updateBtn = {
-            text : '保存',
-            iconCls : 'icon-save',
-            handler : function() {
-                $('#code-panel').dialog('close');
-            }
-        };
-        var deleteBtn = {
-            text : '删除',
-            iconCls : 'icon-remove',
-            handler : function() {
-                new Message('确定删除当前二维码信息?', '温馨提示').confirm(deleteDevice, {
-                    id : code.id,
-                    type : DEVICE_TYPES.CODE
-                });
-            }
-        };
-        this.buttons.push(updateBtn);
-        this.buttons.push(deleteBtn);
-    }
-    if (editorStatus == EDITOR_STATUS.VIEW) {
-        this.title = '查看二维码信息';
-        this.iconCls = 'icon-print';
-        var editBtn = {
-            text : '编辑',
-            iconCls : 'icon-edit',
-            handler : function() {
-                initEditorPanel(EDITOR_STATUS.EDIT, DEVICE_TYPES.CODE, code);
-            }
-        };
-        this.buttons.push(editBtn);
-    }
-
-    var cancelBtn = {
-        text : '取消',
-        iconCls : 'icon-cancel',
-        handler : function() {
-            $('#code-panel').dialog('close');
+            };
+            this.buttons.push(saveBtn);
         }
-    };
-    this.buttons.push(cancelBtn);
+        if (editorStatus == EDITOR_STATUS.EDIT) {
+            this.title = '编辑二维码信息';
+            this.iconCls = 'icon-edit';
+            var updateBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                    $(this.container).dialog('close');
+                }
+            };
+            var deleteBtn = {
+                text : '删除',
+                iconCls : 'icon-remove',
+                handler : function() {
+                    new Message('确定删除当前二维码信息?', '温馨提示').confirm(deleteDevice, {
+                        id : code.id,
+                        type : DEVICE_TYPES.CODE
+                    });
+                }
+            };
+            this.buttons.push(updateBtn);
+            this.buttons.push(deleteBtn);
+        }
+        if (editorStatus == EDITOR_STATUS.VIEW) {
+            this.title = '查看二维码信息';
+            this.iconCls = 'icon-print';
+            var editBtn = {
+                text : '编辑',
+                iconCls : 'icon-edit',
+                handler : function() {
+                    initEditorPanel(EDITOR_STATUS.EDIT, DEVICE_TYPES.CODE, code);
+                }
+            };
+            this.buttons.push(editBtn);
+        }
 
-    $('#code-panel').dialog({
-        title : this.title,
-        iconCls : this.iconCls,
-        width : 300,
-        height : 400,
-        cache : false,
-        modal : true,
-        buttons : this.buttons
-    });
+        var cancelBtn = {
+            text : '取消',
+            iconCls : 'icon-cancel',
+            handler : function() {
+                $(this.container).dialog('close');
+            }
+        };
+        this.buttons.push(cancelBtn);
+
+        $(this.container).dialog({
+            title : this.title,
+            iconCls : this.iconCls,
+            width : 300,
+            height : 400,
+            cache : false,
+            modal : true,
+            buttons : this.buttons
+        });
+    };
 };
 
 /**
  * Init wifi or code editor panel
+ * 
+ * @param editorStatus
+ * @param type
+ * @param data
  */
-var initEditorPanel = function(editorStatus, type, data) {
+function initEditorPanel(editorStatus, type, data) {
     if (type == DEVICE_TYPES.WIFI) {
-        initWifiEditor(editorStatus, data);
+        new WifiEditor().init(editorStatus, data);
     }
     if (type == DEVICE_TYPES.CODE) {
-        initCodeEditor(editorStatus, data);
+        new CodeEditor().init(editorStatus, data);
     }
 };
 
@@ -365,15 +410,17 @@ $(function() {
     var mapLevels = config.MAP_LEVELS_DEFAULT;
     var mapFolderName = config.MAP_FOLDER_NAME_DEFAULT;
 
-    var shapeFunction = function(e, geo) {
+    function shapeFunction(e, geo) {
         type: 'LineString', g_map.geomap('option', 'mode', 'drawPoint');
         showMenu(e, geo);
-    };
+    }
+    ;
 
-    var positionEventHandler = function positionEventHandler(e, geo) {
+    function positionEventHandler(e, geo) {
         // console.log('longitude: ' + geo.coordinates[0] + '\t latitude: ' +
         // geo.coordinates[1]);
-    };
+    }
+    ;
 
     g_map = new Map().createMap(container, zoom, maxLevelPixelWidth, maxLevelPixelHeight, mapFactor, tilePixelWidth,
             tilePixelHeight, mapLevels, mapFolderName, shapeFunction, positionEventHandler);

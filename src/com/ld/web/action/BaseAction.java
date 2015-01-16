@@ -3,16 +3,18 @@ package com.ld.web.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 
- * <p>Title: BaseAction</p>
+ * <p>Title: UserAction</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -21,6 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @date 2015-1-8
  */
 @Controller
+@Namespace("/")
 @ParentPackage("json-default")
 @Results({ @Result(type = "json", name = UserAction.SUCCESS, params = { "root", "result" }) })
 public class BaseAction extends ActionSupport {
@@ -32,7 +35,7 @@ public class BaseAction extends ActionSupport {
 
     private Map<String, Object> result = new HashMap<String, Object>();
 
-    public Map<String, Object> getResult() {
+    public Map<String, Object> takeResult() {
         return result;
     }
 
@@ -52,5 +55,10 @@ public class BaseAction extends ActionSupport {
     public void putResult(boolean success, String message, String code) {
         putResult(success, message);
         result.put(KEY_CODE, code);
+    }
+
+    public Map<String, Object> takeSession() {
+        ActionContext context = ActionContext.getContext();
+        return context.getSession();
     }
 }

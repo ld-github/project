@@ -6,7 +6,7 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-a, input {
+a, input, button {
     outline: none !important;
 }
 

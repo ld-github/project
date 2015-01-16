@@ -2,6 +2,7 @@ package com.ld.web.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
+import com.google.code.kaptcha.Constants;
 import com.ld.web.bean.User;
 import com.ld.web.biz.UserBiz;
 
@@ -55,5 +57,12 @@ public class UserAction extends BaseAction {
             super.putResult(false);
         }
         return RESULT_SAVE;
+    }
+
+    public String login() throws Exception {
+        Map<String, Object> session = super.takeSession();
+        String kaptcha = (String) session.get(Constants.KAPTCHA_SESSION_KEY);
+        System.out.println(kaptcha);
+        return SUCCESS;
     }
 }

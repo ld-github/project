@@ -39,12 +39,12 @@
         <init-param>
             <description>Width in pixels of the kaptcha image. </description>
             <param-name>kaptcha.image.width</param-name>
-            <param-value>80</param-value>
+            <param-value>100</param-value>
         </init-param>
         <init-param>
             <description>Height in pixels of the kaptcha image. </description>
             <param-name>kaptcha.image.height</param-name>
-            <param-value>30</param-value>
+            <param-value>32</param-value>
         </init-param>
         <init-param>
             <description>The image producer. </description>
@@ -64,7 +64,7 @@
         <init-param>
             <description>The number of characters to display. </description>
             <param-name>kaptcha.textproducer.char.length</param-name>
-            <param-value>5</param-value>
+            <param-value>6</param-value>
         </init-param>
         <init-param>
             <description>A list of comma separated font names.</description>
@@ -74,7 +74,7 @@
         <init-param>
             <description>The size of the font to use. </description>
             <param-name>kaptcha.textproducer.font.size</param-name>
-            <param-value>20</param-value>
+            <param-value>22</param-value>
         </init-param>
         <init-param>
             <description>The color to use for the font. Legal values are r,g,b. </description>

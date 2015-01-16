@@ -5,6 +5,128 @@
     background-repeat: repeat;
 }
 
-#kaptcha {
+#login-panel {
+    width: 500px;
+    height: 280px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #666699;
+    background: #3399CC;
+    box-shadow: 8px 5px 5px 3px #336699;
+}
+
+#kaptcha-img {
+    width: 100px;
+    height: 32px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    right: 0px;
     cursor: pointer;
+    display: block;
+    border-radius: 5px;
+}
+
+#legend {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    border-radius: 5px;
+    background: #99CCFF;
+    font-size: 28px;
+    line-height: 60px;
+    text-align: center;
+    font-style: italic;
+    color: #666666;
+}
+
+#username, #password {
+    width: 300px;
+    height: 28px;
+    position: relative;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    font-size: 14px;
+    color: #666666;
+    border-radius: 5px;
+    font-weight: bold;
+    display: block;
+    border: 2px solid #666699;
+    padding-left: 5px;
+}
+
+#username {
+    margin-top: 25px;
+}
+
+#password {
+    margin-top: 10px;
+}
+
+#username:FOCUS {
+    border: 2px solid #660066;
+}
+
+#password:FOCUS {
+    border: 2px solid #660066;
+}
+
+#kaptcha:FOCUS {
+    border: 2px solid #660066;
+}
+
+#kaptcha-panel {
+    width: 308px;
+    height: 34px;
+    position: relative;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#kaptcha {
+    width: 195px;
+    height: 28px;
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    color: #666666;
+    border-radius: 5px;
+    font-weight: bold;
+    display: block;
+    border: 2px solid #666699;
+    padding-left: 5px;
+}
+
+#login-btn {
+    width: 308px;
+    height: 34px;
+    position: relative;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: #0000CC;
+    display: block;
+    color: #FFFFFF;
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+#login-btn:ACTIVE {
+    background: #000099;
 }

@@ -64,7 +64,3 @@ var Message = function(msg, title) {
         });
     };
 };
-
-var Base64 = function(){
-    
-};

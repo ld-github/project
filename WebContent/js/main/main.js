@@ -4,11 +4,11 @@
 var MENU = [ {
     title : '主菜单',
     submenus : [ {
-        title : '地图',
-        url : 'map.html'
-    }, {
         title : '登录',
         url : 'login.html'
+    }, {
+        title : '地图',
+        url : 'map.html'
     }, {
         title : '主菜单3',
         url : '345.htm'
@@ -65,7 +65,8 @@ function initMenu() {
         var menu = $(this).data('menu');
         if (menu.url) {
             addTab(menu.title, menu.url);
-        };
+        }
+        ;
     });
 }
 
@@ -102,7 +103,8 @@ function addTab(title, url, closable) {
             closable : closable,
             content : content,
         });
-    };
+    }
+    ;
 }
 
 $(function() {

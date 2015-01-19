@@ -66,18 +66,4 @@ $(function() {
         login();
     });
 
-    /**
-     * Ajax Start
-     */
-    $(document).ajaxStart(function() {
-        $('#loading').show();
-    });
-
-    /**
-     * Ajax Stop
-     */
-    $(document).ajaxStop(function() {
-        $('#loading').hide();
-    });
-
 });

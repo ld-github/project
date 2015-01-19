@@ -15,3 +15,16 @@ ul, ol {
     padding: 0px;
     list-style: none;
 }
+
+#loading {
+    width: 32px;
+    height: 32px;
+    position: fixed;
+    bottom: 5px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    background: url('../../images/loading.gif');
+    background-size: 32px 32px;
+    display: none;
+}

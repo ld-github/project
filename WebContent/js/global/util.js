@@ -64,3 +64,26 @@ var Message = function(msg, title) {
         });
     };
 };
+
+$(function() {
+    /**
+     * Ajax Start
+     */
+    $(document).ajaxStart(function() {
+        $('#loading').show();
+    });
+
+    /**
+     * Ajax Stop
+     */
+    $(document).ajaxStop(function() {
+        $('#loading').hide();
+    });
+
+    /**
+     * Ajax Error
+     */
+    $(document).ajaxError(function(event, request, settings) {
+        new Message('系统错误', '温馨提示').show(false);
+    });
+});

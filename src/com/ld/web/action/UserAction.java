@@ -13,6 +13,7 @@ import org.apache.struts2.convention.annotation.Results;
 import com.google.code.kaptcha.Constants;
 import com.ld.web.bean.User;
 import com.ld.web.biz.UserBiz;
+import com.ld.web.util.Util;
 
 /**
  * 
@@ -37,6 +38,11 @@ public class UserAction extends BaseAction {
     @Resource
     private UserBiz userBiz;
 
+    // The front was introduced into object
+    private User user;
+
+    private String kaptcha;
+
     public final static String RESULT_SAVE = "save";
 
     public String save() throws Exception {
@@ -56,13 +62,42 @@ public class UserAction extends BaseAction {
             e.printStackTrace();
             super.putResult(false);
         }
-        return RESULT_SAVE;
+        return SUCCESS;
     }
 
+    /**
+     * User Login
+     * 
+     * @return
+     * @throws Exception
+     */
     public String login() throws Exception {
         Map<String, Object> session = super.takeSession();
         String kaptcha = (String) session.get(Constants.KAPTCHA_SESSION_KEY);
-        System.out.println(kaptcha);
+        if (!kaptcha.equals(this.kaptcha)) {
+            super.putResult(false, "验证码输入错误");
+            return SUCCESS;
+        }
+        System.out.println(user.getUsername());
+        System.out.println(Util.base64Decode(user.getPassword()));
+        super.putResult(true);
         return SUCCESS;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getKaptcha() {
+        return kaptcha;
+    }
+
+    public void setKaptcha(String kaptcha) {
+        this.kaptcha = kaptcha;
+    }
+
 }

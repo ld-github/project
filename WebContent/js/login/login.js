@@ -39,7 +39,15 @@ function login() {
         new Message(result, '温馨提示').show(false);
         return;
     }
-    $.post(URLS.LOGIN, {}, function(data) {
+    var args = new ActionForm().toJson([ 'username', 'password', 'kaptcha' ]);
+    args['user.password'] = Base64.encode(args['user.password']);
+    $.post(URLS.LOGIN, args, function(data) {
+        if (data.success) {
+            location.href = "main.html";
+            return;
+        }
+        new Message(data.message, '温馨提示').show(false);
+        changeKaptcha();
     });
 }
 

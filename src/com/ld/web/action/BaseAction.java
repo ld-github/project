@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller
 @Namespace("/")
 @ParentPackage("json-default")
-@Results({ @Result(type = "json", name = UserAction.SUCCESS, params = { "root", "result" }) })
+@Results({ @Result(type = "json", name = ActionSupport.SUCCESS, params = { "root", "result" }) })
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = 624599246438196900L;
 
@@ -35,7 +35,7 @@ public class BaseAction extends ActionSupport {
 
     private Map<String, Object> result = new HashMap<String, Object>();
 
-    public Map<String, Object> takeResult() {
+    public Map<String, Object> getResult() {
         return result;
     }
 

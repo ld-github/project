@@ -57,4 +57,13 @@ $(function() {
     $('#login-btn').click(function() {
         login();
     });
+
+    $(document).ajaxStart(function() {
+        $('#loading').show();
+    });
+
+    $(document).ajaxStop(function() {
+        $('#loading').hide();
+    });
+
 });

@@ -16,7 +16,7 @@ import com.ld.web.util.Util;
 
 /**
  * 
- * <p>Title: UserAction</p>
+ * <p>Title: BaseAction</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

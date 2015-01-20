@@ -4,7 +4,7 @@ import it.sauronsoftware.base64.Base64;
 
 /**
  * 
- * <p>Title: User</p>
+ * <p>Title: Util</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

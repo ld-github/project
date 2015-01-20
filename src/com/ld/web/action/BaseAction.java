@@ -2,6 +2,7 @@ package com.ld.web.action;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -9,6 +10,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.stereotype.Controller;
 
+import com.ld.web.bean.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,9 +31,11 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = 624599246438196900L;
 
-    public static final String KEY_CODE = "code";
-    public static final String KEY_FLAG = "success";
-    public static final String KEY_MESSAGE = "message";
+    private final String KEY_SESSION_USER = "sessionUser";
+
+    private final String KEY_CODE = "code";
+    private final String KEY_FLAG = "success";
+    private final String KEY_MESSAGE = "message";
 
     private Map<String, Object> result = new HashMap<String, Object>();
 
@@ -57,8 +61,40 @@ public class BaseAction extends ActionSupport {
         result.put(KEY_CODE, code);
     }
 
+    /**
+     * Take session
+     * @return
+     */
     public Map<String, Object> takeSession() {
         ActionContext context = ActionContext.getContext();
         return context.getSession();
+    }
+
+    /**
+     * Put user to session
+     * 
+     * @param u
+     */
+    public void putSessionUser(User u) {
+        if (!takeSession().containsKey(KEY_SESSION_USER)) {
+            takeSession().put(KEY_SESSION_USER, u);
+            return;
+        }
+        for (Entry<String, Object> entry : takeSession().entrySet()) {
+            if (entry.getKey().equals(KEY_SESSION_USER)) {
+                entry.setValue(u);
+            }
+        }
+    }
+    
+    /**
+     * Take user from session
+     * @return
+     */
+    public User takeSessionUser(){
+        if(takeSession().containsKey(KEY_SESSION_USER)){
+            return (User) takeSession().get(KEY_SESSION_USER);
+        }
+        return null;
     }
 }

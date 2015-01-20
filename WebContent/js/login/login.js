@@ -17,7 +17,7 @@ function formValidate() {
 }
 
 /**
- * Change Kaptcha
+ * Change kaptcha img
  */
 function changeKaptcha() {
     $('#kaptcha-img').slideUp().attr('src', '../kaptcha.jpg?' + Math.floor(Math.random() * 100)).slideDown();
@@ -53,7 +53,7 @@ function login() {
 
 $(function() {
     /**
-     * Kaptcha img change
+     * Change kaptcha img
      */
     $('#kaptcha-img').click(function() {
         changeKaptcha();

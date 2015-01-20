@@ -2,7 +2,6 @@ package com.ld.web.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -43,7 +42,7 @@ public class UserAction extends BaseAction {
 
     private String kaptcha;
 
-    public final static String RESULT_SAVE = "save";
+    public static final String RESULT_SAVE = "save";
 
     public String save() throws Exception {
         try {
@@ -72,8 +71,7 @@ public class UserAction extends BaseAction {
      * @throws Exception
      */
     public String login() throws Exception {
-        Map<String, Object> session = super.takeSession();
-        String kaptcha = (String) session.get(Constants.KAPTCHA_SESSION_KEY);
+        String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
             super.putResult(false, "验证码输入错误");
             return SUCCESS;

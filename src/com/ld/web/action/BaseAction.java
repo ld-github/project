@@ -34,35 +34,36 @@ public class BaseAction extends ActionSupport {
     private final String KEY_SESSION_USER = "sessionUser";
 
     private final String KEY_CODE = "code";
-    private final String KEY_FLAG = "success";
+    private final String KEY_SUCCESS = "success";
     private final String KEY_MESSAGE = "message";
 
     private Map<String, Object> result = new HashMap<String, Object>();
 
     public Map<String, Object> getResult() {
-        return result;
+        return this.result;
     }
 
     public void putResult(String key, Object obj) {
-        result.put(key, obj);
+        this.result.put(key, obj);
     }
 
     public void putResult(boolean success) {
-        result.put(KEY_FLAG, success);
+        this.putResult(KEY_SUCCESS, success);
     }
 
     public void putResult(boolean success, String message) {
         putResult(success);
-        result.put(KEY_MESSAGE, message);
+        this.putResult(KEY_MESSAGE, message);
     }
 
     public void putResult(boolean success, String message, String code) {
-        putResult(success, message);
-        result.put(KEY_CODE, code);
+        this.putResult(success, message);
+        this.putResult(KEY_CODE, code);
     }
 
     /**
      * Take session
+     * 
      * @return
      */
     public Map<String, Object> takeSession() {
@@ -76,25 +77,15 @@ public class BaseAction extends ActionSupport {
      * @param u
      */
     public void putSessionUser(User u) {
-        if (!takeSession().containsKey(KEY_SESSION_USER)) {
-            takeSession().put(KEY_SESSION_USER, u);
-            return;
-        }
-        for (Entry<String, Object> entry : takeSession().entrySet()) {
-            if (entry.getKey().equals(KEY_SESSION_USER)) {
-                entry.setValue(u);
-            }
-        }
+        takeSession().put(KEY_SESSION_USER, u);
     }
-    
+
     /**
      * Take user from session
+     * 
      * @return
      */
-    public User takeSessionUser(){
-        if(takeSession().containsKey(KEY_SESSION_USER)){
-            return (User) takeSession().get(KEY_SESSION_USER);
-        }
-        return null;
+    public User takeSessionUser() {
+        return takeSession().containsKey(KEY_SESSION_USER) ? (User) takeSession().get(KEY_SESSION_USER) : null;
     }
 }

@@ -41,6 +41,7 @@ function login() {
     }
     var args = new ActionForm().toJson([ 'username', 'password', 'kaptcha' ]);
     args['user.password'] = Base64.encode(args['user.password']);
+
     $.post(URLS.LOGIN, args, function(data) {
         if (data.success) {
             location.href = "main.html";

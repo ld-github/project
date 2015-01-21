@@ -52,6 +52,10 @@ function login() {
     });
 }
 
+var KEY_CODE = {
+    ENTER_CODE : 13
+};
+
 $(function() {
     /**
      * Change kaptcha img
@@ -67,4 +71,12 @@ $(function() {
         login();
     });
 
+    /**
+     * Monitor user enter button press
+     */
+    $(window).keydown(function(event) {
+        if (event.keyCode == KEY_CODE.ENTER_CODE) {
+            login();
+        }
+    });
 });

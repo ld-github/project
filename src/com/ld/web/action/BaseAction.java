@@ -32,9 +32,9 @@ public class BaseAction extends ActionSupport {
 
     private final String KEY_SESSION_USER = "sessionUser";
 
-    private final String KEY_CODE = "code";
-    private final String KEY_SUCCESS = "success";
-    private final String KEY_MESSAGE = "message";
+    private final String RESULT_CODE = "code";
+    private final String RESULT_SUCCESS = "success";
+    private final String RESULT_MESSAGE = "message";
 
     private Map<String, Object> result = new HashMap<String, Object>();
 
@@ -47,17 +47,17 @@ public class BaseAction extends ActionSupport {
     }
 
     public void putResult(boolean success) {
-        this.putResult(KEY_SUCCESS, success);
+        this.putResult(RESULT_SUCCESS, success);
     }
 
     public void putResult(boolean success, String message) {
-        putResult(success);
-        this.putResult(KEY_MESSAGE, message);
+        this.putResult(success);
+        this.putResult(RESULT_MESSAGE, message);
     }
 
     public void putResult(boolean success, String message, String code) {
         this.putResult(success, message);
-        this.putResult(KEY_CODE, code);
+        this.putResult(RESULT_CODE, code);
     }
 
     /**

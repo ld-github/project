@@ -78,6 +78,7 @@ public class UserAction extends BaseAction {
         }
         System.out.println(user.getUsername());
         System.out.println(Util.base64Decode(user.getPassword()));
+        super.putSessionUser(user);
         super.putResult(true);
         return SUCCESS;
     }

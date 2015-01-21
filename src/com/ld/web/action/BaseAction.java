@@ -10,6 +10,7 @@ import org.apache.struts2.convention.annotation.Results;
 import org.springframework.stereotype.Controller;
 
 import com.ld.web.bean.User;
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,12 +26,12 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 @Controller
 @Namespace("/")
-@ParentPackage("json-default")
-@Results({ @Result(type = "json", name = ActionSupport.SUCCESS, params = { "root", "result" }) })
+@ParentPackage("basic-default")
+@Results({ @Result(type = "json", name = Action.SUCCESS, params = { "root", "result" }) })
 public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = 624599246438196900L;
 
-    private final String KEY_SESSION_USER = "sessionUser";
+    public static final String SESSION_USER = "sessionUser";
 
     private final String RESULT_CODE = "code";
     private final String RESULT_SUCCESS = "success";
@@ -76,7 +77,7 @@ public class BaseAction extends ActionSupport {
      * @param u
      */
     public void putSessionUser(User u) {
-        takeSession().put(KEY_SESSION_USER, u);
+        takeSession().put(SESSION_USER, u);
     }
 
     /**
@@ -85,6 +86,6 @@ public class BaseAction extends ActionSupport {
      * @return
      */
     public User takeSessionUser() {
-        return takeSession().containsKey(KEY_SESSION_USER) ? (User) takeSession().get(KEY_SESSION_USER) : null;
+        return takeSession().containsKey(SESSION_USER) ? (User) takeSession().get(SESSION_USER) : null;
     }
 }

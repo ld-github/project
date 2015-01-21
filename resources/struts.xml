@@ -9,4 +9,20 @@
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <constant name="struts.multipart.maxSize" value="52428800" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+    <package name="basic-default" extends="json-default" namespace="/">
+        <interceptors>
+            <interceptor name="sessionInterceptor" class="com.ld.web.interceptor.SessionInterceptor">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+            <interceptor-stack name="basicStack">
+                <interceptor-ref name="sessionInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="basicStack"></default-interceptor-ref>
+        <global-results>
+            <result name="login" type="redirect">/manage/login.html</result>
+        </global-results>
+    </package>
 </struts>

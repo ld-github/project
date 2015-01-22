@@ -52,6 +52,10 @@ public class BaseAction extends ActionSupport {
         this.putResult(RESULT_SUCCESS, success);
     }
 
+    public void putResult(String code) {
+        this.putResult(RESULT_CODE, code);
+    }
+
     public void putResult(boolean success, String message) {
         this.putResult(success);
         this.putResult(RESULT_MESSAGE, message);
@@ -59,7 +63,7 @@ public class BaseAction extends ActionSupport {
 
     public void putResult(boolean success, String message, String code) {
         this.putResult(success, message);
-        this.putResult(RESULT_CODE, code);
+        this.putResult(code);
     }
 
     /**

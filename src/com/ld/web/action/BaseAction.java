@@ -44,23 +44,52 @@ public class BaseAction extends ActionSupport {
         return this.result;
     }
 
+    /**
+     * Put key and object to result
+     * 
+     * @param key
+     * @param obj
+     */
     public void putResult(String key, Object obj) {
         this.result.put(key, obj);
     }
 
+    /**
+     * Put success to result
+     * 
+     * @param success
+     */
     public void putResult(boolean success) {
         this.putResult(RESULT_SUCCESS, success);
     }
 
+    /**
+     * Put code to result
+     * 
+     * @param code
+     */
     public void putResult(String code) {
         this.putResult(RESULT_CODE, code);
     }
 
+    /**
+     * Put success and message to result
+     * 
+     * @param success
+     * @param message
+     */
     public void putResult(boolean success, String message) {
         this.putResult(success);
         this.putResult(RESULT_MESSAGE, message);
     }
 
+    /**
+     * Put success and message and code to result
+     * 
+     * @param success
+     * @param message
+     * @param code
+     */
     public void putResult(boolean success, String message, String code) {
         this.putResult(success, message);
         this.putResult(code);

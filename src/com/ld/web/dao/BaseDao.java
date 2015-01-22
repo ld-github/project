@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 
- * <p>Title: BaseDaoImpl</p>
+ * <p>Title: BaseDao</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

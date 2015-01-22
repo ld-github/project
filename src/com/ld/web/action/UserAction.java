@@ -29,8 +29,7 @@ import com.ld.web.util.Util;
                                     name = UserAction.RESULT_SAVE,
                                     params = {"root", "result",
                                                        "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
-                                                      }),
-})
+                                                      }), })
 public class UserAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;

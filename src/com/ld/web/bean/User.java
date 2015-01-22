@@ -51,7 +51,7 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @Column(length = 32, nullable = false)
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }

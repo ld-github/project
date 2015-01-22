@@ -1,6 +1,9 @@
 package com.ld.web.dao;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import com.ld.web.bean.Page;
 
 /**
  * 
@@ -61,4 +64,24 @@ public interface BaseDao<T> {
      * @param t
      */
     void delete(T t);
+
+    /**
+     * Get Page by where and params and orders
+     * 
+     * @param where
+     * @param params
+     * @param orders
+     * @param page
+     * @return
+     */
+    Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page);
+
+    /**
+     * get Total by where and params
+     * 
+     * @param where
+     * @param params
+     * @return
+     */
+    long getTotal(String where, List<?> params);
 }

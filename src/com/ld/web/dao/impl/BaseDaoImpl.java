@@ -1,6 +1,7 @@
 package com.ld.web.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.ld.web.bean.Page;
 import com.ld.web.dao.BaseDao;
 
 /**
@@ -18,6 +20,8 @@ import com.ld.web.dao.BaseDao;
  * <p>Description:</p>
  *
  * @author LD
+ * 
+ * @param <T>
  *
  * @date 2015-1-8
  */
@@ -84,7 +88,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public void delete(Long primaryKey) {
-        String hql = "delete " + getClassName() + " o where o.id = ?";
+        String hql = "delete " + this.getClassName() + " o where o.id = ?";
         Query q = this.getSession().createQuery(hql);
         setParams(q, primaryKey);
         q.executeUpdate();
@@ -95,4 +99,43 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         this.getSession().delete(t);
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page) {
+        String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
+        Query q = this.getSession().createQuery(hql);
+        setParams(q, params.toArray());
+        q.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
+        q.setMaxResults(page.getPageSize());
+        List<T> records = q.list();
+        long total = this.getTotal(where, params);
+        page.setRecords(records);
+        page.setTotal(total);
+        return page;
+    }
+
+    @Override
+    public long getTotal(String where, List<?> params) {
+        String hql = "select count(o) from " + this.getClassName() + " o " + where;
+        Query q = this.getSession().createQuery(hql);
+        setParams(q, params.toArray());
+        return (Long) q.uniqueResult();
+    }
+
+    /**
+     * Convert LinkedHashMap to str like 'order by xx asc , bb desc '
+     * 
+     * @param orders
+     * @return
+     */
+    private String getOrder(LinkedHashMap<String, String> orders) {
+        if (null == orders || orders.isEmpty()) {
+            return "";
+        }
+        StringBuffer sb = new StringBuffer(" order by");
+        for (String key : orders.keySet()) {
+            sb.append(" ").append(key).append(" ").append(orders.get(key)).append(",");
+        }
+        return sb.delete(sb.toString().lastIndexOf(","), sb.toString().length()).toString();
+    }
 }

@@ -1,5 +1,6 @@
 package com.ld.web.dao.impl;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.ld.web.dao.BaseDao;
+
 /**
  * 
  * <p>Title: BaseDaoImpl</p>
@@ -28,10 +30,19 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return sf.getCurrentSession();
     }
 
+    @SuppressWarnings("unchecked")
+    private Class<T> getClazz() {
+        return (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    private String getClassName() {
+        return this.getClazz().getSimpleName();
+    }
+
     @Override
     public boolean save(T t) {
         try {
-            getSession().save(t);
+            this.getSession().save(t);
             return true;
         } catch (Exception e) {
             return false;
@@ -41,9 +52,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getList(String hql, Object... params) {
-        Query q = getSession().createQuery(hql);
+        Query q = this.getSession().createQuery(hql);
         setParams(q, params);
         return q.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T getUniqueResult(String hql, Object... params) {
+        Query q = this.getSession().createQuery(hql);
+        setParams(q, params);
+        return (T) q.uniqueResult();
     }
 
     /**
@@ -58,12 +77,22 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(String hql, Object... params) {
-        Query q = getSession().createQuery(hql);
-        setParams(q, params);
-        return (T) q.uniqueResult();
+    public void update(T t) {
+        this.getSession().update(t);
+    }
+
+    @Override
+    public void delete(Long primaryKey) {
+        String hql = "delete " + getClassName() + " o where o.id = ?";
+        Query q = this.getSession().createQuery(hql);
+        setParams(q, primaryKey);
+        q.executeUpdate();
+    }
+
+    @Override
+    public void delete(T t) {
+        this.getSession().delete(t);
     }
 
 }

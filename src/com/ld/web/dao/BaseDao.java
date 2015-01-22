@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 
- * <p>Title: BaseDao</p>
+ * <p>Title: BaseDaoImpl</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface BaseDao<T> {
     /**
-     * save
+     * Save T t
      * 
      * @param t
      * @return
@@ -22,6 +22,7 @@ public interface BaseDao<T> {
     boolean save(T t);
 
     /**
+     * Get List
      * 
      * @param hql
      * @param order
@@ -31,11 +32,33 @@ public interface BaseDao<T> {
     List<T> getList(String hql, Object... params);
 
     /**
-     * get uniqueResult
+     * Get unique result
      * 
      * @param hql
      * @param params
      * @return
      */
     T getUniqueResult(String hql, Object... params);
+
+    /**
+     * Update T t
+     * 
+     * @param t
+     * @return
+     */
+    void update(T t);
+
+    /**
+     * Delete T by primaryKey
+     * 
+     * @param key
+     */
+    void delete(Long primaryKey);
+
+    /**
+     * Delete T by t
+     * 
+     * @param t
+     */
+    void delete(T t);
 }

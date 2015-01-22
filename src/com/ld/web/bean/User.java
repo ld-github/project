@@ -24,6 +24,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "TAB_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class User implements Serializable {
+
     private static final long serialVersionUID = 4284572555216108008L;
 
     private Long id;

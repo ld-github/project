@@ -29,6 +29,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage("basic-default")
 @Results({ @Result(type = "json", name = Action.SUCCESS, params = { "root", "result" }) })
 public class BaseAction extends ActionSupport {
+
     private static final long serialVersionUID = 624599246438196900L;
 
     public static final String SESSION_USER = "sessionUser";

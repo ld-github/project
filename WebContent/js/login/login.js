@@ -5,7 +5,7 @@
  */
 function formValidate() {
     if ($('#username').val() == '') {
-        return '请输入账号';
+        return '请输入用户名';
     }
     if ($('#password').val() == '') {
         return '请输入密码';

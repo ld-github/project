@@ -66,7 +66,6 @@ function initMenu() {
         if (menu.url) {
             addTab(menu.title, menu.url);
         }
-        ;
     });
 }
 
@@ -89,7 +88,7 @@ function initTabs() {
  * @param closable
  */
 function addTab(title, url, closable) {
-    closable = !closable ? true : closable;
+    closable = typeof (closable) == 'boolean' ? closable : true;
     var tab = $('#content-panel');
     if (tab.tabs('exists', title)) {
         tab.tabs('select', title);
@@ -104,7 +103,6 @@ function addTab(title, url, closable) {
             content : content,
         });
     }
-    ;
 }
 
 $(function() {

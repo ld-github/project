@@ -42,7 +42,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    @Column(length = 16, nullable = false, unique = true)
+    @Column(length = 32, nullable = false, unique = true)
     public String getUsername() {
         return username;
     }

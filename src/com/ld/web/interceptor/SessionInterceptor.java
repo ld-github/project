@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
 /**
  * 
- * <p>Title: BaseAction</p>
+ * <p>Title: SessionInterceptor</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

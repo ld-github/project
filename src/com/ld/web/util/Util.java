@@ -19,7 +19,7 @@ public class Util {
      * @param input
      * @return
      */
-    public static String base64Decode(String input) {
-        return null == input ? null : Base64.decode(input, "UTF-8");
+    public static String base64Decode(String str) {
+        return null == str ? null : Base64.decode(str, "UTF-8");
     }
 }

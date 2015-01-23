@@ -30,7 +30,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Resource
     private SessionFactory sf;
 
-    public Session getSession() {
+    protected Session getSession() {
         return sf.getCurrentSession();
     }
 

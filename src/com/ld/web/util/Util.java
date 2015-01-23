@@ -14,7 +14,7 @@ import it.sauronsoftware.base64.Base64;
  */
 public class Util {
     /**
-     * base64
+     * Base64 decode
      * 
      * @param input
      * @return

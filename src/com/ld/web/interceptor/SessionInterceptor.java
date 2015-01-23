@@ -21,6 +21,11 @@ public class SessionInterceptor extends MethodFilterInterceptor {
 
     private static final long serialVersionUID = -4873322877077133583L;
 
+    /**
+     * Check session whether or not hava login user, if not, redirect to login
+     * page
+     * 
+     */
     @Override
     protected String doIntercept(ActionInvocation invocation) throws Exception {
         ActionContext ctx = invocation.getInvocationContext();

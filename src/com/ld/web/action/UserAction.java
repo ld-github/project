@@ -42,6 +42,7 @@ public class UserAction extends BaseAction {
     private String kaptcha;
 
     public static final String RESULT_SAVE = "save";
+    public static final String TAKE_LOGIN_USER = "takeLoginUser";
 
     public String save() throws Exception {
         try {
@@ -64,7 +65,7 @@ public class UserAction extends BaseAction {
     }
 
     /**
-     * User Login
+     * User login
      * 
      * @return
      * @throws Exception
@@ -79,6 +80,18 @@ public class UserAction extends BaseAction {
         System.out.println(Util.base64Decode(user.getPassword()));
         super.putSessionUser(user);
         super.putResult(true);
+        return SUCCESS;
+    }
+
+    /**
+     * Take login user info
+     * @return
+     * @throws Exception
+     */
+    public String takeLoginUser() throws Exception {
+        User u = super.takeSessionUser();
+        super.putResult(true);
+        super.putResult("user", u);
         return SUCCESS;
     }
 

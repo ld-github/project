@@ -105,7 +105,28 @@ function addTab(title, url, closable) {
     }
 }
 
+/**
+ * Action urls
+ */
+var URLS = {
+    TAKE_LOGIN_USER : '../user!takeLoginUser.action',
+};
+
+/**
+ * Get login user info
+ */
+function getLoginUser() {
+    $.post(URLS.TAKE_LOGIN_USER, {}, function(data) {
+        if (data.success) {
+            console.log(data);
+        } else {
+            window.location.href = 'login.html';
+        }
+    });
+}
+
 $(function() {
     initMenu();
     initTabs();
+    getLoginUser();
 });

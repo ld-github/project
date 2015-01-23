@@ -155,7 +155,9 @@ function appendPoint(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" title="' + title + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
+    var img = '<img src="' + src + '" title="' + title
+            + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude
+            + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
 };
 
@@ -436,4 +438,9 @@ $(function() {
         $('#menu-panel').css('display', 'none');
     });
 
+    $.post('../user!save.action', {}, function(data) {
+        if (data.success) {
+            window.location.href = 'login.html';
+        }
+    });
 });

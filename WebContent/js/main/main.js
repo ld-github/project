@@ -119,8 +119,6 @@ function getLoginUser() {
     $.post(URLS.TAKE_LOGIN_USER, {}, function(data) {
         if (data.success) {
             console.log(data);
-        } else {
-            window.location.href = 'login.html';
         }
     });
 }

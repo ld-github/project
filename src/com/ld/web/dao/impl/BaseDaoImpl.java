@@ -70,7 +70,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     /**
-     * Query set setParameter
+     * Query setParameter
      * 
      * @param q
      * @param params
@@ -123,7 +123,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     /**
-     * Convert LinkedHashMap to str like 'order by xx asc , bb desc '
+     * Convert LinkedHashMap to str like 'order by xx asc, bb desc '
      * 
      * @param orders
      * @return

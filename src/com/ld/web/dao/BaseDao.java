@@ -77,7 +77,7 @@ public interface BaseDao<T> {
     Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page);
 
     /**
-     * get Total by where and params
+     * Get Total by where and params
      * 
      * @param where
      * @param params

@@ -438,9 +438,4 @@ $(function() {
         $('#menu-panel').css('display', 'none');
     });
 
-    $.post('../user!save.action', {}, function(data) {
-        if (data.success) {
-            window.location.href = 'login.html';
-        }
-    });
 });

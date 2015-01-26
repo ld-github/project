@@ -74,7 +74,6 @@ var CHECK_LOGIN_USER = '../user!checkLoginUser.action';
  * check login user info
  */
 function checkLoginUser() {
-    alert('c');
     $.post(CHECK_LOGIN_USER, {}, function(data) {
         if (data.success) {
             window.location.href = 'login.html';
@@ -87,7 +86,7 @@ $(function() {
      * Ajax Start
      */
     $(document).ajaxStart(function() {
-        if (window.location.pathname.indexOf('login.html') < 0) {
+        if (window.location.pathname.indexOf('login.html') == -1) {
             checkLoginUser();
         }
         $('#loading').show();

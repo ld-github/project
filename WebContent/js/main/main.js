@@ -110,10 +110,11 @@ function addTab(title, url, closable) {
  */
 var URLS = {
     TAKE_LOGIN_USER : '../user!takeLoginUser.action',
+    CHECK_LOGIN_USER : '../user!checkLoginUser.action',
 };
 
 /**
- * Get login user info
+ * Get login user session
  */
 function getLoginUser() {
     $.post(URLS.TAKE_LOGIN_USER, {}, function(data) {
@@ -123,8 +124,22 @@ function getLoginUser() {
     });
 }
 
+/**
+ * Check login user info
+ */
+function checkLoginUser() {
+    $.post(URLS.CHECK_LOGIN_USER, {}, function(data) {
+        if (data.success) {
+            window.location.href = 'login.html';
+        }
+    });
+}
+
+var CHECK_TIMER = 2000;
+
 $(function() {
     initMenu();
     initTabs();
     getLoginUser();
+    setInterval(checkLoginUser, CHECK_TIMER);
 });

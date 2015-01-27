@@ -85,6 +85,5 @@ $(function() {
      */
     $(document).ajaxError(function(event, request, settings) {
         $('#loading').hide();
-        new Message('系统错误', '温馨提示').show(false);
     });
 });

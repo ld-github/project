@@ -27,7 +27,7 @@ import com.ld.web.util.Util;
 @Action(value = "user")
 @Results({ 
     @Result(type = "json",
-                    name = UserAction.RESULT_SAVE,
+                    name = UserAction.SAVE,
                     params = {"root", "result",
                     "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
       }), 
@@ -48,7 +48,7 @@ public class UserAction extends BaseAction {
 
     private String kaptcha;
 
-    public static final String RESULT_SAVE = "save";
+    public static final String SAVE = "save";
     public static final String TAKE_LOGIN_USER = "takeLoginUser";
 
     public String save() throws Exception {

@@ -16,7 +16,7 @@ import com.ld.web.util.Util;
 
 /**
  * 
- * <p>Title: BaseAction</p>
+ * <p>Title: UserAction</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -25,11 +25,18 @@ import com.ld.web.util.Util;
  * @date 2015-1-8
  */
 @Action(value = "user")
-@Results({ @Result(type = "json",
-                                    name = UserAction.RESULT_SAVE,
-                                    params = {"root", "result",
-                                                       "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
-                                                      }), })
+@Results({ 
+    @Result(type = "json",
+                    name = UserAction.RESULT_SAVE,
+                    params = {"root", "result",
+                    "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
+      }), 
+    @Result(type = "json",
+                    name = UserAction.TAKE_LOGIN_USER,
+                    params = {"root", "result",
+                  "excludeProperties", "user.(id|password){1}"
+      })
+})
 public class UserAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
@@ -92,7 +99,7 @@ public class UserAction extends BaseAction {
     public String takeLoginUser() throws Exception {
         User u = super.takeSessionUser();
         super.putResult("user", u);
-        return SUCCESS;
+        return TAKE_LOGIN_USER;
     }
 
     /**
@@ -102,8 +109,7 @@ public class UserAction extends BaseAction {
      * @throws Exception
      */
     public String checkLoginUser() throws Exception {
-        User u = super.takeSessionUser();
-        super.putResult(null == u);
+        super.putResult(null == super.takeSessionUser());
         return SUCCESS;
     }
 

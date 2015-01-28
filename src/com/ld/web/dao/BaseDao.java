@@ -44,6 +44,14 @@ public interface BaseDao<T> {
     T getUniqueResult(String hql, Object... params);
 
     /**
+     * Get unique result
+     * 
+     * @param primaryKey
+     * @return
+     */
+    T getUniqueResult(Long primaryKey);
+
+    /**
      * Update T t
      * 
      * @param t

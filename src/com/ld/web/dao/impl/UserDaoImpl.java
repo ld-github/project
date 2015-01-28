@@ -18,7 +18,10 @@ import com.ld.web.dao.UserDao;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
-    public User login(User user) {
+    public User query(User user) {
+        if (null == user || null == user.getUsername() || null == user.getPassword()) {
+            return null;
+        }
         String hql = "from User u where u.username = ? and u.password = ?";
         return super.getUniqueResult(hql, user.getUsername(), user.getPassword());
     }

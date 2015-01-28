@@ -17,10 +17,10 @@ import com.ld.web.bean.User;
 @Repository
 public interface UserDao extends BaseDao<User> {
     /**
-     * user login
+     * Query user by username and password
      * 
      * @param user
      * @return
      */
-    User login(User user);
+    User query(User user);
 }

@@ -69,6 +69,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return (T) q.uniqueResult();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public T getUniqueResult(Long primaryKey) {
+        String hql = "from " + this.getClassName() + " o where o.id = ?";
+        Query q = this.geCurrentSession().createQuery(hql);
+        setParams(q, primaryKey);
+        return (T) q.uniqueResult();
+    }
+
     /**
      * Query setParameter
      * 
@@ -138,4 +147,5 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
         return sb.delete(sb.toString().lastIndexOf(","), sb.toString().length()).toString();
     }
+
 }

@@ -30,7 +30,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Resource
     private SessionFactory sf;
 
-    protected Session getSession() {
+    protected Session geCurrentSession() {
         return sf.getCurrentSession();
     }
 
@@ -46,7 +46,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public boolean save(T t) {
         try {
-            this.getSession().save(t);
+            this.geCurrentSession().save(t);
             return true;
         } catch (Exception e) {
             return false;
@@ -56,7 +56,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getList(String hql, Object... params) {
-        Query q = this.getSession().createQuery(hql);
+        Query q = this.geCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.list();
     }
@@ -64,7 +64,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T getUniqueResult(String hql, Object... params) {
-        Query q = this.getSession().createQuery(hql);
+        Query q = this.geCurrentSession().createQuery(hql);
         setParams(q, params);
         return (T) q.uniqueResult();
     }
@@ -83,27 +83,27 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public void update(T t) {
-        this.getSession().update(t);
+        this.geCurrentSession().update(t);
     }
 
     @Override
     public void delete(Long primaryKey) {
         String hql = "delete " + this.getClassName() + " o where o.id = ?";
-        Query q = this.getSession().createQuery(hql);
+        Query q = this.geCurrentSession().createQuery(hql);
         setParams(q, primaryKey);
         q.executeUpdate();
     }
 
     @Override
     public void delete(T t) {
-        this.getSession().delete(t);
+        this.geCurrentSession().delete(t);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page) {
         String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
-        Query q = this.getSession().createQuery(hql);
+        Query q = this.geCurrentSession().createQuery(hql);
         setParams(q, params.toArray());
         q.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
         q.setMaxResults(page.getPageSize());
@@ -117,7 +117,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public long getTotal(String where, List<?> params) {
         String hql = "select count(o) from " + this.getClassName() + " o " + where;
-        Query q = this.getSession().createQuery(hql);
+        Query q = this.geCurrentSession().createQuery(hql);
         setParams(q, params.toArray());
         return (Long) q.uniqueResult();
     }

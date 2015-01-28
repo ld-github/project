@@ -171,8 +171,7 @@ var EDITOR_STATUS = {
 /**
  * Delete Devices by id and type
  * 
- * @param :{id:id,
- *            type :type }
+ * @param :{id : id,type : type }
  */
 function deleteDevice(params) {
     var id = params.id;
@@ -416,14 +415,12 @@ $(function() {
     function shapeFunction(e, geo) {
         type: 'LineString', g_map.geomap('option', 'mode', 'drawPoint');
         showMenu(e, geo);
-    }
-    ;
+    };
 
     function positionEventHandler(e, geo) {
         // console.log('longitude: ' + geo.coordinates[0] + '\t latitude: ' +
         // geo.coordinates[1]);
-    }
-    ;
+    };
 
     g_map = new Map().createMap(container, zoom, maxLevelPixelWidth, maxLevelPixelHeight, mapFactor, tilePixelWidth,
             tilePixelHeight, mapLevels, mapFolderName, shapeFunction, positionEventHandler);

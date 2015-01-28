@@ -28,13 +28,11 @@ import com.ld.web.util.Util;
 @Results({ 
     @Result(type = "json",
                     name = UserAction.SAVE,
-                    params = {"root", "result",
-                    "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
+                    params = {"root", "result", "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
       }), 
     @Result(type = "json",
                     name = UserAction.TAKE_LOGIN_USER,
-                    params = {"root", "result",
-                  "excludeProperties", "user.(id|password){1}"
+                    params = {"root", "result", "excludeProperties", "user.(id|password){1}"
       })
 })
 public class UserAction extends BaseAction {

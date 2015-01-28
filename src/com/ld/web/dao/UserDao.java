@@ -22,5 +22,5 @@ public interface UserDao extends BaseDao<User> {
      * @param user
      * @return
      */
-    User query(User user);
+    User query(String username, String password);
 }

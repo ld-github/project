@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ld.web.bean.User;
 import com.ld.web.dao.UserDao;
+
 /**
  * 
  * <p>Title: UserDaoImpl</p>
@@ -18,11 +19,8 @@ import com.ld.web.dao.UserDao;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
-    public User query(User user) {
-        if (null == user || null == user.getUsername() || null == user.getPassword()) {
-            return null;
-        }
+    public User query(String username, String password) {
         String hql = "from User u where u.username = ? and u.password = ?";
-        return super.getUniqueResult(hql, user.getUsername(), user.getPassword());
+        return super.getUniqueResult(hql, username, password);
     }
 }

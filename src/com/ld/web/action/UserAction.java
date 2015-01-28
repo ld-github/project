@@ -108,7 +108,7 @@ public class UserAction extends BaseAction {
      * @return
      * @throws Exception
      */
-    public String checkLoginUser() throws Exception {
+    public String checkSessionUser() throws Exception {
         super.putResult(null == super.takeSessionUser());
         return SUCCESS;
     }

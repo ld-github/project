@@ -107,7 +107,7 @@ function addTab(title, url, closable) {
  */
 var URLS = {
     TAKE_LOGIN_USER : '../user!takeLoginUser.action',
-    CHECK_LOGIN_USER : '../user!checkLoginUser.action',
+    CHECK_SESSION_USER : '../user!checkSessionUser.action',
 };
 
 /**
@@ -123,7 +123,7 @@ function getLoginUser() {
  * Check login user info
  */
 function checkLoginUser() {
-    $.post(URLS.CHECK_LOGIN_USER, {}, function(data) {
+    $.post(URLS.CHECK_SESSION_USER, {}, function(data) {
         if (data.success) {
             window.location.href = 'login.html';
         }

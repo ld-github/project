@@ -49,6 +49,7 @@ public class UserAction extends BaseAction {
     public static final String SAVE = "save";
     public static final String TAKE_LOGIN_USER = "takeLoginUser";
 
+    @Override
     public String save() throws Exception {
         try {
             User u1 = new User("Tom1", "TomC1");

@@ -70,7 +70,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Sha256
+     * Sha256 to encryption user.password
      * 
      * @param input
      * @return

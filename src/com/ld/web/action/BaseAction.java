@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 
- * <p>Title: UserAction</p>
+ * <p>Title: BaseAction</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -121,5 +121,21 @@ public class BaseAction extends ActionSupport {
      */
     public User takeSessionUser() {
         return takeSession().containsKey(SESSION_USER) ? (User) takeSession().get(SESSION_USER) : null;
+    }
+
+    public String save() throws Exception {
+        throw new Exception("Subclass does not implement");
+    }
+
+    public String get() throws Exception {
+        throw new Exception("Subclass does not implement");
+    }
+
+    public String update() throws Exception {
+        throw new Exception("Subclass does not implement");
+    }
+
+    public String delete() throws Exception {
+        throw new Exception("Subclass does not implement");
     }
 }

@@ -7,11 +7,13 @@ import com.ld.web.bean.Page;
 
 /**
  * 
- * <p>Title: BaseDao</p>
+ * <p>Title: BaseDaoImpl</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
  * @author LD
+ * 
+ * @param <T>
  *
  * @date 2015-1-8
  */
@@ -58,6 +60,14 @@ public interface BaseDao<T> {
      * @return
      */
     void update(T t);
+
+    /**
+     * 
+     * @param hql
+     * @param params
+     * @return
+     */
+    int update(String hql, Object... params);
 
     /**
      * Delete T by primaryKey

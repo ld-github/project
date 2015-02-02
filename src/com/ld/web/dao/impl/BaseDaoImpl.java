@@ -139,7 +139,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     /**
-     * Convert LinkedHashMap to str like 'order by xx asc, bb desc '
+     * Convert LinkedHashMap to string like 'order by xx asc, bb desc '
      * 
      * @param orders
      * @return
@@ -148,7 +148,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         if (null == orders || orders.isEmpty()) {
             return "";
         }
-        StringBuffer sb = new StringBuffer(" order by");
+        StringBuffer sb = new StringBuffer("order by");
         for (String key : orders.keySet()) {
             sb.append(" ").append(key).append(" ").append(orders.get(key)).append(",");
         }

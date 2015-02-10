@@ -11,7 +11,7 @@ function setGeo(geo) {
 };
 
 /**
- * get g_geo
+ * Get g_geo
  * 
  * @returns {___anonymous_g_geo}
  */

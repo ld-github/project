@@ -3,27 +3,29 @@
  */
 var ActionForm = function() {
     this.toJson = function(ids) {
+        var json = {};
         if (!(ids instanceof Array)) {
             console.log('Parameter must be an array!');
-            return null;
+            return json;
         }
         try {
-            var json = {};
             for (var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 var key = obj.attr('name');
                 var val = obj.val();
                 json[key] = val == '' || isNaN(val) ? val : parseInt(val);
             }
-            return json;
         } catch (e) {
             console.log('String convert to json failed!');
-            return null;
         }
+        return json;
     };
 };
 
-var MSSAGE_ICOS = {
+/**
+ * Message Type
+ */
+var MESSAGE_TYPES = {
     ERROR : 'error',
     QUESTION : 'question',
     INFO : 'info',
@@ -52,7 +54,7 @@ var Message = function(msg, title) {
     };
 
     this.alert = function(icon) {
-        icon = icon == undefined ? MSSAGE_ICOS.INFO : icon;
+        icon = icon == undefined ? MESSAGE_TYPES.INFO : icon;
         $.messager.alert(this.title, this.msg, icon);
     };
 

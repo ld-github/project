@@ -53,7 +53,7 @@ function login() {
 }
 
 var KEY_CODE = {
-    ENTER_CODE : 13
+    ENTER : 13
 };
 
 $(function() {
@@ -75,7 +75,7 @@ $(function() {
      * Monitor user enter button press
      */
     $(window).keydown(function(event) {
-        if (event.keyCode == KEY_CODE.ENTER_CODE) {
+        if (event.keyCode == KEY_CODE.ENTER) {
             login();
         }
     });

@@ -55,7 +55,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<T> getList(String hql, Object... params) {
+    public List<T> getList(String where, Object... params) {
+        String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.list();
@@ -63,7 +64,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(String hql, Object... params) {
+    public List<T> getList(String where, List<?> params, LinkedHashMap<String, String> orders) {
+        String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
+        Query q = this.getCurrentSession().createQuery(hql);
+        setParams(q, params.toArray());
+        return q.list();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public T getUniqueResult(String where, Object... params) {
+        String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return (T) q.uniqueResult();
@@ -76,18 +87,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, primaryKey);
         return (T) q.uniqueResult();
-    }
-
-    /**
-     * Query setParameter
-     * 
-     * @param q
-     * @param params
-     */
-    private void setParams(Query q, Object... params) {
-        for (int i = 0; i < params.length; i++) {
-            q.setParameter(i, params[i]);
-        }
     }
 
     @Override
@@ -155,4 +154,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return sb.delete(sb.toString().lastIndexOf(","), sb.toString().length()).toString();
     }
 
+    /**
+     * Query setParameter
+     * 
+     * @param q
+     * @param params
+     */
+    private void setParams(Query q, Object... params) {
+        for (int i = 0; i < params.length; i++) {
+            q.setParameter(i, params[i]);
+        }
+    }
 }

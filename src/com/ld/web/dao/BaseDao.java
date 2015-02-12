@@ -29,21 +29,30 @@ public interface BaseDao<T> {
     /**
      * Get List
      * 
-     * @param hql
-     * @param order
+     * @param where
      * @param params
      * @return
      */
-    List<T> getList(String hql, Object... params);
+    List<T> getList(String where, Object... params);
+
+    /**
+     * Get Page by where and params and orders
+     * 
+     * @param where
+     * @param params
+     * @param orders
+     * @return
+     */
+    List<T> getList(String where, List<?> params, LinkedHashMap<String, String> orders);
 
     /**
      * Get unique result
      * 
-     * @param hql
+     * @param where
      * @param params
      * @return
      */
-    T getUniqueResult(String hql, Object... params);
+    T getUniqueResult(String where, Object... params);
 
     /**
      * Get unique result

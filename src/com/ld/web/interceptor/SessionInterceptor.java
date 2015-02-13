@@ -1,5 +1,7 @@
 package com.ld.web.interceptor;
 
+import org.apache.log4j.MDC;
+
 import com.ld.web.action.BaseAction;
 import com.ld.web.bean.User;
 import com.opensymphony.xwork2.Action;
@@ -32,6 +34,8 @@ public class SessionInterceptor extends MethodFilterInterceptor {
         if (null == user) {
             return Action.NONE;
         }
+        MDC.put("uid", user.getId());
+        MDC.put("username", user.getUsername());
         return invocation.invoke();
     }
 }

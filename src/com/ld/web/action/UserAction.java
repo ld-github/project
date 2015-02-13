@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
@@ -38,6 +39,9 @@ import com.ld.web.util.Util;
 public class UserAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
+
+    private static final Logger log = Logger.getLogger(UserAction.class);
+
     @Resource
     private UserBiz userBiz;
 
@@ -65,6 +69,7 @@ public class UserAction extends BaseAction {
             super.putResult(flag);
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("Save user error!");
             super.putResult(false);
         }
         return SUCCESS;
@@ -84,6 +89,7 @@ public class UserAction extends BaseAction {
         }
         System.out.println(user.getUsername());
         System.out.println(Util.base64Decode(user.getPassword()));
+        user.setId(2L);
         super.putSessionUser(user);
         super.putResult(true);
         return SUCCESS;

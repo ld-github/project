@@ -9,10 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
+/**
+ * 
+ *<p>Title: ExceptionLog</p>
+ *<p>Copyright: Copyright (c) 2015</p>
+ *<p>Description: </p>
+ *
+ *@author LD
+ *
+ *@date 2015-2-15
+ */
 @Entity
 @Table(name = "TAB_EXCEPTION_LOG")
 public class ExceptionLog implements Serializable {
@@ -100,7 +109,7 @@ public class ExceptionLog implements Serializable {
         this.message = message;
     }
 
-    @Transient
+    @Column
     public Date getCreateTime() {
         return createTime;
     }

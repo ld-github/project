@@ -51,6 +51,7 @@ $(function() {
         singleSelect : true,
         fitColumns : true,
         striped : true,
+        height : 310,
         columns : [ [ {
             field : 'id',
             title : '编号',
@@ -90,4 +91,8 @@ $(function() {
     });
 
     queryLogs(startPage);
+
+    $(window).resize(function() {
+        $('#logs-panel').datagrid('resize');
+    });
 });

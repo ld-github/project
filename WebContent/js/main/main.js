@@ -2,37 +2,16 @@
  * @author LD
  */
 var MENU = [ {
-    title : '主菜单',
+    title : '设置',
     submenus : [ {
         title : '地图',
         url : 'map.html'
-    }, {
-        title : '主菜单3',
-        url : '345.htm'
     } ]
 }, {
-    title : '次菜单',
+    title : '系统',
     submenus : [ {
-        title : '次菜单1',
-        url : '次123.htm'
-    }, {
-        title : '次菜单2',
-        url : '次234.htm'
-    }, {
-        title : '次菜单3',
-        url : '次345.htm'
-    } ]
-}, {
-    title : '次菜单',
-    submenus : [ {
-        title : '次菜单1',
-        url : '次123.htm'
-    }, {
-        title : '次菜单2',
-        url : '次234.htm'
-    }, {
-        title : '次菜单3',
-        url : '次345.htm'
+        title : '异常列表',
+        url : 'exceptionLog.html'
     } ]
 } ];
 

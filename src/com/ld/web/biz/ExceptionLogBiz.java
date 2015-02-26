@@ -15,7 +15,7 @@ import com.ld.web.bean.Page;
  */
 public interface ExceptionLogBiz {
     /**
-     * Query ExceptionLog data to page
+     * Query ExceptionLog records to page
      * 
      * @param page
      * @return

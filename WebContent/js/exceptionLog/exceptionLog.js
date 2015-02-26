@@ -69,17 +69,13 @@ $(function() {
             title : '方法名',
             width : 100,
         }, {
-            field : 'level',
-            title : '级别',
-            width : 100,
+            field : 'message',
+            title : '异常信息',
+            width : 200,
         }, {
             field : 'createTime',
             title : '发生时间',
             width : 100,
-        }, {
-            field : 'message',
-            title : '异常信息',
-            width : 200,
         } ] ]
     });
 

@@ -117,9 +117,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page) {
+        where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
-        setParams(q, params.toArray());
+        if (null != params && !params.isEmpty()) {
+            setParams(q, params.toArray());
+        }
         q.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
         q.setMaxResults(page.getPageSize());
         List<T> records = q.list();
@@ -131,9 +134,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public long getTotal(String where, List<?> params) {
+        where = where == null ? "" : where;
         String hql = "select count(o) from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
-        setParams(q, params.toArray());
+        if (null != params && !params.isEmpty()) {
+            setParams(q, params.toArray());
+        }
         return (Long) q.uniqueResult();
     }
 

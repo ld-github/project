@@ -138,4 +138,8 @@ public class BaseAction extends ActionSupport {
     public String delete() throws Exception {
         throw new Exception("Subclass does not implement");
     }
+
+    public String getPageRecords() throws Exception {
+        throw new Exception("Subclass does not implement");
+    }
 }

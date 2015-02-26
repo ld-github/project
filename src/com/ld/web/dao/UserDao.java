@@ -1,7 +1,5 @@
 package com.ld.web.dao;
 
-import org.springframework.stereotype.Repository;
-
 import com.ld.web.bean.User;
 
 /**
@@ -14,7 +12,6 @@ import com.ld.web.bean.User;
  *
  * @date 2015-1-8
  */
-@Repository
 public interface UserDao extends BaseDao<User> {
     /**
      * Query user by username and password

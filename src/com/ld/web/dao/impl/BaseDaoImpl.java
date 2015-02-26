@@ -56,6 +56,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getList(String where, Object... params) {
+        where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
@@ -65,6 +66,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getList(String where, List<?> params, LinkedHashMap<String, String> orders) {
+        where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params.toArray());
@@ -74,6 +76,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T getUniqueResult(String where, Object... params) {
+        where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);

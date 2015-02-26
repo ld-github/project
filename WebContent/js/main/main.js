@@ -10,7 +10,7 @@ var MENU = [ {
 }, {
     title : '系统',
     submenus : [ {
-        title : '异常列表',
+        title : '异常信息',
         url : 'exceptionLog.html'
     } ]
 } ];

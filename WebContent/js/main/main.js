@@ -2,13 +2,13 @@
  * @author LD
  */
 var MENU = [ {
-    title : '设置',
+    title : '系统设置',
     submenus : [ {
         title : '地图',
         url : 'map.html'
     } ]
 }, {
-    title : '系统',
+    title : '系统记录',
     submenus : [ {
         title : '异常信息',
         url : 'exceptionLog.html'
@@ -101,4 +101,9 @@ $(function() {
     initMenu();
     initTabs();
     getLoginUser();
+    $('#left-panel').panel({
+        onCollapse : function() {
+            $('#content-panel').tabs('resize');
+        }
+    });
 });

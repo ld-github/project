@@ -26,7 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 @Controller
 @Namespace("/")
-@ParentPackage("basic-default")
+@ParentPackage("base-default")
 @Results({ @Result(type = "json", name = Action.SUCCESS, params = { "root", "result" }) })
 public class BaseAction extends ActionSupport {
 

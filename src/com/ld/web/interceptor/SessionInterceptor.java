@@ -32,7 +32,7 @@ public class SessionInterceptor extends MethodFilterInterceptor {
         ActionContext ctx = invocation.getInvocationContext();
         User user = (User) ctx.getSession().get(BaseAction.SESSION_USER);
         if (null == user) {
-            return Action.NONE;
+            return Action.LOGIN;
         }
         MDC.put("uid", user.getId());
         MDC.put("username", user.getUsername());

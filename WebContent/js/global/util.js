@@ -32,6 +32,8 @@ var MESSAGE_TYPES = {
     WARNING : 'warning'
 };
 
+var TIMEROUT_DEFEAT = 3000;
+
 /**
  * Show message
  */
@@ -42,7 +44,7 @@ var Message = function(msg, title) {
     this.show = function(flag, timeout) {
         var color = flag == undefined ? 'green' : flag ? 'green' : 'red';
         this.msg = '<span style="color:' + color + '">' + this.msg + '</span>';
-        timeout = (timeout != undefined && !isNaN(timeout)) ? timeout : 3000;
+        timeout = (timeout != undefined && !isNaN(timeout)) ? timeout : TIMEROUT_DEFEAT;
         $.messager.show({
             title : this.title,
             msg : this.msg,
@@ -87,5 +89,11 @@ $(function() {
      */
     $(document).ajaxError(function(event, request, settings) {
         $('#loading').hide();
+        if (request.status == 403) {
+            new Message('用户登录已过期，请重新登录...').show(false);
+            setTimeout(function() {
+                window.top.location.href = 'login.html';
+            }, TIMEROUT_DEFEAT);
+        }
     });
 });

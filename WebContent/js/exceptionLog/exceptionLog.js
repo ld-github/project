@@ -55,11 +55,12 @@ $(function() {
         columns : [ [ {
             field : 'id',
             title : '编号',
-            width : 50
+            width : 50,
+            align : 'center'
         }, {
             field : 'username',
             title : '操作人',
-            width : 100
+            width : 100,
         }, {
             field : 'className',
             title : '类名',
@@ -76,6 +77,7 @@ $(function() {
             field : 'createTime',
             title : '发生时间',
             width : 100,
+            align : 'center'
         } ] ]
     });
 

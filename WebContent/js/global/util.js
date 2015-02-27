@@ -11,9 +11,7 @@ var ActionForm = function() {
         try {
             for (var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
-                var key = obj.attr('name');
-                var val = obj.val();
-                json[key] = val == '' || isNaN(val) ? val : parseInt(val);
+                json[obj.attr('name')] = obj.val();
             }
         } catch (e) {
             console.log('String convert to json failed!');

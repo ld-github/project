@@ -8,6 +8,8 @@
     <constant name="struts.locale" value="zh_CN" />
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <constant name="struts.multipart.maxSize" value="52428800" />
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <constant name="struts.configuration.xml.reload" value="true" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
 
     <package name="base-default" extends="json-default" namespace="/">

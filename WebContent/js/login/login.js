@@ -47,7 +47,9 @@ function login() {
             location.href = "main.html";
             return;
         }
-        new Message(data.message, '温馨提示').show(false);
+        if (data.message) {
+            new Message(data.message, '温馨提示').show(false);
+        }
         changeKaptcha();
     });
 }

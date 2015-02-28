@@ -20,7 +20,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
     public User query(String username, String password) {
-        String where = "where u.username = ? and u.password = ?";
+        String where = "where o.username = ? and o.password = ?";
         return super.getUniqueResult(where, username, password);
     }
 }

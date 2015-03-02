@@ -2,7 +2,7 @@ package test;
 
 /**
  * 
- * <p>Title: TestVector</p>
+ * <p>Title: TestChar</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

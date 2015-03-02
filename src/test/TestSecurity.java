@@ -6,7 +6,7 @@ import com.ld.web.bean.User;
 
 /**
  * 
- * <p>Title: User</p>
+ * <p>Title: TestSecurity</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

@@ -28,3 +28,8 @@ ul, ol {
     background-size: 24px 24px;
     display: none;
 }
+
+.window-mask {
+    display: none;
+    z-index: 10;
+}

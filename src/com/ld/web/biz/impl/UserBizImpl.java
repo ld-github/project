@@ -30,4 +30,9 @@ public class UserBizImpl implements UserBiz {
         return userDao.save(u1) && userDao.save(u2);
     }
 
+    @Override
+    public long getUserCount() {
+        return userDao.getTotal(null, null);
+    }
+
 }

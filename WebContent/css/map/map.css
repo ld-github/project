@@ -7,11 +7,6 @@ body {
     height: 100%;
 }
 
-#cover-panel {
-    display: none;
-    z-index: 10;
-}
-
 .copy-right {
     text-align: center;
     font-size: 12px;

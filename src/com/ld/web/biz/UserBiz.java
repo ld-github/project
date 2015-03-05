@@ -20,4 +20,11 @@ public interface UserBiz {
      * @return
      */
     boolean saveUser(User u1, User u2);
+
+    /**
+     * get user count
+     * 
+     * @return
+     */
+    long getUserCount();
 }

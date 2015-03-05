@@ -75,6 +75,11 @@ public class UserAction extends BaseAction {
         return SUCCESS;
     }
 
+    public String isInitAdmin() throws Exception {
+        super.putResult(userBiz.getUserCount() == 0);
+        return SUCCESS;
+    }
+
     /**
      * User login
      * 

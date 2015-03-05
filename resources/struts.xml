@@ -15,7 +15,7 @@
     <package name="base-default" extends="json-default" namespace="/">
         <interceptors>
             <interceptor name="sessionInterceptor" class="com.ld.web.interceptor.SessionInterceptor">
-                <param name="excludeMethods">login</param>
+                <param name="excludeMethods">login, checkSystem</param>
             </interceptor>
             <interceptor-stack name="baseStack">
                 <interceptor-ref name="sessionInterceptor" />

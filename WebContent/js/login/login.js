@@ -28,6 +28,7 @@ function changeKaptcha() {
  */
 var URLS = {
     LOGIN : '../user!login.action',
+    CHECK_SYSTEM : '../system!checkSystem.action',
 };
 
 /**
@@ -53,12 +54,24 @@ function login() {
         changeKaptcha();
     });
 }
+/**
+ * Check whether the initialization system configuration
+ */
+function checkSystem() {
+    $.post(URLS.CHECK_SYSTEM, {}, function(data) {
+        if (data.success) {
+            $('#cover-panel').css('display', 'block');
+            $('#system-config-panel').fadeIn("slow");
+        }
+    });
+}
 
 var KEY_CODE = {
     ENTER : 13
 };
 
 $(function() {
+    checkSystem();
     /**
      * Change kaptcha img
      */

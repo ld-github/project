@@ -49,7 +49,7 @@
     color: #666666;
 }
 
-#username, #password {
+#username, #password, #init-username, #init-password, #repeat-password {
     width: 300px;
     height: 28px;
     position: relative;
@@ -66,23 +66,16 @@
     padding-left: 5px;
 }
 
-#username {
+#username, #init-username {
     margin-top: 25px;
 }
 
-#password {
+#password, #init-password, #repeat-password {
     margin-top: 10px;
 }
 
-#username:FOCUS {
-    border: 2px solid #660066;
-}
-
-#password:FOCUS {
-    border: 2px solid #660066;
-}
-
-#kaptcha:FOCUS {
+#username:FOCUS, #password:FOCUS, #kaptcha:FOCUS, #init-username:FOCUS,
+    #init-password:FOCUS, #repeat-password:FOCUS {
     border: 2px solid #660066;
 }
 
@@ -113,7 +106,7 @@
     line-height: 28px;
 }
 
-#login-btn {
+#login-btn, #init-btn {
     width: 308px;
     height: 34px;
     position: relative;
@@ -131,13 +124,13 @@
     font-weight: bold;
 }
 
-#login-btn:ACTIVE {
+#login-btn:ACTIVE, #init-btn:ACTIVE {
     background: #000099;
 }
 
 #system-config-panel {
-    width: 700px;
-    height: 400px;
+    width: 500px;
+    height: 300px;
     position: absolute;
     left: 0px;
     top: 0px;

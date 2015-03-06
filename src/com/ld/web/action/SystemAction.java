@@ -6,6 +6,16 @@ import org.apache.struts2.convention.annotation.Action;
 
 import com.ld.web.biz.UserBiz;
 
+/**
+ * 
+ * <p>Title: SystemAction</p>
+ * <p>Copyright: Copyright (c) 2015</p>
+ * <p>Description:</p>
+ *
+ * @author LD
+ *
+ * @date 2015-3-6
+ */
 @Action(value = "system")
 public class SystemAction extends BaseAction {
 

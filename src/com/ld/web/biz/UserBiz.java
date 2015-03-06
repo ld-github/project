@@ -19,7 +19,7 @@ public interface UserBiz {
      * @param u
      * @return
      */
-    boolean saveUser(User u1, User u2);
+    boolean saveUser(User user);
 
     /**
      * get user count

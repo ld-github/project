@@ -1,8 +1,5 @@
 package com.ld.web.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -56,21 +53,10 @@ public class UserAction extends BaseAction {
     @Override
     public String save() throws Exception {
         try {
-            User u1 = new User("Tom1", "TomC1");
-            User u2 = new User("Tom2", "TomC2");
-            boolean flag = userBiz.saveUser(u1, u2);
-            if (flag) {
-                List<User> users = new ArrayList<User>();
-                users.add(u1);
-                users.add(u2);
-                super.putResult("users", users);
-                super.putResult("user", u1);
-            }
-            super.putResult(flag);
+            super.putResult(userBiz.saveUser(user));
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Save user error!");
-            super.putResult(false);
         }
         return SUCCESS;
     }

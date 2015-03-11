@@ -1,8 +1,10 @@
 package com.ld.web.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -55,7 +57,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<T> getList(String where, Object... params) {
+    public List<T> getList(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
@@ -65,17 +67,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<T> getList(String where, List<?> params, LinkedHashMap<String, String> orders) {
+    public List<T> getList(String where, Map<String, Object> params, LinkedHashMap<String, String> orders) {
         where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
-        setParams(q, params.toArray());
+        setParams(q, params);
         return q.list();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(String where, Object... params) {
+    public T getUniqueResult(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
@@ -85,10 +87,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(Long primaryKey) {
-        String hql = "from " + this.getClassName() + " o where o.id = ?";
+    public T getUniqueResult(final Long primaryKey) {
+        String hql = "from " + this.getClassName() + " o where o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
-        setParams(q, primaryKey);
+        setParams(q, new HashMap<String, Object>() {
+            private static final long serialVersionUID = 8568462066745554547L;
+            {
+                put("id", primaryKey);
+            }
+        });
         return (T) q.uniqueResult();
     }
 
@@ -98,17 +105,22 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public int update(String hql, Object... params) {
+    public int update(String hql, Map<String, Object> params) {
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.executeUpdate();
     }
 
     @Override
-    public void delete(Long primaryKey) {
-        String hql = "delete " + this.getClassName() + " o where o.id = ?";
+    public void delete(final Long primaryKey) {
+        String hql = "delete " + this.getClassName() + " o where o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
-        setParams(q, primaryKey);
+        setParams(q, new HashMap<String, Object>() {
+            private static final long serialVersionUID = -4864915463081917504L;
+            {
+                put("id", primaryKey);
+            }
+        });
         q.executeUpdate();
     }
 
@@ -119,13 +131,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page) {
+    public Page<T> getPage(String where, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page) {
         where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
-        if (null != params && !params.isEmpty()) {
-            setParams(q, params.toArray());
-        }
+        setParams(q, params);
         q.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
         q.setMaxResults(page.getPageSize());
         List<T> records = q.list();
@@ -136,13 +146,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public long getTotal(String where, List<?> params) {
+    public long getTotal(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
         String hql = "select count(o) from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
-        if (null != params && !params.isEmpty()) {
-            setParams(q, params.toArray());
-        }
+        setParams(q, params);
         return (Long) q.uniqueResult();
     }
 
@@ -169,9 +177,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
      * @param q
      * @param params
      */
-    private void setParams(Query q, Object... params) {
-        for (int i = 0; i < params.length; i++) {
-            q.setParameter(i, params[i]);
+    private void setParams(Query q, Map<String, Object> params) {
+        if (null == params || params.isEmpty()) {
+            return;
+        }
+        for (String key : params.keySet()) {
+            q.setParameter(key, params.get(key));
         }
     }
 }

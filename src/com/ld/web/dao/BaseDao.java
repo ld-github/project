@@ -2,6 +2,7 @@ package com.ld.web.dao;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.ld.web.bean.Page;
 
@@ -33,7 +34,7 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    List<T> getList(String where, Object... params);
+    List<T> getList(String where, Map<String, Object> params);
 
     /**
      * Get Page by where and params and orders
@@ -43,7 +44,7 @@ public interface BaseDao<T> {
      * @param orders
      * @return
      */
-    List<T> getList(String where, List<?> params, LinkedHashMap<String, String> orders);
+    List<T> getList(String where, Map<String, Object> params, LinkedHashMap<String, String> orders);
 
     /**
      * Get unique result
@@ -52,7 +53,7 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    T getUniqueResult(String where, Object... params);
+    T getUniqueResult(String where, Map<String, Object> params);
 
     /**
      * Get unique result
@@ -76,7 +77,7 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    int update(String hql, Object... params);
+    int update(String hql, Map<String, Object> params);
 
     /**
      * Delete T by primaryKey
@@ -101,7 +102,7 @@ public interface BaseDao<T> {
      * @param page
      * @return
      */
-    Page<T> getPage(String where, List<?> params, LinkedHashMap<String, String> orders, Page<T> page);
+    Page<T> getPage(String where, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page);
 
     /**
      * Get Total by where and params
@@ -110,5 +111,5 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    long getTotal(String where, List<?> params);
+    long getTotal(String where, Map<String, Object> params);
 }

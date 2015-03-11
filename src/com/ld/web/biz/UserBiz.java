@@ -14,7 +14,7 @@ import com.ld.web.bean.User;
  */
 public interface UserBiz {
     /**
-     * save user
+     * Save user
      * 
      * @param u
      * @return
@@ -22,9 +22,16 @@ public interface UserBiz {
     boolean saveUser(User user);
 
     /**
-     * get user count
+     * Get user count
      * 
      * @return
      */
     long getUserCount();
+
+    /**
+     * User login
+     * 
+     * @return
+     */
+    User login(String username, String password);
 }

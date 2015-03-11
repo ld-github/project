@@ -48,6 +48,7 @@ function changeKaptcha() {
 var URLS = {
     LOGIN : '../user!login.action',
     CHECK_SYSTEM : '../system!checkSystem.action',
+    INIT_SYSTEM : '../system!initSystem.action',
 };
 
 /**
@@ -83,6 +84,18 @@ function initSystem() {
         new Message(result, '温馨提示').show(false);
         return;
     }
+    var args = new ActionForm().toJson([ 'init-username', 'init-password' ]);
+    args['user.password'] = Base64.encode(args['user.password']);
+
+    $.post(URLS.INIT_SYSTEM, args, function(data) {
+        if (data.success) {
+            new Message('系统初始化成功', '温馨提示').show(true);
+            $('#cover-panel').css('display', 'none');
+            $('#system-config-panel').fadeOut("slow");
+        } else {
+            new Message('系统初始化成功', '温馨提示').show(false);
+        }
+    });
 }
 /**
  * Check whether the initialization system configuration

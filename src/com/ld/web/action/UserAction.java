@@ -61,11 +61,6 @@ public class UserAction extends BaseAction {
         return SUCCESS;
     }
 
-    public String isInitAdmin() throws Exception {
-        super.putResult(userBiz.getUserCount() == 0);
-        return SUCCESS;
-    }
-
     /**
      * User login
      * 
@@ -78,11 +73,11 @@ public class UserAction extends BaseAction {
             super.putResult(false, "验证码输入错误");
             return SUCCESS;
         }
-        System.out.println(user.getUsername());
-        System.out.println(Util.base64Decode(user.getPassword()));
-        user.setId(2L);
-        super.putSessionUser(user);
-        super.putResult(true);
+        User u = userBiz.login(user.getUsername(), User.sha(Util.base64Decode(user.getPassword())));
+        if (null != u) {
+            super.putSessionUser(u);
+        }
+        super.putResult(null != u, null != u ? "用户登录成功" : "用户名或密码错误");
         return SUCCESS;
     }
 

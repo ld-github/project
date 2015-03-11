@@ -35,4 +35,13 @@ public class UserBizImpl implements UserBiz {
         return userDao.getTotal(null, null);
     }
 
+    @Override
+    public User login(String username, String password) {
+        try {
+            return userDao.query(username, password);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

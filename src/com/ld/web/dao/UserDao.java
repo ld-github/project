@@ -4,7 +4,7 @@ import com.ld.web.bean.User;
 
 /**
  * 
- * <p>Title: UserDao</p>
+ * <p>Title: UserBiz</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -19,5 +19,5 @@ public interface UserDao extends BaseDao<User> {
      * @param user
      * @return
      */
-    User query(String username, String password);
+    User query(String username, String password) throws Exception;
 }

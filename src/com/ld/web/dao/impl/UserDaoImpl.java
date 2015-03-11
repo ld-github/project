@@ -7,7 +7,7 @@ import com.ld.web.dao.UserDao;
 
 /**
  * 
- * <p>Title: UserDaoImpl</p>
+ * <p>Title: UserBiz</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -19,7 +19,7 @@ import com.ld.web.dao.UserDao;
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
     @Override
-    public User query(String username, String password) {
+    public User query(String username, String password) throws Exception {
         String where = "where o.username = ? and o.password = ?";
         return super.getUniqueResult(where, username, password);
     }

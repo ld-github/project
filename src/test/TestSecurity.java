@@ -16,7 +16,7 @@ import com.ld.web.bean.User;
  */
 public class TestSecurity {
     public static void main(String[] args) {
-        String str = "admin123asdasdasdsdasd";
+        String str = "admin";
         System.out.println(User.sha(str));
         System.out.println(User.sha(str).length());
 

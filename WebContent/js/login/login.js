@@ -92,19 +92,34 @@ function initSystem() {
             new Message('系统初始化成功', '温馨提示').show(true);
             $('#cover-panel').css('display', 'none');
             $('#system-config-panel').fadeOut("slow");
+            keyEnterListener();
         } else {
-            new Message('系统初始化成功', '温馨提示').show(false);
+            new Message('系统初始化失败', '温馨提示').show(false);
         }
     });
 }
+
+/**
+ * Monitor user enter button press
+ */
+function keyEnterListener() {
+    $(window).keydown(function(event) {
+        if (event.keyCode == KEY_CODE.ENTER) {
+            login();
+        }
+    });
+}
+
 /**
  * Check whether the initialization system configuration
  */
 function checkSystem() {
     $.post(URLS.CHECK_SYSTEM, {}, function(data) {
         if (data.success) {
-            $('#cover-panel').css('display', 'block');
             $('#system-config-panel').fadeIn("slow");
+            $('#cover-panel').css('display', 'block');
+        } else {
+            keyEnterListener();
         }
     });
 }
@@ -134,14 +149,5 @@ $(function() {
      */
     $('#init-btn').click(function() {
         initSystem();
-    });
-
-    /**
-     * Monitor user enter button press
-     */
-    $(window).keydown(function(event) {
-        if (event.keyCode == KEY_CODE.ENTER) {
-            login();
-        }
     });
 });

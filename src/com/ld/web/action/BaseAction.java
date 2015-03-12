@@ -64,9 +64,9 @@ public class BaseAction extends ActionSupport {
     }
 
     /**
-     * Put code to result
+     * Put message to result
      * 
-     * @param code
+     * @param message
      */
     public void putResult(String message) {
         this.putResult(RESULT_MESSAGE, message);

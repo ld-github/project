@@ -9,7 +9,7 @@ var ActionForm = function() {
             return json;
         }
         try {
-            for (var i = 0; i < ids.length; i++) {
+            for ( var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 json[obj.attr('name')] = obj.val();
             }
@@ -66,32 +66,3 @@ var Message = function(msg, title) {
         });
     };
 };
-
-$(function() {
-    /**
-     * Ajax Start
-     */
-    $(document).ajaxStart(function() {
-        $('#loading').show();
-    });
-
-    /**
-     * Ajax Stop
-     */
-    $(document).ajaxStop(function() {
-        $('#loading').hide();
-    });
-
-    /**
-     * Ajax Error
-     */
-    $(document).ajaxError(function(event, request, settings) {
-        $('#loading').hide();
-        if (request.status == 403) {
-            new Message('用户登录已过期，请重新登录...').show(false);
-            setTimeout(function() {
-                window.top.location.href = 'login.html';
-            }, TIMEROUT_DEFEAT);
-        }
-    });
-});

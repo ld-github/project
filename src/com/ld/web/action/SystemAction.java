@@ -35,8 +35,14 @@ public class SystemAction extends BaseAction {
     }
 
     public String initSystem() throws Exception {
-        user.setPassword(User.sha(Util.base64Decode(user.getPassword())));
-        super.putResult(userBiz.saveUser(user));
+        try {
+            user.setPassword(User.sha(Util.base64Decode(user.getPassword())));
+            userBiz.saveUser(user);
+            super.putResult(true);
+        } catch (Exception e) {
+            super.putResult(false);
+            e.printStackTrace();
+        }
         return SUCCESS;
     }
 

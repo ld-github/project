@@ -53,8 +53,10 @@ public class UserAction extends BaseAction {
     @Override
     public String save() throws Exception {
         try {
-            super.putResult(userBiz.saveUser(user));
+            userBiz.saveUser(user);
+            super.putResult(true);
         } catch (Exception e) {
+            super.putResult(false);
             e.printStackTrace();
             log.error("Save user error!");
         }

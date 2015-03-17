@@ -23,9 +23,9 @@ public interface BaseDao<T> {
      * Save T t
      * 
      * @param t
-     * @return
+     * 
      */
-    boolean save(T t);
+    void save(T t);
 
     /**
      * Get List

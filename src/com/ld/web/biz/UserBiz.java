@@ -17,9 +17,9 @@ public interface UserBiz {
      * Save user
      * 
      * @param u
-     * @return
+     * 
      */
-    boolean saveUser(User user);
+    void saveUser(User user);
 
     /**
      * Get user count

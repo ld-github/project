@@ -46,13 +46,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public boolean save(T t) {
-        try {
-            this.getCurrentSession().save(t);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public void save(T t) {
+        this.getCurrentSession().save(t);
     }
 
     @SuppressWarnings("unchecked")

@@ -26,8 +26,8 @@ public class UserBizImpl implements UserBiz {
     private UserDao userDao;
 
     @Override
-    public boolean saveUser(User user) {
-        return userDao.save(user);
+    public void saveUser(User user) {
+        userDao.save(user);
     }
 
     @Override

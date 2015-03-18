@@ -1,3 +1,5 @@
+var TIMEROUT_TO_LOGIN = 2000;
+
 $(function() {
     /**
      * Ajax Start
@@ -22,7 +24,7 @@ $(function() {
             new Message('用户登录已过期，请重新登录...').show(false);
             setTimeout(function() {
                 window.top.location.href = 'login.html';
-            }, TIMEROUT_DEFEAT);
+            }, TIMEROUT_TO_LOGIN);
         }
     });
 });

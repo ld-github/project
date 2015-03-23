@@ -118,6 +118,12 @@ function checkSystem() {
         if (data.success) {
             $('#system-config-panel').fadeIn("slow");
             $('#cover-panel').css('display', 'block');
+            /**
+             * Initialization system configuration
+             */
+            $('#init-btn').click(function() {
+                initSystem();
+            });
         } else {
             keyEnterListener();
         }
@@ -142,12 +148,5 @@ $(function() {
      */
     $('#login-btn').click(function() {
         login();
-    });
-
-    /**
-     * Initialization system configuration
-     */
-    $('#init-btn').click(function() {
-        initSystem();
     });
 });

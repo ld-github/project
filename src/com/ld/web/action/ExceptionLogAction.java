@@ -31,6 +31,9 @@ public class ExceptionLogAction extends BaseAction {
 
     private Page<ExceptionLog> page;
 
+    /**
+     * Get page Records ExceptionLog
+     */
     @Override
     public String getPageRecords() throws Exception {
         try {

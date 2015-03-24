@@ -50,6 +50,9 @@ public class UserAction extends BaseAction {
     public static final String SAVE = "save";
     public static final String TAKE_LOGIN_USER = "takeLoginUser";
 
+    /**
+     * Save user
+     */
     @Override
     public String save() throws Exception {
         try {

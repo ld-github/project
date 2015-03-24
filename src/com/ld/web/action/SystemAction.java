@@ -29,11 +29,21 @@ public class SystemAction extends BaseAction {
     @Resource
     private UserBiz userBiz;
 
+    /**
+     * Whether you need check system initialization
+     * @return
+     * @throws Exception
+     */
     public String checkSystem() throws Exception {
         super.putResult(userBiz.getUserCount() == 0);
         return SUCCESS;
     }
 
+    /**
+     * System initialization
+     * @return
+     * @throws Exception
+     */
     public String initSystem() throws Exception {
         try {
             user.setPassword(User.sha(Util.base64Decode(user.getPassword())));

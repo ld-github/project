@@ -18,7 +18,7 @@
         <property name="password" value="${jdbc.password}" />
         <property name="minPoolSize" value="10" />
         <property name="maxPoolSize" value="100" />
-        <property name="acquireIncrement" value="3" />
+        <property name="acquireIncrement" value="5" />
         <property name="maxStatements" value="1000" />
         <property name="initialPoolSize" value="50" />
         <property name="acquireRetryAttempts" value="30" />

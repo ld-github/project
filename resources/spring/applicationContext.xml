@@ -18,13 +18,17 @@
         <property name="password" value="${jdbc.password}" />
         <property name="minPoolSize" value="10" />
         <property name="maxPoolSize" value="100" />
-        <property name="maxIdleTime" value="1800" />
+        <property name="maxIdleTime" value="25000" />
         <property name="acquireIncrement" value="3" />
         <property name="maxStatements" value="1000" />
         <property name="initialPoolSize" value="10" />
-        <property name="idleConnectionTestPeriod" value="60" />
+        <property name="testConnectionOnCheckin" value="true" />
+        <property name="automaticTestTable" value="C3P0TestTable" />
+        <property name="idleConnectionTestPeriod" value="18000" />
         <property name="acquireRetryAttempts" value="30" />
+        <property name="autoCommitOnClose" value="false" />
     </bean>
+
     <context:property-placeholder location="classpath:spring/jdbc.properties" />
 
     <context:component-scan base-package="com.ld.web.*" />

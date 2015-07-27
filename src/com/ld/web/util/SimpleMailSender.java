@@ -24,7 +24,7 @@ import com.ld.web.bean.mail.MyAuthenticator;
  * 
  * <p>Title: SimpleMailSender</p>
  * <p>Copyright: Copyright (c) 2015</p>
- * <p>Description: 发送邮件</p>
+ * <p>Description: 发送邮件工具类</p>
  *
  * @author LD
  *

@@ -60,7 +60,7 @@ function login() {
         new Message(result, '温馨提示').show(false);
         return;
     }
-    var args = new ActionForm().toJson([ 'username', 'password', 'kaptcha' ]);
+    var args = $('#login-panel').serializeJson();
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.LOGIN, args, function(data) {
@@ -84,7 +84,7 @@ function initSystem() {
         new Message(result, '温馨提示').show(false);
         return;
     }
-    var args = new ActionForm().toJson([ 'init-username', 'init-password' ]);
+    var args = $('#system-config-panel').serializeJson();
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.INIT_SYSTEM, args, function(data) {

@@ -20,7 +20,7 @@
 
 <body>
     <div id="main-panel">
-        <div id="login-panel">
+        <form id="login-panel">
             <div class="legend">SYSTEM LOGIN</div>
             <input id="username" type="text" name="user.username" placeholder="Username"> 
             <input id="password" type="password" name="user.password" placeholder="Password">
@@ -29,15 +29,15 @@
                 <img id="kaptcha-img" src="../kaptcha.jpg" title="看不清，点击换一张" />
             </div>
             <input id="login-btn" type="button" value="登录">
-        </div>
+        </form>
     </div>
-    <div id="system-config-panel">
+    <form id="system-config-panel">
         <div class="legend">SYSTEM INITIALIZATION</div>
         <input id="init-username" type="text" name="user.username" placeholder="Username">
         <input id="init-password" type="password" name="user.password" placeholder="Password">
         <input id="repeat-password" type="password" placeholder="Repeat Password">
         <input id="init-btn" type="button" value="执行初始化">
-    </div>
+    </form>
     <div id="cover-panel" class="window-mask"></div>
     <div id="loading"></div>
 </body>

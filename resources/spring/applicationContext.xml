@@ -33,7 +33,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
             <list>
-                <value>com.ld.web.bean</value>
+                <value>com.ld.web.bean.model</value>
             </list>
         </property>
         <property name="hibernateProperties">

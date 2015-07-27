@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
-import com.ld.web.bean.ExceptionLog;
 import com.ld.web.bean.Page;
+import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.biz.ExceptionLogBiz;
 
 /**

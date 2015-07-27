@@ -1,6 +1,6 @@
 package com.ld.web.dao;
 
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 
 /**
  * 

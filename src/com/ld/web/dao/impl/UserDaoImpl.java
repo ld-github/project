@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 import com.ld.web.dao.UserDao;
 
 /**

@@ -2,7 +2,7 @@ package test;
 
 import it.sauronsoftware.base64.Base64;
 
-import com.ld.web.bean.User;
+import com.ld.web.util.CharacterTool;
 
 /**
  * 
@@ -17,8 +17,8 @@ import com.ld.web.bean.User;
 public class TestSecurity {
     public static void main(String[] args) {
         String str = "admin";
-        System.out.println(User.sha(str));
-        System.out.println(User.sha(str).length());
+        System.out.println(CharacterTool.sha(str));
+        System.out.println(CharacterTool.sha(str).length());
 
         String encoded = Base64.encode(",!@#$%^&*()_+{}:<>?ASSDFGFDG！", "UTF-8");
         System.out.println(encoded);

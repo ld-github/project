@@ -3,7 +3,7 @@ package com.ld.web.interceptor;
 import org.apache.log4j.MDC;
 
 import com.ld.web.action.BaseAction;
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;

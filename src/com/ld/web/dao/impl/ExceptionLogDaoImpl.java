@@ -4,8 +4,8 @@ import java.util.LinkedHashMap;
 
 import org.springframework.stereotype.Repository;
 
-import com.ld.web.bean.ExceptionLog;
 import com.ld.web.bean.Page;
+import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.dao.ExceptionLogDao;
 
 /**

@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 import com.ld.web.biz.UserBiz;
 import com.ld.web.dao.UserDao;
 

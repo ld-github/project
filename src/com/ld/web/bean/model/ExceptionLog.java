@@ -1,4 +1,4 @@
-package com.ld.web.bean;
+package com.ld.web.bean.model;
 
 import java.io.Serializable;
 import java.util.Date;

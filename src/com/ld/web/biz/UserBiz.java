@@ -1,6 +1,6 @@
 package com.ld.web.biz;
 
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 
 /**
  * 

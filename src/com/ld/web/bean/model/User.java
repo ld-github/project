@@ -1,7 +1,6 @@
-package com.ld.web.bean;
+package com.ld.web.bean.model;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,28 +66,6 @@ public class User implements Serializable {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    /**
-     * Sha256 to encryption user.password
-     * 
-     * @param input
-     * @return
-     */
-    public static String sha(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(input.getBytes("UTF-8"));
-            byte[] data = md.digest();
-            StringBuffer result = new StringBuffer(data.length * 2);
-            for (int i = 0; i < data.length; i++) {
-                result.append(Integer.toHexString(data[i] & 0xff));
-            }
-            return result.toString();
-        } catch (Exception e) {
-            // This should not happen!
-            throw new RuntimeException(e);
-        }
     }
 
 }

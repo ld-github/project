@@ -4,9 +4,9 @@ import javax.annotation.Resource;
 
 import org.apache.struts2.convention.annotation.Action;
 
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 import com.ld.web.biz.UserBiz;
-import com.ld.web.util.Util;
+import com.ld.web.util.CharacterTool;
 
 /**
  * 
@@ -46,7 +46,7 @@ public class SystemAction extends BaseAction {
      */
     public String initSystem() throws Exception {
         try {
-            user.setPassword(User.sha(Util.base64Decode(user.getPassword())));
+            user.setPassword(CharacterTool.sha(CharacterTool.base64Decode(user.getPassword())));
             userBiz.saveUser(user);
             super.putResult(true);
         } catch (Exception e) {

@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ld.web.bean.ExceptionLog;
 import com.ld.web.bean.Page;
+import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.biz.ExceptionLogBiz;
 import com.ld.web.dao.ExceptionLogDao;
 

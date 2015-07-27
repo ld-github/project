@@ -8,9 +8,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
 import com.google.code.kaptcha.Constants;
-import com.ld.web.bean.User;
+import com.ld.web.bean.model.User;
 import com.ld.web.biz.UserBiz;
-import com.ld.web.util.Util;
+import com.ld.web.util.CharacterTool;
 
 /**
  * 
@@ -78,7 +78,7 @@ public class UserAction extends BaseAction {
             super.putResult(false, "验证码输入错误");
             return SUCCESS;
         }
-        User u = userBiz.login(user.getUsername(), User.sha(Util.base64Decode(user.getPassword())));
+        User u = userBiz.login(user.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(user.getPassword())));
         if (null != u) {
             super.putSessionUser(u);
         }

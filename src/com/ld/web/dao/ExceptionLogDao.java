@@ -1,7 +1,7 @@
 package com.ld.web.dao;
 
-import com.ld.web.bean.ExceptionLog;
 import com.ld.web.bean.Page;
+import com.ld.web.bean.model.ExceptionLog;
 
 /**
  * 

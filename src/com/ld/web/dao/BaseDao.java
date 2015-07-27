@@ -28,13 +28,11 @@ public interface BaseDao<T> {
     void save(T t);
 
     /**
-     * Get List
+     * Save or Update
      * 
-     * @param where
-     * @param params
-     * @return
+     * @param t
      */
-    List<T> getList(String where, Map<String, Object> params);
+    void saveOrUpdate(T t);
 
     /**
      * Get Page by where and params and orders
@@ -44,7 +42,15 @@ public interface BaseDao<T> {
      * @param orders
      * @return
      */
+
     List<T> getList(String where, Map<String, Object> params, LinkedHashMap<String, String> orders);
+
+    /**
+     * Get List
+     * 
+     * @return
+     */
+    List<T> getList();
 
     /**
      * Get unique result
@@ -64,6 +70,16 @@ public interface BaseDao<T> {
     T getUniqueResult(Long primaryKey);
 
     /**
+     * Get unique result by order
+     * 
+     * @param where
+     * @param params
+     * @param orders
+     * @return
+     */
+    T getUniqueResultByOrder(String where, Map<String, Object> params, LinkedHashMap<String, String> orders);
+
+    /**
      * Update T t
      * 
      * @param t
@@ -73,11 +89,11 @@ public interface BaseDao<T> {
 
     /**
      * 
-     * @param hql
+     * @param where
      * @param params
      * @return
      */
-    int update(String hql, Map<String, Object> params);
+    int update(String where, Map<String, Object> params);
 
     /**
      * Delete T by primaryKey
@@ -111,5 +127,70 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    long getTotal(String where, Map<String, Object> params);
+    Long getTotal(String where, Map<String, Object> params);
+
+    /**
+     * Get Total
+     * 
+     * @return
+     */
+    Long getTotal();
+
+    /**
+     * Get total by sql
+     * 
+     * @param sql
+     * @param params
+     * @return
+     */
+    Long getTotalBySql(String sql, Map<String, Object> params);
+
+    /**
+     * Get page by sql
+     * 
+     * @param sql
+     * @param params
+     * @param orders
+     * @param page
+     * @return
+     */
+    Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page);
+
+    /**
+     * Get list by sql
+     * 
+     * @param sql
+     * @param params
+     * @param orders
+     * @return
+     */
+    List<T> getListBySql(String sql, Map<String, Object> params, LinkedHashMap<String, String> orders);
+
+    /**
+     * Get list by hql
+     * 
+     * @param sql
+     * @param params
+     * @param orders
+     * @return
+     */
+    List<T> getListByHql(String hql, Map<String, Object> params, LinkedHashMap<String, String> orders);
+
+    /**
+     * Get uniqueResult by sql
+     * 
+     * @param sql
+     * @param params
+     * @return
+     */
+    Object getUniqueResultBySql(String sql, Map<String, Object> params);
+
+    /**
+     * Get uniqueResult by hql
+     * 
+     * @param hql
+     * @param params
+     * @return
+     */
+    Object getUniqueResultByHql(String hql, Map<String, Object> params);
 }

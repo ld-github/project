@@ -9,7 +9,7 @@ import com.ld.web.dao.UserDao;
 
 /**
  * 
- * <p>Title: UserBiz</p>
+ * <p>Title: UserDaoImpl</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *

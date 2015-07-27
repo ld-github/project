@@ -9,7 +9,7 @@ import it.sauronsoftware.base64.Base64;
  * 
  * <p>Title: CharacterTool</p>
  * <p>Copyright: Copyright (c) 2015</p>
- * <p>Description:</p>
+ * <p>Description:字符串工具类</p>
  *
  * @author LD
  *

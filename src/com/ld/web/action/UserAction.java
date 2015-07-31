@@ -4,8 +4,6 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 import com.google.code.kaptcha.Constants;
 import com.ld.web.bean.model.User;
@@ -23,16 +21,6 @@ import com.ld.web.util.CharacterTool;
  * @date 2015-1-8
  */
 @Action(value = "user")
-@Results({ 
-    @Result(type = "json",
-                    name = UserAction.SAVE,
-                    params = {"root", "result", "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
-      }), 
-    @Result(type = "json",
-                    name = UserAction.TAKE_LOGIN_USER,
-                    params = {"root", "result", "excludeProperties", "user.(id|password){1}"
-      })
-})
 public class UserAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
@@ -46,9 +34,6 @@ public class UserAction extends BaseAction {
     private User user;
 
     private String kaptcha;
-
-    public static final String SAVE = "save";
-    public static final String TAKE_LOGIN_USER = "takeLoginUser";
 
     /**
      * Save user
@@ -95,7 +80,7 @@ public class UserAction extends BaseAction {
     public String takeLoginUser() throws Exception {
         User u = super.takeSessionUser();
         super.putResult("user", u);
-        return TAKE_LOGIN_USER;
+        return SUCCESS;
     }
 
     public User getUser() {

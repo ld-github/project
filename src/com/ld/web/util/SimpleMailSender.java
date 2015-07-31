@@ -98,7 +98,7 @@ public class SimpleMailSender implements Serializable {
      * @param username
      * @return
      */
-    public static MailSenderInfo chooseServer(MailSenderInfo mailInfo) {
+    private static MailSenderInfo chooseServer(MailSenderInfo mailInfo) {
         String username = mailInfo.getUsername();
         String identification = username.substring(username.lastIndexOf("@"), username.length());
         if (!SERVERS_INFOS.containsKey(identification)) {
@@ -113,7 +113,7 @@ public class SimpleMailSender implements Serializable {
     /**
      * 邮箱服务器信息
      */
-    public static final Map<String, String[]> SERVERS_INFOS = new HashMap<String, String[]>() {
+    private static final Map<String, String[]> SERVERS_INFOS = new HashMap<String, String[]>() {
         private static final long serialVersionUID = 457859374055559467L;
         {
             put("@qq.com", new String[] { "smtp.qq.com", "25" });

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.apache.struts2.json.annotations.JSON;
+
 /**
  * 
  * <p>Title: User</p>
@@ -21,7 +23,7 @@ import javax.persistence.UniqueConstraint;
  * @date 2015-1-8
  */
 @Entity
-@Table(name = "TAB_USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
+@Table(name = "t_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class User implements Serializable {
 
     private static final long serialVersionUID = 4284572555216108008L;
@@ -34,6 +36,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JSON(serialize = false)
     public Long getId() {
         return id;
     }
@@ -52,6 +55,7 @@ public class User implements Serializable {
     }
 
     @Column(nullable = false)
+    @JSON(serialize = false)
     public String getPassword() {
         return password;
     }

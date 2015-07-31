@@ -25,7 +25,7 @@ import org.hibernate.annotations.Type;
  *@date 2015-2-15
  */
 @Entity
-@Table(name = "TAB_EXCEPTION_LOG")
+@Table(name = "t_exceptionlog")
 public class ExceptionLog implements Serializable {
 
     private static final long serialVersionUID = -6693993663180010828L;

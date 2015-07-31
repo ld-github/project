@@ -3,6 +3,10 @@ package com.ld.web.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -68,7 +72,6 @@ public class BaseAction extends ActionSupport {
         this.putResult(RESULT_CODE, code);
     }
 
-
     /**
      * Put success to result
      * 
@@ -119,6 +122,24 @@ public class BaseAction extends ActionSupport {
     public void putResult(boolean success, String message, Integer code) {
         this.putResult(success, message);
         this.putResult(code);
+    }
+
+    /**
+     * Take request
+     * 
+     * @return
+     */
+    public HttpServletRequest takeRequest() {
+        return ServletActionContext.getRequest();
+    }
+
+    /**
+     * Take response
+     * 
+     * @return
+     */
+    public HttpServletResponse takeResponse() {
+        return ServletActionContext.getResponse();
     }
 
     /**

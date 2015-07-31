@@ -106,7 +106,7 @@ public class BaseAction extends ActionSupport {
      */
     public void putResult(boolean success, String message) {
         this.putResult(success);
-        this.putResult(RESULT_MESSAGE, message);
+        this.putResult(message);
     }
 
     /**

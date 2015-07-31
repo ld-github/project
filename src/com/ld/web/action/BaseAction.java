@@ -65,19 +65,9 @@ public class BaseAction extends ActionSupport {
      * @param code
      */
     public void putResult(Integer code) {
-        this.result.put(RESULT_CODE, code);
+        this.putResult(RESULT_CODE, code);
     }
 
-    /**
-     * Put code and message to result
-     * 
-     * @param code
-     * @param message
-     */
-    public void putResult(Integer code, String message) {
-        this.putResult(code);
-        this.putResult(message);
-    }
 
     /**
      * Put success to result
@@ -95,6 +85,17 @@ public class BaseAction extends ActionSupport {
      */
     public void putResult(String message) {
         this.putResult(RESULT_MESSAGE, message);
+    }
+
+    /**
+     * Put code and message to result
+     * 
+     * @param code
+     * @param message
+     */
+    public void putResult(Integer code, String message) {
+        this.putResult(code);
+        this.putResult(message);
     }
 
     /**

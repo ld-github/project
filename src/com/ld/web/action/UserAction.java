@@ -25,7 +25,7 @@ public class UserAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
 
-    private static final Logger log = Logger.getLogger(UserAction.class);
+    private static final Logger logger = Logger.getLogger(UserAction.class);
 
     @Resource
     private UserBiz userBiz;
@@ -46,7 +46,7 @@ public class UserAction extends BaseAction {
         } catch (Exception e) {
             super.putResult(false);
             e.printStackTrace();
-            log.error("Save user error!");
+            logger.error("Save user error!");
         }
         return SUCCESS;
     }
@@ -78,6 +78,9 @@ public class UserAction extends BaseAction {
      * @throws Exception
      */
     public String takeLoginUser() throws Exception {
+        logger.info("登录成功info");
+        logger.debug("登录成功debug");
+        logger.error("登录出错error");
         User u = super.takeSessionUser();
         super.putResult("user", u);
         return SUCCESS;

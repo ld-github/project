@@ -26,7 +26,7 @@
     <session-timeout>30</session-timeout>
   </session-config>
   <servlet>
-    <servlet-name>Kaptcha</servlet-name>
+    <servlet-name>kaptcha</servlet-name>
     <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
     <init-param>
       <description> Border around kaptcha. Legal values are yes or no. </description>
@@ -71,7 +71,7 @@
     <init-param>
       <description>The number of characters to display. </description>
       <param-name>kaptcha.textproducer.char.length</param-name>
-      <param-value>6</param-value>
+      <param-value>5</param-value>
     </init-param>
     <init-param>
       <description>A list of comma separated font names.</description>
@@ -130,7 +130,7 @@
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Kaptcha</servlet-name>
+    <servlet-name>kaptcha</servlet-name>
     <url-pattern>/kaptcha.jpg</url-pattern>
   </servlet-mapping>
   <welcome-file-list>

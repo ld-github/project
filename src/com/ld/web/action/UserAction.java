@@ -78,6 +78,9 @@ public class UserAction extends BaseAction {
      * @throws Exception
      */
     public String takeLoginUser() throws Exception {
+        logger.info("登录成功info");
+        logger.debug("登录成功debug");
+        logger.error("登录出错error");
         User u = super.takeSessionUser();
         super.putResult("user", u);
         return SUCCESS;

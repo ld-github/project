@@ -53,3 +53,8 @@ ul, ol {
     font-size: 20px;
     font-weight: bold;
 }
+
+input:FOCUS {
+    border: 2px solid #660066 !important;
+    box-shadow: 0 0 8px rgba(103, 166, 217, 1) !important;
+}

@@ -60,7 +60,7 @@ function login() {
         new Message(result, '温馨提示').show(false);
         return;
     }
-    var args = $('#login-panel').serializeJson();
+    var args = $('#login-form').serializeJson();
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.LOGIN, args, function(data) {
@@ -84,14 +84,14 @@ function initSystem() {
         new Message(result, '温馨提示').show(false);
         return;
     }
-    var args = $('#system-config-panel').serializeJson();
+    var args = $('#system-config-form').serializeJson();
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.INIT_SYSTEM, args, function(data) {
         if (data.success) {
             new Message('系统初始化成功', '温馨提示').show(true);
             $('#cover-panel').css('display', 'none');
-            $('#system-config-panel').fadeOut("slow");
+            $('#system-config-form').fadeOut("slow");
             keyEnterListener();
         } else {
             new Message('系统初始化失败', '温馨提示').show(false);
@@ -116,7 +116,7 @@ function keyEnterListener() {
 function checkSystem() {
     $.post(URLS.CHECK_SYSTEM, {}, function(data) {
         if (data.success) {
-            $('#system-config-panel').fadeIn("slow");
+            $('#system-config-form').fadeIn("slow");
             $('#cover-panel').css('display', 'block');
             /**
              * Initialization system configuration

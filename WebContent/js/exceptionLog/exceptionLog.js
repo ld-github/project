@@ -55,7 +55,7 @@ $(function() {
         columns : [ [ {
             field : 'id',
             title : '编号',
-            width : 50,
+            width : 80,
             align : 'center'
         }, {
             field : 'username',

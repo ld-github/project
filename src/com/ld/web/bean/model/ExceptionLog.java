@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Type;
 
 /**
@@ -111,6 +112,7 @@ public class ExceptionLog implements Serializable {
         this.message = message;
     }
 
+    @JSON(format = "yyyy-MM-dd HH:mm:ss")
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateTime() {

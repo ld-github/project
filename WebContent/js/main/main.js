@@ -92,7 +92,7 @@ var URLS = {
  * Get login user info from session
  */
 function getLoginUser() {
-    $.post(URLS.TAKE_LOGIN_USER, {}, function(data) {
+    $.post(URLS.TAKE_LOGIN_USER, function(data) {
         console.log(data);
     });
 }

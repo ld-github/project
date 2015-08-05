@@ -23,7 +23,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @Result(type = "json",
  *                   name = UserAction.SAVE,
  *                   params = {"root", "result", "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
- *      }), 
+ * })
  *
  * <p>Title: BaseAction</p>
  * <p>Copyright: Copyright (c) 2015</p>

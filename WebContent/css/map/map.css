@@ -1,12 +1,3 @@
-body {
-    overflow-y: hidden;
-}
-
-#main-panel {
-    width: 100%;
-    height: 100%;
-}
-
 .copy-right {
     text-align: center;
     font-size: 12px;

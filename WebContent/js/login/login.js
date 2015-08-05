@@ -121,9 +121,7 @@ function checkSystem() {
             /**
              * Initialization system configuration
              */
-            $('#init-btn').click(function() {
-                initSystem();
-            });
+            $('#init-btn').click(initSystem);
         } else {
             keyEnterListener();
         }
@@ -139,14 +137,10 @@ $(function() {
     /**
      * Change kaptcha img
      */
-    $('#kaptcha-img').click(function() {
-        changeKaptcha();
-    });
+    $('#kaptcha-img').click(changeKaptcha);
 
     /**
      * Login
      */
-    $('#login-btn').click(function() {
-        login();
-    });
+    $('#login-btn').click(login);
 });

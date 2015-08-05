@@ -22,6 +22,7 @@ import com.ld.web.dao.UserDao;
 @Service
 @Transactional
 public class UserBizImpl implements UserBiz {
+
     @Resource
     private UserDao userDao;
 

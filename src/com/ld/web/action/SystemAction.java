@@ -2,6 +2,7 @@ package com.ld.web.action;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
 import com.ld.web.bean.model.User;
@@ -20,6 +21,8 @@ import com.ld.web.util.CharacterTool;
  */
 @Action(value = "system")
 public class SystemAction extends BaseAction {
+
+    private static final Logger logger = Logger.getLogger(SystemAction.class);
 
     private static final long serialVersionUID = -9049812879882243081L;
 
@@ -51,6 +54,7 @@ public class SystemAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
+            logger.error("系统初始化错误");
             e.printStackTrace();
         }
         return SUCCESS;

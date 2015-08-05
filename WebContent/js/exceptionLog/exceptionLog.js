@@ -1,46 +1,25 @@
-/**
- * 
- * @param pageNumber
- * @param pageSize
- */
-function setPager(pageNumber, pageSize) {
-    $('#logs-panel').datagrid("getPager").pagination({
-        "pageNumber" : pageNumber,
-        "pageSize" : pageSize
-    });
-}
-
-/**
- * 
- * @param data
- */
-function loadData(data) {
-    $('#logs-panel').datagrid('loadData', {
-        rows : data.page == null ? [] : data.page.records,
-        total : data.page == null ? 0 : data.page.total
-    });
-}
-
-var startPage = 1, pageSize = 10;
+var startPage = 1;
 
 /**
  * Action urls
  */
 var URLS = {
-    GETPAGERECORDS : '../exceptionLog!getPageRecords.action',
+    GET_PAGE_RECORDS : '../exceptionLog!getPageRecords.action',
 };
 
 /**
  * 
  * @param pageNumber
  */
-function queryLogs(pageNumber) {
+function getPageLogs(pageNumber) {
     var args = {
         'page.currentPage' : pageNumber,
-        'page.pageSize' : pageSize
+        'page.pageSize' : getDatagridPaginationPageSize('#logs-panel')
     };
-    $.post(URLS.GETPAGERECORDS, args, function(data) {
-        loadData(data);
+    $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
+        if (data) {
+            loadDatagridData('#logs-panel', data);
+        }
     });
 }
 
@@ -83,12 +62,11 @@ $(function() {
 
     $('#logs-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
-            pageSize = size;
-            queryLogs(pageNumber);
+            getPageLogs(pageNumber);
         },
     });
 
-    queryLogs(startPage);
+    getPageLogs(startPage);
 
     $(window).resize(function() {
         $('#logs-panel').datagrid('resize');

@@ -9,7 +9,7 @@ var ActionForm = function() {
             return json;
         }
         try {
-            for ( var i = 0; i < ids.length; i++) {
+            for (var i = 0; i < ids.length; i++) {
                 var obj = $('#' + ids[i]);
                 json[obj.attr('name')] = obj.val();
             }
@@ -88,3 +88,65 @@ var Message = function(msg, title) {
         });
     };
 };
+
+var DEFAULT_DATAGRID_PAGENUM = 1;
+
+/**
+ * Get Datagrid Pagination pageSize
+ * 
+ * @param id
+ * @returns
+ */
+function getDatagridPaginationPageSize(id) {
+    return $(id).datagrid('getPager').pagination('options').pageSize;
+}
+
+/**
+ * Get Datagrid Pagination PageNum
+ * 
+ * @param id
+ * @returns
+ */
+function getDatagridPaginationPageNum(id) {
+    var pageNum = $(id).datagrid('getPager').pagination('options').pageNumber;
+    return pageNum == 0 ? DEFAULT_DATAGRID_PAGENUM : pageNum;
+}
+
+/**
+ * Set Datagrid pager
+ * 
+ * @param pageNumber
+ * @param pageSize
+ */
+function setDatagridPager(id, pageNum, pageSize) {
+    $(id).datagrid("getPager").pagination({
+        "pageNumber" : pageNum,
+        "pageSize" : pageSize
+    });
+}
+
+/**
+ * Update Datagrid row
+ * 
+ * @param id
+ * @param index
+ * @param data
+ */
+function updateDatagridRow(id, index, data) {
+    $(id).datagrid('updateRow', {
+        index : index,
+        row : data
+    });
+}
+
+/**
+ * Load Datagrid Data
+ * 
+ * @param data
+ */
+function loadDatagridData(id, data) {
+    $(id).datagrid('loadData', {
+        rows : data.page == null ? [] : data.page.records,
+        total : data.page == null ? 0 : data.page.total
+    });
+}

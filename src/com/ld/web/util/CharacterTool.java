@@ -16,6 +16,11 @@ import it.sauronsoftware.base64.Base64;
  * @date 2015-1-8
  */
 public class CharacterTool {
+
+    private static final String MD5 = "md5";
+
+    private static final String SHA256 = "SHA-256";
+
     /**
      * Base64 decode
      * 
@@ -43,22 +48,27 @@ public class CharacterTool {
      * @return
      */
     public static String toMd5_1(String plainText) throws NoSuchAlgorithmException {
-        String md5 = "";
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(plainText.getBytes());
-        byte b[] = md.digest();
-        int i;
-        StringBuffer buf = new StringBuffer("");
-        for (int offset = 0; offset < b.length; offset++) {
-            i = b[offset];
-            if (i < 0)
-                i += 256;
-            if (i < 16)
-                buf.append("0");
-            buf.append(Integer.toHexString(i));
+        try {
+            String md5 = "";
+            MessageDigest md = MessageDigest.getInstance(MD5);
+            md.update(plainText.getBytes());
+            byte b[] = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            md5 = buf.toString();
+            return md5;
+        } catch (Exception e) {
+            // This should not happen!
+            throw new RuntimeException(e);
         }
-        md5 = buf.toString();
-        return md5;
     }
 
     /**
@@ -68,14 +78,19 @@ public class CharacterTool {
      * @return
      * @throws NoSuchAlgorithmException
      */
-    public static String toMd5_2(String str) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("md5");
-        String md5 = "";
-        for (byte b : md.digest(str.getBytes())) {
-            String temp = Integer.toHexString(b & 0xff);
-            md5 += (temp.length() == 1 ? "0" + temp : temp);
+    public static String toMd5_2(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(MD5);
+            String md5 = "";
+            for (byte b : md.digest(str.getBytes())) {
+                String temp = Integer.toHexString(b & 0xff);
+                md5 += (temp.length() == 1 ? "0" + temp : temp);
+            }
+            return md5;
+        } catch (Exception e) {
+            // This should not happen!
+            throw new RuntimeException(e);
         }
-        return md5;
     }
 
     /**
@@ -86,7 +101,7 @@ public class CharacterTool {
      */
     public static String sha(String input) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance(SHA256);
             md.update(input.getBytes("UTF-8"));
             byte[] data = md.digest();
             StringBuffer result = new StringBuffer(data.length * 2);

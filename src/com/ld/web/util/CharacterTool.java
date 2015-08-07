@@ -42,25 +42,38 @@ public class CharacterTool {
      * @param str
      * @return
      */
-    public static String md5(String plainText) {
-        String md5 = new String();
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(plainText.getBytes());
-            byte b[] = md.digest();
-            int i;
-            StringBuffer buf = new StringBuffer("");
-            for (int offset = 0; offset < b.length; offset++) {
-                i = b[offset];
-                if (i < 0)
-                    i += 256;
-                if (i < 16)
-                    buf.append("0");
-                buf.append(Integer.toHexString(i));
-            }
-            md5 = buf.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+    public static String toMd5_1(String plainText) throws NoSuchAlgorithmException {
+        String md5 = "";
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(plainText.getBytes());
+        byte b[] = md.digest();
+        int i;
+        StringBuffer buf = new StringBuffer("");
+        for (int offset = 0; offset < b.length; offset++) {
+            i = b[offset];
+            if (i < 0)
+                i += 256;
+            if (i < 16)
+                buf.append("0");
+            buf.append(Integer.toHexString(i));
+        }
+        md5 = buf.toString();
+        return md5;
+    }
+
+    /**
+     * md5加密
+     * 
+     * @param str
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
+    public static String toMd5_2(String str) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("md5");
+        String md5 = "";
+        for (byte b : md.digest(str.getBytes())) {
+            String temp = Integer.toHexString(b & 0xff);
+            md5 += (temp.length() == 1 ? "0" + temp : temp);
         }
         return md5;
     }

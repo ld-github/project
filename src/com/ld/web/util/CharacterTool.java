@@ -47,7 +47,7 @@ public class CharacterTool {
      * @param str
      * @return
      */
-    public static String toMd5_1(String plainText) throws NoSuchAlgorithmException {
+    public static String toMd5_1(String plainText) {
         try {
             String md5 = "";
             MessageDigest md = MessageDigest.getInstance(MD5);

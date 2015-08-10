@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
- * <p> Title: JsonMapper </p>
- * <p> Copyright: Copyright (c) 2015 </p>
+ * <p>Title: JsonMapper </p>
+ * <p>Copyright: Copyright (c) 2015 </p>
  * <p>Description: Json数据处理工具类 </p>
  * 
  * @author LD
@@ -75,7 +75,7 @@ public class JsonMapper {
         try {
             return mapper.writeValueAsString(object);
         } catch (IOException e) {
-            logger.warn("write to json string error:" + object, e);
+            logger.error("Write to json string error:" + object, e);
             return null;
         }
     }
@@ -96,7 +96,7 @@ public class JsonMapper {
         try {
             return mapper.readValue(json, clazz);
         } catch (IOException e) {
-            logger.warn("parse json string error:" + json, e);
+            logger.error("Parse json string to object error:" + json, e);
             return null;
         }
     }
@@ -114,7 +114,7 @@ public class JsonMapper {
         try {
             return (T) mapper.readValue(json, typeRefer);
         } catch (IOException e) {
-            logger.warn("parse json string error:" + json, e);
+            logger.error("Parse json string to object error:" + json, e);
             return null;
         }
     }

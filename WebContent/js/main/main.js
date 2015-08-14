@@ -101,6 +101,7 @@ $(function() {
     initMenu();
     initTabs();
     getLoginUser();
+
     $('#left-panel').panel({
         onCollapse : function() {
             $('#content-panel').tabs('resize');

@@ -16,6 +16,10 @@ body {
     width: 250px;
 }
 
+.right-panel {
+    width: 200px;
+}
+
 .center-panel {
     background: #eee;
 }

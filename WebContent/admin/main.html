@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="../favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="../css/global/style.css">
 <link rel="stylesheet" type="text/css" href="../css/main/main.css">
 <script type="text/javascript" src="../plugins/jquery.min.js"></script>
@@ -18,13 +19,13 @@
 <script type="text/javascript" src="../js/global/ajaxListener.js"></script>
 <script type="text/javascript" src="../js/main/main.js"></script>
 </head>
-
 <body class="easyui-layout">
     <div data-options="region:'north'" class="top-panel"></div>
     <div data-options="region:'south'" class="bottom-panel"></div>
-    <div data-options="region:'west', title: '菜单', collapsible: true" class="left-panel" id="left-panel">
+    <div data-options="region:'west', title:'菜单', collapsible:true, iconCls:'icon-menu'" class="left-panel" id="left-panel">
         <div class="easyui-accordion" id="menu-panel"></div>
     </div>
+    <div data-options="region:'east',title:'工具箱', iconCls:'icon-calendar', collapsed:true" class="right-panel" id="right-panel"></div>
     <div data-options="region:'center'" class="center-panel">
         <div id="content-panel" class="easyui-tabs">
             <div title="我的待办" class="tasks-panel"></div>

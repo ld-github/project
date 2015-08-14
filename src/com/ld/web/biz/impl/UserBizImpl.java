@@ -2,6 +2,7 @@ package com.ld.web.biz.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,8 @@ import com.ld.web.dao.UserDao;
 @Transactional
 public class UserBizImpl implements UserBiz {
 
+    private static final Logger logger = Logger.getLogger(UserBizImpl.class);
+
     @Resource
     private UserDao userDao;
 
@@ -41,6 +44,7 @@ public class UserBizImpl implements UserBiz {
         try {
             return userDao.query(username, password);
         } catch (Exception e) {
+            logger.error("User login error by %s" + e.getMessage());
             return null;
         }
     }

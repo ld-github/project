@@ -34,6 +34,7 @@ public class SystemAction extends BaseAction {
 
     /**
      * Whether you need check system initialization
+     * 
      * @return
      * @throws Exception
      */
@@ -44,6 +45,7 @@ public class SystemAction extends BaseAction {
 
     /**
      * System initialization
+     * 
      * @return
      * @throws Exception
      */
@@ -54,8 +56,8 @@ public class SystemAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
-            logger.error("系统初始化错误");
             e.printStackTrace();
+            logger.error(String.format("System initialization error by %s", e.getMessage()));
         }
         return SUCCESS;
     }

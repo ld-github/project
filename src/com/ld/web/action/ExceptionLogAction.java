@@ -24,7 +24,7 @@ public class ExceptionLogAction extends BaseAction {
 
     private static final long serialVersionUID = -1590401916736665659L;
 
-    private static final Logger log = Logger.getLogger(UserAction.class);
+    private static final Logger logger = Logger.getLogger(ExceptionLogAction.class);
 
     @Resource
     private ExceptionLogBiz exceptionLogBiz;
@@ -40,7 +40,7 @@ public class ExceptionLogAction extends BaseAction {
             super.putResult("page", exceptionLogBiz.getPage(page));
         } catch (Exception e) {
             super.putResult("page", null);
-            log.error("Get ExceptionLog page error!");
+            logger.error(String.format("Get ExceptionLog page error by %s", e.getMessage()));
         }
         return SUCCESS;
     }

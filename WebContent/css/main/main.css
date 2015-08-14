@@ -2,6 +2,7 @@ body {
     min-width: 1024px;
     min-height: 600px;
 }
+
 .top-panel {
     height: 100px;
     background: #F0F0F0;
@@ -68,4 +69,10 @@ iframe {
 
 .tabs-panels .panel .panel-body {
     overflow-y: hidden;
+}
+
+.tasks-panel {
+    width: 100% !important;
+    height: 100%;
+    margin: auto;
 }

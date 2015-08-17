@@ -23,7 +23,7 @@ import org.hibernate.annotations.Type;
  *
  *@author LD
  *
- *@date 2015-2-15
+ *@date 2015-02-15
  */
 @Entity
 @Table(name = "t_exceptionlog")

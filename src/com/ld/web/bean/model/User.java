@@ -20,7 +20,7 @@ import org.apache.struts2.json.annotations.JSON;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 @Entity
 @Table(name = "t_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })

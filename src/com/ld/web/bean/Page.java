@@ -13,7 +13,7 @@ import java.util.List;
  * 
  * @param <T>
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 public class Page<T> implements Serializable {
 
@@ -67,7 +67,7 @@ public class Page<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    public Page(long total, List<T> records) {
+    public Page(Long total, List<T> records) {
         this.total = total;
         this.records = records;
     }

@@ -64,7 +64,7 @@ function login() {
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.LOGIN, args, function(data) {
-        if (data.success) {
+        if (data.status) {
             location.href = "main.html";
             return;
         }
@@ -88,7 +88,7 @@ function initSystem() {
     args['user.password'] = Base64.encode(args['user.password']);
 
     $.post(URLS.INIT_SYSTEM, args, function(data) {
-        if (data.success) {
+        if (data.status) {
             new Message('系统初始化成功', '温馨提示').show(true);
             $('#cover-panel').css('display', 'none');
             $('#system-config-form').fadeOut("slow");
@@ -114,8 +114,8 @@ function keyEnterListener() {
  * Check whether the initialization system configuration
  */
 function checkSystem() {
-    $.post(URLS.CHECK_SYSTEM, {}, function(data) {
-        if (data.success) {
+    $.post(URLS.CHECK_SYSTEM, function(data) {
+        if (data.status) {
             $('#system-config-form').fadeIn("slow");
             $('#cover-panel').css('display', 'block');
             /**

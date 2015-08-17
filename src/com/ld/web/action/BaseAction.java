@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * Result is success default json, result excludeProperties example:
+ * Result is status default json, result excludeProperties example:
  * @Result(type = "json",
  *                   name = UserAction.SAVE,
  *                   params = {"root", "result", "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"
@@ -44,7 +44,7 @@ public class BaseAction extends ActionSupport {
     public static final String SESSION_USER = "sessionUser";
 
     private final String RESULT_CODE = "code";
-    private final String RESULT_SUCCESS = "success";
+    private final String RESULT_STATUS = "status";
     private final String RESULT_MESSAGE = "message";
 
     private Map<String, Object> result = new HashMap<String, Object>();
@@ -73,12 +73,12 @@ public class BaseAction extends ActionSupport {
     }
 
     /**
-     * Put success to result
+     * Put status to result
      * 
-     * @param success
+     * @param status
      */
-    public void putResult(boolean success) {
-        this.putResult(RESULT_SUCCESS, success);
+    public void putResult(boolean status) {
+        this.putResult(RESULT_STATUS, status);
     }
 
     /**
@@ -102,25 +102,25 @@ public class BaseAction extends ActionSupport {
     }
 
     /**
-     * Put success and message to result
+     * Put status and message to result
      * 
-     * @param success
+     * @param status
      * @param message
      */
-    public void putResult(boolean success, String message) {
-        this.putResult(success);
+    public void putResult(boolean status, String message) {
+        this.putResult(status);
         this.putResult(message);
     }
 
     /**
-     * Put success and message and code to result
+     * Put status and message and code to result
      * 
-     * @param success
+     * @param status
      * @param message
      * @param code
      */
-    public void putResult(boolean success, String message, Integer code) {
-        this.putResult(success, message);
+    public void putResult(boolean status, String message, Integer code) {
+        this.putResult(status, message);
         this.putResult(code);
     }
 

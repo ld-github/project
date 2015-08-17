@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * <p>Title: Page</p>
  * <p>Copyright: Copyright (c) 2015</p>
- * <p>Description:</p>
+ * <p>Description: 分页实体类</p>
  *
  * @author LD
  * 
@@ -20,8 +20,11 @@ public class Page<T> implements Serializable {
     private static final long serialVersionUID = 6464430746475414041L;
 
     private int currentPage;
+
     private int pageSize;
-    private long total;
+
+    private Long total;
+
     private List<T> records;
 
     public int getCurrentPage() {

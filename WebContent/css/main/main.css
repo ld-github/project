@@ -86,3 +86,7 @@ iframe {
     height: 180px;
     margin: 10px auto;
 }
+
+.layout-expand-east .panel-header .panel-tool .layout-button-left {
+    display: none !important;
+}

@@ -52,8 +52,34 @@ function initTabs() {
     $('#content-panel').tabs({
         fit : true,
         tabHeight : 25,
-        border : false,
+        border : false
     });
+}
+
+/**
+ * Load dateTime
+ * 
+ * @param id
+ */
+function loadDatetime(id) {
+    var date = new Date();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+
+    var yy = date.getFullYear();
+    var MM = date.getMonth() + 1;
+    var dd = date.getDate();
+
+    var week = date.getDay();
+    var days = [ "日 ", "一 ", "二 ", "三 ", "四 ", "五 ", "六 " ];
+
+    var dateTime = yy + "年" + MM + "月" + dd + "日 " + hh + ":" + mm + ":" + ss + " 星期" + days[week];
+    $(id).text(dateTime);
+
+    setTimeout(function() {
+        loadDatetime(id);
+    }, 1000);
 }
 
 /**
@@ -82,6 +108,14 @@ function addTab(title, url, closable) {
 }
 
 /**
+ * Init Calendar
+ */
+function initCalendar() {
+    $('#calendar-panel').calendar({
+        current : new Date()
+    });
+}
+/**
  * Action urls
  */
 var URLS = {
@@ -100,6 +134,10 @@ function getLoginUser() {
 $(function() {
     initMenu();
     initTabs();
+    initCalendar();
+
+    loadDatetime('#datetime-panel');
+
     getLoginUser();
 
     $('#left-panel').panel({

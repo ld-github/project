@@ -4,7 +4,7 @@ body {
 }
 
 .top-panel {
-    height: 100px;
+    height: 80px;
     background: #F0F0F0;
 }
 
@@ -13,7 +13,7 @@ body {
 }
 
 .left-panel {
-    width: 250px;
+    width: 200px;
 }
 
 .right-panel {
@@ -79,4 +79,10 @@ iframe {
     width: 100% !important;
     height: 100%;
     margin: auto;
+}
+
+#calendar-panel {
+    width: 180px;
+    height: 180px;
+    margin: 10px auto;
 }

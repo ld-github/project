@@ -1,14 +1,16 @@
 /**
  * @author LD
  */
-var MENU = [ {
+var MENUS = [ {
     title : '系统设置',
+    iconCls : 'icon-setting',
     submenus : [ {
         title : '地图',
         url : 'map.html'
     } ]
 }, {
-    title : '系统记录',
+    title : '日志记录',
+    iconCls : 'icon-save',
     submenus : [ {
         title : '异常信息',
         url : 'exceptionLog.html'
@@ -22,15 +24,18 @@ function initMenu() {
     $('#menu-panel').accordion({
         fit : true
     });
-    for (var i = 0; i < MENU.length; i++) {
-        var title = MENU[i].title;
+    for (var i = 0; i < MENUS.length; i++) {
+        var title = MENUS[i].title;
+        var iconCls = MENUS[i].iconCls;
+
         var submenus = $('<UL>').addClass('submenus-panel');
-        for (var j = 0; j < MENU[i].submenus.length; j++) {
-            var menu = MENU[i].submenus[j];
+        for (var j = 0; j < MENUS[i].submenus.length; j++) {
+            var menu = MENUS[i].submenus[j];
             $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
         }
         $('#menu-panel').accordion('add', {
             title : title,
+            iconCls : iconCls,
             selected : false,
             content : submenus,
         });

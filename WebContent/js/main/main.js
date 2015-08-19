@@ -7,7 +7,85 @@ var MENUS = [ {
     submenus : [ {
         title : '地图',
         url : 'map.html'
-    } ]
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    } ,{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    },{
+        title : '地图',
+        url : 'map.html'
+    }]
 }, {
     title : '日志记录',
     iconCls : 'icon-save',

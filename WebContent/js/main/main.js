@@ -68,18 +68,10 @@ function initTabs() {
  */
 function loadDatetime(id) {
     var date = new Date();
-    var hh = date.getHours();
-    var mm = date.getMinutes();
-    var ss = date.getSeconds();
-
-    var yy = date.getFullYear();
-    var MM = date.getMonth() + 1;
-    var dd = date.getDate();
-
     var week = date.getDay();
     var days = [ "日 ", "一 ", "二 ", "三 ", "四 ", "五 ", "六 " ];
 
-    var dateTime = yy + "年" + MM + "月" + dd + "日 " + hh + ":" + mm + ":" + ss + " 星期" + days[week];
+    var dateTime = date.toLocaleString() + " 星期" + days[week];
     $(id).text(dateTime);
 
     setTimeout(function() {
@@ -117,7 +109,9 @@ function addTab(title, url, closable) {
  */
 function initCalendar() {
     $('#calendar-panel').calendar({
-        current : new Date()
+        current : new Date(),
+        width : 190,
+        height : 190
     });
 }
 /**

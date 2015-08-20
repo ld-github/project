@@ -44,7 +44,7 @@ public class UserBizImpl implements UserBiz {
         try {
             return userDao.query(username, password);
         } catch (Exception e) {
-            logger.error("User login error by %s" + e.getMessage());
+            logger.error(String.format("User login error by %s", e.getMessage()), e);
             return null;
         }
     }

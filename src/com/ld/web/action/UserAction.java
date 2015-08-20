@@ -45,8 +45,7 @@ public class UserAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
-            e.printStackTrace();
-            logger.error(String.format("Save user error by %s", e.getMessage()));
+            logger.error(String.format("Save user error by %s", e.getMessage()), e);
         }
         return SUCCESS;
     }

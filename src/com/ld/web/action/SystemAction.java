@@ -56,8 +56,7 @@ public class SystemAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
-            e.printStackTrace();
-            logger.error(String.format("System initialization error by %s", e.getMessage()));
+            logger.error(String.format("System initialization error by %s", e.getMessage()), e);
         }
         return SUCCESS;
     }

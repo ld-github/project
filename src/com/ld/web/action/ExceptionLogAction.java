@@ -40,7 +40,7 @@ public class ExceptionLogAction extends BaseAction {
             super.putResult("page", exceptionLogBiz.getPage(page));
         } catch (Exception e) {
             super.putResult("page", null);
-            logger.error(String.format("Get ExceptionLog page error by %s", e.getMessage()));
+            logger.error(String.format("Get ExceptionLog page error by %s", e.getMessage()), e);
         }
         return SUCCESS;
     }

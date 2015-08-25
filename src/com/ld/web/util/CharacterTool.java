@@ -1,8 +1,11 @@
 package com.ld.web.util;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 import it.sauronsoftware.base64.Base64;
 
 /**
@@ -13,7 +16,7 @@ import it.sauronsoftware.base64.Base64;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 public class CharacterTool {
 
@@ -39,6 +42,31 @@ public class CharacterTool {
      */
     public static String base64Encode(String str) {
         return Base64.encode(str, "UTF-8");
+    }
+
+    /**
+     * Base64 decode buffer
+     * 
+     * @param str
+     * @return
+     */
+    public static byte[] base64DecodeBuffer(String str) {
+        try {
+            return new BASE64Decoder().decodeBuffer(str);
+        } catch (IOException e) {
+            // This should not happen!
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Base64 encode buffer
+     * 
+     * @param bytes
+     * @return
+     */
+    public static String base64EecodeBuffer(byte[] bytes) {
+        return new BASE64Encoder().encodeBuffer(bytes);
     }
 
     /**

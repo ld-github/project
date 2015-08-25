@@ -93,7 +93,6 @@ public class RSACoder {
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         Key key = keyFactory.generatePrivate(pkcs8KeySpec);
-
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, key);
 
@@ -114,7 +113,6 @@ public class RSACoder {
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         Key key = keyFactory.generatePublic(x509KeySpec);
-
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, key);
 
@@ -135,7 +133,6 @@ public class RSACoder {
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         Key key = keyFactory.generatePublic(x509KeySpec);
-
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, key);
 
@@ -156,7 +153,6 @@ public class RSACoder {
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         Key key = keyFactory.generatePrivate(pkcs8KeySpec);
-
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, key);
 
@@ -200,7 +196,6 @@ public class RSACoder {
         KeyPair keyPair = keyPairGen.generateKeyPair();
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-
         Map<String, Object> keyMap = new HashMap<String, Object>(2);
 
         keyMap.put(PUBLIC_KEY, publicKey);

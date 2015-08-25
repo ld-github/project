@@ -57,7 +57,7 @@ var URLS = {
 function login() {
     var result = formLoginValidate();
     if (result) {
-        new Message(result, '温馨提示').show(false);
+        new Message(result).show(false);
         return;
     }
     var args = $('#login-form').serializeJson();
@@ -69,7 +69,7 @@ function login() {
             return;
         }
         if (data.message) {
-            new Message(data.message, '温馨提示').show(false);
+            new Message(data.message).show(false);
         }
         changeKaptcha();
     });
@@ -81,7 +81,7 @@ function login() {
 function initSystem() {
     var result = formInitValidate();
     if (result) {
-        new Message(result, '温馨提示').show(false);
+        new Message(result).show(false);
         return;
     }
     var args = $('#system-config-form').serializeJson();
@@ -89,12 +89,12 @@ function initSystem() {
 
     $.post(URLS.INIT_SYSTEM, args, function(data) {
         if (data.status) {
-            new Message('系统初始化成功', '温馨提示').show(true);
+            new Message('系统初始化成功').show(true);
             $('#cover-panel').css('display', 'none');
             $('#system-config-form').fadeOut("slow");
             keyEnterListener();
         } else {
-            new Message('系统初始化失败', '温馨提示').show(false);
+            new Message('系统初始化失败').show(false);
         }
     });
 }

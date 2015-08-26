@@ -36,27 +36,14 @@ public class UserAction extends BaseAction {
     private String kaptcha;
 
     /**
-     * Save user
-     */
-    @Override
-    public String save() throws Exception {
-        try {
-            userBiz.saveUser(user);
-            super.putResult(true);
-        } catch (Exception e) {
-            super.putResult(false);
-            logger.error(String.format("Save user error: %s", e.getMessage()), e);
-        }
-        return SUCCESS;
-    }
-
-    /**
      * User login
      * 
      * @return
      * @throws Exception
      */
     public String login() throws Exception {
+        logger.info(String.format("Username %s request login...", user.getUsername()));
+
         String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
             super.putResult(false, "验证码输入错误");

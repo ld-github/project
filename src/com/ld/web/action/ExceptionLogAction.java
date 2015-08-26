@@ -17,7 +17,7 @@ import com.ld.web.biz.ExceptionLogBiz;
  *
  * @author LD
  *
- * @date 2015-2-26
+ * @date 2015-02-26
  */
 @Action(value = "exceptionLog")
 public class ExceptionLogAction extends BaseAction {

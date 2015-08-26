@@ -26,7 +26,7 @@ import com.ld.web.dao.BaseDao;
  * 
  * @param <T>
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
@@ -73,7 +73,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(String where, Map<String, Object> params) {
+    public T getUniqueResult(String where, Map<String, Object> params) throws Exception {
         where = where == null ? "" : where;
         String hql = "from " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
@@ -83,7 +83,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(final Long primaryKey) {
+    public T getUniqueResult(final Long primaryKey) throws Exception {
         String hql = "from " + this.getClassName() + " o where o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {

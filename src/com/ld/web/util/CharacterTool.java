@@ -1,12 +1,15 @@
 package com.ld.web.util;
 
+import it.sauronsoftware.base64.Base64;
+
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.log4j.Logger;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-import it.sauronsoftware.base64.Base64;
 
 /**
  * 
@@ -20,8 +23,9 @@ import it.sauronsoftware.base64.Base64;
  */
 public class CharacterTool {
 
-    private static final String MD5 = "md5";
+    private static final Logger logger = Logger.getLogger(CharacterTool.class);
 
+    private static final String MD5 = "md5";
     private static final String SHA256 = "SHA-256";
 
     /**
@@ -49,14 +53,10 @@ public class CharacterTool {
      * 
      * @param str
      * @return
+     * @throws IOException
      */
-    public static byte[] base64DecodeBuffer(String str) {
-        try {
-            return new BASE64Decoder().decodeBuffer(str);
-        } catch (IOException e) {
-            // This should not happen!
-            throw new RuntimeException(e);
-        }
+    public static byte[] base64DecodeBuffer(String str) throws IOException {
+        return new BASE64Decoder().decodeBuffer(str);
     }
 
     /**
@@ -94,6 +94,7 @@ public class CharacterTool {
             md5 = buf.toString();
             return md5;
         } catch (Exception e) {
+            logger.error(String.format("MD5 to encryption error: %s", e.getMessage()), e);
             // This should not happen!
             throw new RuntimeException(e);
         }
@@ -116,13 +117,14 @@ public class CharacterTool {
             }
             return md5;
         } catch (Exception e) {
+            logger.error(String.format("MD5 to encryption error: %s", e.getMessage()), e);
             // This should not happen!
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * Sha256 to encryption user.password
+     * Sha256 to encryption
      * 
      * @param input
      * @return
@@ -138,6 +140,7 @@ public class CharacterTool {
             }
             return result.toString();
         } catch (Exception e) {
+            logger.error(String.format("SHA256 to encryption error: %s", e.getMessage()), e);
             // This should not happen!
             throw new RuntimeException(e);
         }

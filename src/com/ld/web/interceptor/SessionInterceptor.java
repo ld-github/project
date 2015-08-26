@@ -17,7 +17,7 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
  *
  * @author LD
  *
- * @date 2015-1-21
+ * @date 2015-01-21
  */
 public class SessionInterceptor extends MethodFilterInterceptor {
 

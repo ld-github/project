@@ -18,7 +18,7 @@ import com.ld.web.util.CharacterTool;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 @Action(value = "user")
 public class UserAction extends BaseAction {
@@ -45,7 +45,7 @@ public class UserAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
-            logger.error(String.format("Save user error by %s", e.getMessage()), e);
+            logger.error(String.format("Save user error: %s", e.getMessage()), e);
         }
         return SUCCESS;
     }

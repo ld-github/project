@@ -11,7 +11,7 @@ import javax.mail.PasswordAuthentication;
  *
  * @author LD
  *
- * @date 2015-3-27
+ * @date 2015-03-27
  */
 public class MyAuthenticator extends Authenticator {
 

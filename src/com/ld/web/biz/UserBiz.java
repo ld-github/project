@@ -10,7 +10,7 @@ import com.ld.web.bean.model.User;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 public interface UserBiz {
     /**

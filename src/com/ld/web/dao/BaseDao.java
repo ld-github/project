@@ -16,7 +16,7 @@ import com.ld.web.bean.Page;
  * 
  * @param <T>
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 public interface BaseDao<T> {
     /**
@@ -59,7 +59,7 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    T getUniqueResult(String where, Map<String, Object> params);
+    T getUniqueResult(String where, Map<String, Object> params) throws Exception;
 
     /**
      * Get unique result
@@ -67,7 +67,7 @@ public interface BaseDao<T> {
      * @param primaryKey
      * @return
      */
-    T getUniqueResult(Long primaryKey);
+    T getUniqueResult(Long primaryKey) throws Exception;
 
     /**
      * Get unique result by order
@@ -154,7 +154,8 @@ public interface BaseDao<T> {
      * @param page
      * @return
      */
-    Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page);
+    Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders,
+            Page<T> page);
 
     /**
      * Get list by sql

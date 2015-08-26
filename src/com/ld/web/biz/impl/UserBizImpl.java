@@ -18,7 +18,7 @@ import com.ld.web.dao.UserDao;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 @Service
 @Transactional
@@ -44,7 +44,7 @@ public class UserBizImpl implements UserBiz {
         try {
             return userDao.query(username, password);
         } catch (Exception e) {
-            logger.error(String.format("User login error by %s", e.getMessage()), e);
+            logger.error(String.format("User login error: %s", e.getMessage()), e);
             return null;
         }
     }

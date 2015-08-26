@@ -31,7 +31,7 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 @Controller
 @Namespace("/")

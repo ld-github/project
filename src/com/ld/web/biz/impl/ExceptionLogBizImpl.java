@@ -18,7 +18,7 @@ import com.ld.web.dao.ExceptionLogDao;
  *
  * @author LD
  *
- * @date 2015-2-26
+ * @date 2015-02-26
  */
 @Service
 @Transactional

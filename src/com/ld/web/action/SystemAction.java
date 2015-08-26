@@ -17,7 +17,7 @@ import com.ld.web.util.CharacterTool;
  *
  * @author LD
  *
- * @date 2015-3-11
+ * @date 2015-03-11
  */
 @Action(value = "system")
 public class SystemAction extends BaseAction {
@@ -56,7 +56,7 @@ public class SystemAction extends BaseAction {
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
-            logger.error(String.format("System initialization error by %s", e.getMessage()), e);
+            logger.error(String.format("System initialization error: %s", e.getMessage()), e);
         }
         return SUCCESS;
     }

@@ -75,7 +75,7 @@ public class JsonMapper {
         try {
             return mapper.writeValueAsString(object);
         } catch (IOException e) {
-            logger.error("Write to json string error:" + object, e);
+            logger.error(String.format("Write to json string error: %s", object), e);
             return null;
         }
     }
@@ -96,7 +96,7 @@ public class JsonMapper {
         try {
             return mapper.readValue(json, clazz);
         } catch (IOException e) {
-            logger.error("Parse json string to object error:" + json, e);
+            logger.error(String.format("Parse json string to object error: %s", json), e);
             return null;
         }
     }
@@ -114,7 +114,7 @@ public class JsonMapper {
         try {
             return (T) mapper.readValue(json, typeRefer);
         } catch (IOException e) {
-            logger.error("Parse json string to object error:" + json, e);
+            logger.error(String.format("Parse json string to object error: %s", json), e);
             return null;
         }
     }

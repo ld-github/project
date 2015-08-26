@@ -15,7 +15,7 @@ import com.ld.web.dao.UserDao;
  *
  * @author LD
  *
- * @date 2015-1-8
+ * @date 2015-01-08
  */
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {

@@ -28,7 +28,7 @@ import com.ld.web.bean.mail.MyAuthenticator;
  *
  * @author LD
  *
- * @date 2015-3-27
+ * @date 2015-03-27
  */
 public class SimpleMailSender implements Serializable {
 

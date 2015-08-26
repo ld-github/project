@@ -11,7 +11,7 @@ import com.ld.web.bean.model.ExceptionLog;
  *
  * @author LD
  *
- * @date 2015-2-26
+ * @date 2015-02-26
  */
 public interface ExceptionLogDao extends BaseDao<ExceptionLog> {
     /**

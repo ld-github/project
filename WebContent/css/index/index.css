@@ -1,0 +1,198 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #CCCCFF;
+}
+
+#main-panel {
+    min-width: 1200px;
+    width: 1200px;
+    margin: auto;
+}
+
+#navigation-panel {
+    width: 100%;
+    height: 200px;
+    background: #99CCFF;
+    position: relative;
+}
+
+#menu-panel {
+    width: 90%;
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+#menu-panel ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#menu-panel ul li {
+    width: 100px;
+    height: 39px;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 40px;
+    float: left;
+    border-right: 1px solid #333333;
+    border-top: 1px solid #333333;
+    cursor: pointer;
+    font-weight: bold;
+    background: #666699;
+}
+
+#menu-panel ul li:HOVER {
+    background: #CCCC66;
+    border-right: 1px solid #9900FF;
+    border-top: 1px solid #9900FF;
+}
+
+.menu-active {
+    background: #CCCC66 !important;
+    border-right: 1px solid #9900FF !important;
+    border-top: 1px solid #9900FF !important;
+    color: #CCCCFF;
+}
+
+#body-panel {
+    width: 100%;
+    height: 459px;
+    position: relative;
+    margin-top: 5px;
+}
+
+#left-panel {
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+}
+
+#right-panel {
+    width: 69%;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+}
+
+#login-form, #new-panel, #banks-panel {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    border: 1px solid #000000;
+}
+
+input:FOCUS {
+    outline: 0px;
+    border: none;
+}
+
+#banks-panel {
+    margin-top: 5px;
+    height: 100px;
+}
+
+#new-panel, #banks-panel {
+    right: 2px;
+}
+
+#new-panel {
+    margin-right: 2px;
+}
+
+.title-panel {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    background: #003366;
+    line-height: 29px;
+    text-align: center;
+    font-size: 14px;
+    color: #CCCCFF;
+    letter-spacing: 2px;
+}
+
+.input-box {
+    width: 80%;
+    height: 40px;
+    position: relative;
+    left: 10%;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.btn-defaulut {
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    background: #66CCCC;
+    color: #999999;
+    cursor: pointer;
+    border-radius: 5px;
+    letter-spacing: 10px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+#footer-panel {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    margin-top: 5px;
+    background: red;
+}
+
+.input-label {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    background: #009933;
+}
+
+.password-label {
+    background: #ffb848 none repeat scroll 0 0;
+}
+
+.verification-code-label {
+    background: #3300FF none repeat scroll 0 0;
+}
+
+.input-default {
+    width: 241px;
+    height: 38px;
+    position: absolute;
+    left: 40px;
+    line-height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding-left: 6px;
+    color: #333;
+}
+
+.verification-code-input {
+    width: 150px;
+}
+
+.verification-code-img {
+    width: 75px;
+    height: 100%;
+    left: auto;
+    right: 0px !important;
+    background: #669999;
+    right: 0px !important;
+    cursor: pointer;
+}
+
+.upy-panel {
+    width: 161px;
+    height: 49px;
+    margin: 11px;
+    background-image: url("../../images/upy.jpg");
+}

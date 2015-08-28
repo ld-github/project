@@ -90,7 +90,7 @@ public class JsonMapper {
      * @see #fromJson(String, JavaType)
      */
     public <T> T toObject(String json, Class<T> clazz) {
-        if (StringUtils.isEmpty(json)) {
+        if (StringUtil.isEmpty(json)) {
             return null;
         }
         try {
@@ -108,7 +108,7 @@ public class JsonMapper {
      */
     @SuppressWarnings("unchecked")
     public <T> T toObject(String json, TypeReference<?> typeRefer) {
-        if (StringUtils.isEmpty(json)) {
+        if (StringUtil.isEmpty(json)) {
             return null;
         }
         try {

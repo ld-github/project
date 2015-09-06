@@ -132,8 +132,17 @@ var KEY_CODE = {
     ENTER : 13
 };
 
+/**
+ * Init show placeholder when input is not support attr placeholder
+ */
+function initPlaceholder() {
+    $('input').placeholder();
+}
+
 $(function() {
     checkSystem();
+    initPlaceholder();
+
     /**
      * Change kaptcha img
      */

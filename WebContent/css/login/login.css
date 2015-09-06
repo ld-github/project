@@ -47,12 +47,12 @@
     text-align: center;
     font-style: italic;
     color: #666666;
+    margin-bottom: 25px;
 }
 
 #username, #password, #init-username, #init-password, #repeat-password {
     width: 300px;
     height: 28px;
-    position: relative;
     left: 0px;
     right: 0px;
     margin: auto;
@@ -65,15 +65,7 @@
     padding-left: 5px;
 }
 
-#username, #init-username {
-    margin-top: 25px;
-}
-
-#password, #init-password, #repeat-password {
-    margin-top: 10px;
-}
-
-#kaptcha-panel {
+.input-panel {
     width: 310px;
     height: 34px;
     position: relative;

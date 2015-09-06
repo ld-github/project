@@ -15,6 +15,7 @@
 <script type="text/javascript" src="../plugins/jquery-easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../plugins/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../plugins/base64.min.js"></script>
+<script type="text/javascript" src="../plugins/jquery.placeholder.js"></script>
 <script type="text/javascript" src="../js/global/util.js"></script>
 <script type="text/javascript" src="../js/global/ajaxListener.js"></script>
 <script type="text/javascript" src="../js/login/login.js"></script>
@@ -24,9 +25,13 @@
     <div id="login-panel">
         <form id="login-form">
             <div class="legend-box">SYSTEM LOGIN</div>
-            <input id="username" type="text" name="user.username" placeholder="Username"> 
-            <input id="password" type="password" name="user.password" placeholder="Password">
-            <div id="kaptcha-panel">
+            <div class="input-panel">
+                <input id="username" type="text" name="user.username" placeholder="Username"> 
+            </div>
+            <div class="input-panel">
+                <input id="password" type="password" name="user.password" placeholder="Password">
+            </div>
+            <div class="input-panel">
                 <input id="kaptcha" type="text" name="kaptcha" placeholder="Kaptcha"> 
                 <img id="kaptcha-img" src="../kaptcha.jpg" title="看不清，点击换一张" />
             </div>
@@ -35,9 +40,15 @@
     </div>
     <form id="system-config-form">
         <div class="legend-box">SYSTEM INITIALIZATION</div>
-        <input id="init-username" type="text" name="user.username" placeholder="Username">
-        <input id="init-password" type="password" name="user.password" placeholder="Password">
-        <input id="repeat-password" type="password" placeholder="Repeat Password">
+         <div class="input-panel">
+            <input id="init-username" type="text" name="user.username" placeholder="Username">
+        </div>
+        <div class="input-panel">
+            <input id="init-password" type="password" name="user.password" placeholder="Password">
+        </div>
+        <div class="input-panel">
+            <input id="repeat-password" type="password" placeholder="Repeat Password">
+        </div>
         <input id="init-btn" type="button" value="执行初始化">
     </form>
     <div id="cover-panel" class="window-mask"></div>

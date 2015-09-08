@@ -103,7 +103,7 @@ function initSystem() {
  * Monitor user enter button press
  */
 function keyEnterListener() {
-    $(window).keydown(function(event) {
+    $(document).keydown(function(event) {
         if (event.keyCode == KEY_CODE.ENTER) {
             login();
         }

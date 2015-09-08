@@ -47,13 +47,16 @@ public class UserAction extends BaseAction {
         String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
             super.putResult(false, "验证码输入错误");
+            logger.info(String.format("Username %s login verification code error...", user.getUsername()));
             return SUCCESS;
         }
         User u = userBiz.login(user.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(user.getPassword())));
-        if (null != u) {
+        boolean success = null != u;
+        if (success) {
             super.putSessionUser(u);
         }
-        super.putResult(null != u, null != u ? "用户登录成功" : "用户名或密码错误");
+        super.putResult(success, success ? "用户登录成功" : "用户名或密码错误");
+        logger.info(String.format("Username %s login %s...", user.getUsername(), success ? "success" : "failed"));
         return SUCCESS;
     }
 

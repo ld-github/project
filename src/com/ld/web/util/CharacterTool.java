@@ -101,7 +101,7 @@ public class CharacterTool {
     }
 
     /**
-     * md5加密
+     * Md5加密
      * 
      * @param str
      * @return

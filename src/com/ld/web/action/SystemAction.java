@@ -5,8 +5,8 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
-import com.ld.web.bean.model.User;
-import com.ld.web.biz.UserBiz;
+import com.ld.web.bean.model.Manager;
+import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
 
 /**
@@ -27,10 +27,10 @@ public class SystemAction extends BaseAction {
     private static final long serialVersionUID = -9049812879882243081L;
 
     // The front was introduced into object
-    private User user;
+    private Manager manager;
 
     @Resource
-    private UserBiz userBiz;
+    private ManagerBiz managerBiz;
 
     /**
      * Whether you need check system initialization
@@ -39,7 +39,7 @@ public class SystemAction extends BaseAction {
      * @throws Exception
      */
     public String checkSystem() throws Exception {
-        super.putResult(userBiz.getUserCount() == 0);
+        super.putResult(managerBiz.getUserCount() == 0);
         return SUCCESS;
     }
 
@@ -51,8 +51,8 @@ public class SystemAction extends BaseAction {
      */
     public String initSystem() throws Exception {
         try {
-            user.setPassword(CharacterTool.sha(CharacterTool.base64Decode(user.getPassword())));
-            userBiz.saveUser(user);
+            manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+            managerBiz.saveUser(manager);
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);
@@ -61,12 +61,12 @@ public class SystemAction extends BaseAction {
         return SUCCESS;
     }
 
-    public User getUser() {
-        return user;
+    public Manager getUser() {
+        return manager;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Manager user) {
+        this.manager = user;
     }
 
 }

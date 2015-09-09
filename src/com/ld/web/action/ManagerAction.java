@@ -6,13 +6,13 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
 import com.google.code.kaptcha.Constants;
-import com.ld.web.bean.model.User;
-import com.ld.web.biz.UserBiz;
+import com.ld.web.bean.model.Manager;
+import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
 
 /**
  * 
- * <p>Title: UserAction</p>
+ * <p>Title: ManagerAction</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -20,43 +20,43 @@ import com.ld.web.util.CharacterTool;
  *
  * @date 2015-01-08
  */
-@Action(value = "user")
-public class UserAction extends BaseAction {
+@Action(value = "manager")
+public class ManagerAction extends BaseAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
 
-    private static final Logger logger = Logger.getLogger(UserAction.class);
+    private static final Logger logger = Logger.getLogger(ManagerAction.class);
 
     @Resource
-    private UserBiz userBiz;
+    private ManagerBiz managerBiz;
 
     // The front was introduced into object
-    private User user;
+    private Manager manager;
 
     private String kaptcha;
 
     /**
-     * User login
+     * Manager login
      * 
      * @return
      * @throws Exception
      */
     public String login() throws Exception {
-        logger.info(String.format("Username %s request login...", user.getUsername()));
+        logger.info(String.format("Username %s request login...", manager.getUsername()));
 
         String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
             super.putResult(false, "验证码输入错误");
-            logger.info(String.format("Username %s login verification code error...", user.getUsername()));
+            logger.info(String.format("Username %s login verification code error...", manager.getUsername()));
             return SUCCESS;
         }
-        User u = userBiz.login(user.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(user.getPassword())));
+        Manager u = managerBiz.login(manager.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
         boolean success = null != u;
         if (success) {
             super.putSessionUser(u);
         }
         super.putResult(success, success ? "用户登录成功" : "用户名或密码错误");
-        logger.info(String.format("Username %s login %s...", user.getUsername(), success ? "success" : "failed"));
+        logger.info(String.format("Username %s login %s...", manager.getUsername(), success ? "success" : "failed"));
         return SUCCESS;
     }
 
@@ -67,17 +67,17 @@ public class UserAction extends BaseAction {
      * @throws Exception
      */
     public String takeLoginUser() throws Exception {
-        User u = super.takeSessionUser();
+        Manager u = super.takeSessionUser();
         super.putResult("user", u);
         return SUCCESS;
     }
 
-    public User getUser() {
-        return user;
+    public Manager getUser() {
+        return manager;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Manager user) {
+        this.manager = user;
     }
 
     public String getKaptcha() {

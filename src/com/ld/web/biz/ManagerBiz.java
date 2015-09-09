@@ -1,10 +1,10 @@
 package com.ld.web.biz;
 
-import com.ld.web.bean.model.User;
+import com.ld.web.bean.model.Manager;
 
 /**
  * 
- * <p>Title: UserBiz</p>
+ * <p>Title: ManagerBiz</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -12,14 +12,14 @@ import com.ld.web.bean.model.User;
  *
  * @date 2015-01-08
  */
-public interface UserBiz {
+public interface ManagerBiz {
     /**
      * Save user
      * 
      * @param u
      * 
      */
-    void saveUser(User user);
+    void saveUser(Manager manager);
 
     /**
      * Get user count
@@ -33,5 +33,5 @@ public interface UserBiz {
      * 
      * @return
      */
-    User login(String username, String password);
+    Manager login(String username, String password);
 }

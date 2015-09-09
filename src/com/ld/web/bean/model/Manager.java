@@ -14,7 +14,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 /**
  * 
- * <p>Title: User</p>
+ * <p>Title: Manager</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -23,8 +23,8 @@ import org.apache.struts2.json.annotations.JSON;
  * @date 2015-01-08
  */
 @Entity
-@Table(name = "t_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
-public class User implements Serializable {
+@Table(name = "t_manager", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
+public class Manager implements Serializable {
 
     private static final long serialVersionUID = 4284572555216108008L;
 
@@ -64,10 +64,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User() {
+    public Manager() {
     }
 
-    public User(String username, String password) {
+    public Manager(String username, String password) {
         this.username = username;
         this.password = password;
     }

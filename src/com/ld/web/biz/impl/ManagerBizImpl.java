@@ -6,13 +6,13 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ld.web.bean.model.User;
-import com.ld.web.biz.UserBiz;
-import com.ld.web.dao.UserDao;
+import com.ld.web.bean.model.Manager;
+import com.ld.web.biz.ManagerBiz;
+import com.ld.web.dao.ManagerDao;
 
 /**
  * 
- * <p>Title: UserBizImpl</p>
+ * <p>Title: ManagerBizImpl</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -22,27 +22,27 @@ import com.ld.web.dao.UserDao;
  */
 @Service
 @Transactional
-public class UserBizImpl implements UserBiz {
+public class ManagerBizImpl implements ManagerBiz {
 
-    private static final Logger logger = Logger.getLogger(UserBizImpl.class);
+    private static final Logger logger = Logger.getLogger(ManagerBizImpl.class);
 
     @Resource
-    private UserDao userDao;
+    private ManagerDao managerDao;
 
     @Override
-    public void saveUser(User user) {
-        userDao.save(user);
+    public void saveUser(Manager manager) {
+        managerDao.save(manager);
     }
 
     @Override
     public long getUserCount() {
-        return userDao.getTotal(null, null);
+        return managerDao.getTotal(null, null);
     }
 
     @Override
-    public User login(String username, String password) {
+    public Manager login(String username, String password) {
         try {
-            return userDao.query(username, password);
+            return managerDao.query(username, password);
         } catch (Exception e) {
             logger.error(String.format("User login error: %s", e.getMessage()), e);
             return null;

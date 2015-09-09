@@ -3,7 +3,7 @@ package com.ld.web.interceptor;
 import org.apache.log4j.MDC;
 
 import com.ld.web.action.BaseAction;
-import com.ld.web.bean.model.User;
+import com.ld.web.bean.model.Manager;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -24,18 +24,18 @@ public class SessionInterceptor extends MethodFilterInterceptor {
     private static final long serialVersionUID = -4873322877077133583L;
 
     /**
-     * Check session whether or not hava login user, if not, return Action.login
+     * Check session whether or not hava login manager, if not, return Action.login
      * 
      */
     @Override
     protected String doIntercept(ActionInvocation invocation) throws Exception {
         ActionContext ctx = invocation.getInvocationContext();
-        User user = (User) ctx.getSession().get(BaseAction.SESSION_USER);
-        if (null == user) {
+        Manager manager = (Manager) ctx.getSession().get(BaseAction.SESSION_USER);
+        if (null == manager) {
             return Action.LOGIN;
         }
-        MDC.put("uid", user.getId());
-        MDC.put("username", user.getUsername());
+        MDC.put("uid", manager.getId());
+        MDC.put("username", manager.getUsername());
         return invocation.invoke();
     }
 }

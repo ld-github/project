@@ -1,5 +1,5 @@
 /**
- * Form user login validate
+ * Form manager login validate
  * 
  * @returns
  */
@@ -46,7 +46,7 @@ function changeKaptcha() {
  * Action urls
  */
 var URLS = {
-    LOGIN : '../user!login.action',
+    LOGIN : '../manager!login.action',
     CHECK_SYSTEM : '../system!checkSystem.action',
     INIT_SYSTEM : '../system!initSystem.action',
 };
@@ -61,7 +61,7 @@ function login() {
         return;
     }
     var args = $('#login-form').serializeJson();
-    args['user.password'] = Base64.encode(args['user.password']);
+    args['manager.password'] = Base64.encode(args['manager.password']);
 
     $.post(URLS.LOGIN, args, function(data) {
         if (data.status) {
@@ -85,7 +85,7 @@ function initSystem() {
         return;
     }
     var args = $('#system-config-form').serializeJson();
-    args['user.password'] = Base64.encode(args['user.password']);
+    args['manager.password'] = Base64.encode(args['manager.password']);
 
     $.post(URLS.INIT_SYSTEM, args, function(data) {
         if (data.status) {

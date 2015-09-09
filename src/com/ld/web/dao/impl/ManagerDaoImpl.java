@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
-import com.ld.web.bean.model.User;
-import com.ld.web.dao.UserDao;
+import com.ld.web.bean.model.Manager;
+import com.ld.web.dao.ManagerDao;
 
 /**
  * 
- * <p>Title: UserDaoImpl</p>
+ * <p>Title: ManagerDaoImpl</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:</p>
  *
@@ -18,10 +18,10 @@ import com.ld.web.dao.UserDao;
  * @date 2015-01-08
  */
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
+public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao {
 
     @Override
-    public User query(final String username, final String password) throws Exception {
+    public Manager query(final String username, final String password) throws Exception {
         String where = "where o.username=:username and o.password=:password";
         return super.getUniqueResult(where, new HashMap<String, Object>() {
             private static final long serialVersionUID = -6854809444774680421L;

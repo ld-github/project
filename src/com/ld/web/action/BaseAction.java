@@ -13,7 +13,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.stereotype.Controller;
 
-import com.ld.web.bean.model.User;
+import com.ld.web.bean.model.Manager;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -41,7 +41,7 @@ public class BaseAction extends ActionSupport {
 
     private static final long serialVersionUID = 624599246438196900L;
 
-    public static final String SESSION_USER = "sessionUser";
+    public static final String SESSION_USER = "sessionManager";
 
     private final String RESULT_CODE = "code";
     private final String RESULT_STATUS = "status";
@@ -157,7 +157,7 @@ public class BaseAction extends ActionSupport {
      * 
      * @param u
      */
-    public void putSessionUser(User u) {
+    public void putSessionUser(Manager u) {
         takeSession().put(SESSION_USER, u);
     }
 
@@ -166,8 +166,8 @@ public class BaseAction extends ActionSupport {
      * 
      * @return
      */
-    public User takeSessionUser() {
-        return takeSession().containsKey(SESSION_USER) ? (User) takeSession().get(SESSION_USER) : null;
+    public Manager takeSessionUser() {
+        return takeSession().containsKey(SESSION_USER) ? (Manager) takeSession().get(SESSION_USER) : null;
     }
 
     public String save() throws Exception {

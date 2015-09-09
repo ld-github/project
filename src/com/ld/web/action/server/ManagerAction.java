@@ -51,8 +51,7 @@ public class ManagerAction extends ServerAction {
             logger.info(String.format("Username %s login verification code error...", manager.getUsername()));
             return SUCCESS;
         }
-        Manager u = managerBiz.login(manager.getUsername(),
-                CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+        Manager u = managerBiz.login(manager.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
         boolean success = null != u;
         if (success) {
             super.putSessionManager(u);
@@ -69,8 +68,8 @@ public class ManagerAction extends ServerAction {
      * @throws Exception
      */
     public String takeLoginManager() throws Exception {
-        Manager u = super.takeSessionManager();
-        super.putResult("user", u);
+        Manager manager = super.takeSessionManager();
+        super.putResult("manager", manager);
         return SUCCESS;
     }
 

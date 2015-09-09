@@ -62,7 +62,7 @@ public class ManagerAction extends ServerAction {
     }
 
     /**
-     * Take login user info
+     * Take login manager info
      * 
      * @return
      * @throws Exception

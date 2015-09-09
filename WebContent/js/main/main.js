@@ -9,6 +9,13 @@ var MENUS = [ {
         url : 'map.html'
     } ]
 }, {
+    title : '用户管理',
+    iconCls : 'icon-user',
+    submenus : [ {
+        title : '管理员设置',
+        url : 'manager.html'
+    } ]
+}, {
     title : '日志记录',
     iconCls : 'icon-save',
     submenus : [ {

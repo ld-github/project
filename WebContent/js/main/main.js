@@ -12,7 +12,7 @@ var MENUS = [ {
     title : '用户管理',
     iconCls : 'icon-user',
     submenus : [ {
-        title : '管理员设置',
+        title : '管理员维护',
         url : 'manager.html'
     } ]
 }, {

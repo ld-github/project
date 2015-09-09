@@ -38,7 +38,7 @@ public class ExceptionLogAction extends ServerAction {
     @Override
     public String getPageRecords() throws Exception {
         try {
-            super.putResult("page", exceptionLogBiz.getPage(page));
+            super.putResult(exceptionLogBiz.getPage(page));
         } catch (Exception e) {
             super.putResult("page", null);
             logger.error(String.format("Get ExceptionLog page error: %s", e.getMessage()), e);

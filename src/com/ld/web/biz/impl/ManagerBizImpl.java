@@ -1,11 +1,17 @@
 package com.ld.web.biz.impl;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ld.web.bean.Page;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
 import com.ld.web.dao.ManagerDao;
@@ -31,6 +37,8 @@ public class ManagerBizImpl implements ManagerBiz {
 
     @Override
     public void saveUser(Manager manager) {
+        manager.setCreateTime(new Date());
+        manager.setAvailable(true);
         managerDao.save(manager);
     }
 
@@ -47,6 +55,19 @@ public class ManagerBizImpl implements ManagerBiz {
             logger.error(String.format("User login error: %s", e.getMessage()), e);
             return null;
         }
+    }
+
+    @Override
+    public Page<Manager> getPage(Long exceptMid, Page<Manager> page) {
+        String where = "where 1=1 ";
+        Map<String, Object> params = new HashMap<String, Object>();
+        if (null != exceptMid) {
+            where += "and o.id !=:exceptMid ";
+            params.put("exceptMid", exceptMid);
+        }
+        LinkedHashMap<String, String> orders = new LinkedHashMap<String, String>();
+        orders.put("o.id", "desc");
+        return managerDao.getPage(where, params, orders, page);
     }
 
 }

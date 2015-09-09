@@ -1,6 +1,7 @@
 package com.ld.web.bean.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import org.apache.struts2.json.annotations.JSON;
+import org.hibernate.annotations.Type;
 
 /**
  * 
@@ -33,6 +37,12 @@ public class Manager implements Serializable {
     private String username;
 
     private String password;
+
+    private Date createTime;
+
+    private boolean administrator;
+
+    private boolean available;
 
     @JSON(serialize = false)
     @Id
@@ -62,6 +72,37 @@ public class Manager implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @JSON(format = "yyyy-MM-dd HH:mm:ss")
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
+    @Type(type = "yes_no")
+    public boolean getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(boolean administrator) {
+        this.administrator = administrator;
+    }
+
+    @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
+    @Type(type = "yes_no")
+    public boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public Manager() {

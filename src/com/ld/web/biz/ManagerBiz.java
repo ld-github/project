@@ -1,5 +1,6 @@
 package com.ld.web.biz;
 
+import com.ld.web.bean.Page;
 import com.ld.web.bean.model.Manager;
 
 /**
@@ -14,24 +15,35 @@ import com.ld.web.bean.model.Manager;
  */
 public interface ManagerBiz {
     /**
-     * Save user
+     * Save manager
      * 
-     * @param u
+     * @param manager
      * 
      */
     void saveUser(Manager manager);
 
     /**
-     * Get user count
+     * Get manager count
      * 
      * @return
      */
     long getUserCount();
 
     /**
-     * User login
+     * Manager login
      * 
+     * @param username
+     * @param password
      * @return
      */
     Manager login(String username, String password);
+
+    /**
+     * Get page manager
+     * 
+     * @param exceptMid
+     * @param page
+     * @return
+     */
+    Page<Manager> getPage(Long exceptMid, Page<Manager> page);
 }

@@ -7,6 +7,7 @@ import org.apache.struts2.convention.annotation.Action;
 
 import com.google.code.kaptcha.Constants;
 import com.ld.web.action.ServerAction;
+import com.ld.web.bean.Page;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
@@ -34,6 +35,8 @@ public class ManagerAction extends ServerAction {
     // The front was introduced into object
     private Manager manager;
 
+    private Page<Manager> page;
+
     private String kaptcha;
 
     /**
@@ -51,7 +54,8 @@ public class ManagerAction extends ServerAction {
             logger.info(String.format("Username %s login verification code error...", manager.getUsername()));
             return SUCCESS;
         }
-        Manager u = managerBiz.login(manager.getUsername(), CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+        String password = CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword()));
+        Manager u = managerBiz.login(manager.getUsername(), password);
         boolean success = null != u;
         if (success) {
             super.putSessionManager(u);
@@ -73,6 +77,17 @@ public class ManagerAction extends ServerAction {
         return SUCCESS;
     }
 
+    @Override
+    public String getPageRecords() throws Exception {
+        try {
+            super.putResult(managerBiz.getPage(takeSessionManager().getId(), page));
+        } catch (Exception e) {
+            super.putResult("page", null);
+            logger.error(String.format("Get manager page error: %s", e.getMessage()), e);
+        }
+        return SUCCESS;
+    }
+
     public Manager getManager() {
         return manager;
     }
@@ -87,6 +102,14 @@ public class ManagerAction extends ServerAction {
 
     public void setKaptcha(String kaptcha) {
         this.kaptcha = kaptcha;
+    }
+
+    public Page<Manager> getPage() {
+        return page;
+    }
+
+    public void setPage(Page<Manager> page) {
+        this.page = page;
     }
 
 }

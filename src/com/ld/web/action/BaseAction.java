@@ -13,6 +13,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.springframework.stereotype.Controller;
 
+import com.ld.web.bean.Page;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -41,6 +42,7 @@ public class BaseAction extends ActionSupport {
     private static final long serialVersionUID = 624599246438196900L;
 
     private final String RESULT_CODE = "code";
+    private final String RESULT_PAGE = "page";
     private final String RESULT_STATUS = "status";
     private final String RESULT_MESSAGE = "message";
 
@@ -119,6 +121,15 @@ public class BaseAction extends ActionSupport {
     public void putResult(boolean status, String message, Integer code) {
         this.putResult(status, message);
         this.putResult(code);
+    }
+
+    /**
+     * Put Page<T> page to result
+     * 
+     * @param page
+     */
+    public <T> void putResult(Page<T> page) {
+        this.putResult(RESULT_PAGE, page);
     }
 
     /**

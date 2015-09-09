@@ -24,8 +24,7 @@ public class ServerSessionInterceptor extends MethodFilterInterceptor {
     private static final long serialVersionUID = -4873322877077133583L;
 
     /**
-     * Check session whether or not hava login manager, if not, return
-     * Action.login
+     * Check session whether or not hava login manager, if not, return Action.login
      * 
      */
     @Override

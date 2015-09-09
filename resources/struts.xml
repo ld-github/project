@@ -17,7 +17,11 @@
             <interceptor name="serverSessionInterceptor" class="com.ld.web.interceptor.ServerSessionInterceptor">
                 <param name="excludeMethods">login, checkSystem, initSystem</param>
             </interceptor>
+            <interceptor name="serverMDCInterceptor" class="com.ld.web.interceptor.ServerMDCInterceptor">
+                <param name="excludeMethods"></param>
+            </interceptor>
             <interceptor-stack name="baseStack">
+                <interceptor-ref name="serverMDCInterceptor" />
                 <interceptor-ref name="serverSessionInterceptor" />
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>

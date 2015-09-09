@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Type;
+
+import com.ld.web.enumeration.ExceptionType;
 
 /**
  * 
@@ -44,6 +48,8 @@ public class ExceptionLog implements Serializable {
     private String level;
 
     private String message;
+
+    private ExceptionType exceptionType;
 
     private Date createTime;
 
@@ -110,6 +116,16 @@ public class ExceptionLog implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Column(nullable = false, columnDefinition = "INT default 0")
+    @Enumerated(EnumType.ORDINAL)
+    public ExceptionType getExceptionType() {
+        return exceptionType;
+    }
+
+    public void setExceptionType(ExceptionType exceptionType) {
+        this.exceptionType = exceptionType;
     }
 
     @JSON(format = "yyyy-MM-dd HH:mm:ss")

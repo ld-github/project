@@ -68,7 +68,7 @@ public class ManagerAction extends ServerAction {
      * @return
      * @throws Exception
      */
-    public String takeLoginUser() throws Exception {
+    public String takeLoginManager() throws Exception {
         Manager u = super.takeSessionManager();
         super.putResult("user", u);
         return SUCCESS;

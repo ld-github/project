@@ -118,7 +118,7 @@ function initCalendar() {
  * Action urls
  */
 var URLS = {
-    TAKE_LOGIN_MANAGER : '../manager!takeLoginUser.action',
+    TAKE_LOGIN_MANAGER : '../manager!takeLoginManager.action',
 };
 
 /**

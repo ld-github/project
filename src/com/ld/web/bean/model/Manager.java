@@ -34,9 +34,9 @@ public class Manager implements Serializable {
 
     private String password;
 
+    @JSON(serialize = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JSON(serialize = false)
     public Long getId() {
         return id;
     }
@@ -54,8 +54,8 @@ public class Manager implements Serializable {
         this.username = username;
     }
 
-    @Column(nullable = false)
     @JSON(serialize = false)
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }

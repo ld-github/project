@@ -1,10 +1,11 @@
-package com.ld.web.action;
+package com.ld.web.action.admin;
 
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
+import com.ld.web.action.BaseAction;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
@@ -61,12 +62,12 @@ public class SystemAction extends BaseAction {
         return SUCCESS;
     }
 
-    public Manager getUser() {
+    public Manager getManager() {
         return manager;
     }
 
-    public void setUser(Manager user) {
-        this.manager = user;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
 }

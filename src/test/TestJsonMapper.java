@@ -12,9 +12,9 @@ import com.ld.web.util.JsonMapper;
 public class TestJsonMapper {
 
     public static void main(String[] args) {
-        Manager user = new Manager();
-        user.setUsername("100");
-        String json = JsonMapper.getInstance().toJson(user);
+        Manager manager = new Manager();
+        manager.setUsername("100");
+        String json = JsonMapper.getInstance().toJson(manager);
         System.out.println("json:" + json);
         Manager u = JsonMapper.getInstance().toObject(json, Manager.class);
         u.setPassword("001");
@@ -27,7 +27,7 @@ public class TestJsonMapper {
 
         List<Manager> list = new ArrayList<Manager>();
         list.add(u);
-        list.add(user);
+        list.add(manager);
 
         String listJson = JsonMapper.getInstance().toJson(list);
         System.out.println("listJson:" + listJson);

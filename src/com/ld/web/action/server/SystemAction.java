@@ -1,11 +1,11 @@
-package com.ld.web.action.admin;
+package com.ld.web.action.server;
 
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
-import com.ld.web.action.BaseAction;
+import com.ld.web.action.ServerAction;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
@@ -21,7 +21,7 @@ import com.ld.web.util.CharacterTool;
  * @date 2015-03-11
  */
 @Action(value = "system")
-public class SystemAction extends BaseAction {
+public class SystemAction extends ServerAction {
 
     private static final Logger logger = Logger.getLogger(SystemAction.class);
 

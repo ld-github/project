@@ -118,14 +118,14 @@ function initCalendar() {
  * Action urls
  */
 var URLS = {
-    TAKE_LOGIN_USER : '../user!takeLoginUser.action',
+    TAKE_LOGIN_MANAGER : '../manager!takeLoginUser.action',
 };
 
 /**
- * Get login user info from session
+ * Get login manager info from session
  */
-function getLoginUser() {
-    $.post(URLS.TAKE_LOGIN_USER, function(data) {
+function getLoginManager() {
+    $.post(URLS.TAKE_LOGIN_MANAGER, function(data) {
         console.log(data);
     });
 }
@@ -137,7 +137,7 @@ $(function() {
 
     loadDatetime('#datetime-panel');
 
-    getLoginUser();
+    getLoginManager();
 
     $('#left-panel').panel({
         onCollapse : function() {

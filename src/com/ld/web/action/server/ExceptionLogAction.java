@@ -1,11 +1,11 @@
-package com.ld.web.action.admin;
+package com.ld.web.action.server;
 
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
-import com.ld.web.action.BaseAction;
+import com.ld.web.action.ServerAction;
 import com.ld.web.bean.Page;
 import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.biz.ExceptionLogBiz;
@@ -21,7 +21,7 @@ import com.ld.web.biz.ExceptionLogBiz;
  * @date 2015-02-26
  */
 @Action(value = "exceptionLog")
-public class ExceptionLogAction extends BaseAction {
+public class ExceptionLogAction extends ServerAction {
 
     private static final long serialVersionUID = -1590401916736665659L;
 

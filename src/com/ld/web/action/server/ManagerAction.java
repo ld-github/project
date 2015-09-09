@@ -1,4 +1,4 @@
-package com.ld.web.action.admin;
+package com.ld.web.action.server;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
 import com.google.code.kaptcha.Constants;
-import com.ld.web.action.BaseAction;
+import com.ld.web.action.ServerAction;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
 import com.ld.web.util.CharacterTool;
@@ -22,7 +22,7 @@ import com.ld.web.util.CharacterTool;
  * @date 2015-01-08
  */
 @Action(value = "manager")
-public class ManagerAction extends BaseAction {
+public class ManagerAction extends ServerAction {
 
     private static final long serialVersionUID = -4369317987413706899L;
 
@@ -55,7 +55,7 @@ public class ManagerAction extends BaseAction {
                 CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
         boolean success = null != u;
         if (success) {
-            super.putSessionUser(u);
+            super.putSessionManager(u);
         }
         super.putResult(success, success ? "用户登录成功" : "用户名或密码错误");
         logger.info(String.format("Username %s login %s...", manager.getUsername(), success ? "success" : "failed"));
@@ -69,7 +69,7 @@ public class ManagerAction extends BaseAction {
      * @throws Exception
      */
     public String takeLoginUser() throws Exception {
-        Manager u = super.takeSessionUser();
+        Manager u = super.takeSessionManager();
         super.putResult("user", u);
         return SUCCESS;
     }

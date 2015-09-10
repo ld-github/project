@@ -42,8 +42,10 @@ public interface ManagerBiz {
      * Get page manager
      * 
      * @param exceptMid
+     * @param username
+     * @param available
      * @param page
      * @return
      */
-    Page<Manager> getPage(Long exceptMid, Page<Manager> page);
+    Page<Manager> getPage(Long exceptMid, String username, Boolean available, Page<Manager> page);
 }

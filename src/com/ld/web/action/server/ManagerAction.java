@@ -39,6 +39,8 @@ public class ManagerAction extends ServerAction {
 
     private String kaptcha;
 
+    private int available = -1;
+
     /**
      * Manager login
      * 
@@ -80,12 +82,21 @@ public class ManagerAction extends ServerAction {
     @Override
     public String getPageRecords() throws Exception {
         try {
-            super.putResult(managerBiz.getPage(takeSessionManager().getId(), page));
+            Long exceptId = takeSessionManager().getId();
+            manager = null == manager ? new Manager() : manager;
+            super.putResult(managerBiz.getPage(exceptId, manager.getUsername(), getAvailable(available), page));
         } catch (Exception e) {
             super.putResult("page", null);
             logger.error(String.format("Get manager page error: %s", e.getMessage()), e);
         }
         return SUCCESS;
+    }
+
+    private Boolean getAvailable(int available) {
+        if (available > -1) {
+            return available == 1 ? true : false;
+        }
+        return null;
     }
 
     public Manager getManager() {
@@ -110,6 +121,14 @@ public class ManagerAction extends ServerAction {
 
     public void setPage(Page<Manager> page) {
         this.page = page;
+    }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
     }
 
 }

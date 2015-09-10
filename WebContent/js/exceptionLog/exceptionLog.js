@@ -23,7 +23,7 @@ function getPageLogs(pageNumber) {
     });
 }
 
-$(function() {
+function initDatagrid() {
     $('#logs-panel').datagrid({
         rownumbers : true,
         pagination : true,
@@ -59,6 +59,10 @@ $(function() {
             align : 'center'
         } ] ]
     });
+}
+
+$(function() {
+    initDatagrid();
 
     $('#logs-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {

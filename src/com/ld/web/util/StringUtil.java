@@ -12,8 +12,8 @@ package com.ld.web.util;
  */
 public class StringUtil {
 
-    public static boolean isEmpty(String json) {
-        return null == json || json.trim().length() == 0;
+    public static boolean isEmpty(String str) {
+        return null == str || str.trim().length() == 0;
     }
 
 }

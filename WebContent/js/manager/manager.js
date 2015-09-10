@@ -12,10 +12,10 @@ var URLS = {
  * @param pageNumber
  */
 function getPageLogs(pageNumber) {
-    var args = {
-        'page.currentPage' : pageNumber,
-        'page.pageSize' : getDatagridPaginationPageSize('#manager-panel')
-    };
+    var args = getAdvancedSearchParams();
+    args['page.currentPage'] = pageNumber;
+    args['page.pageSize'] = getDatagridPaginationPageSize('#manager-panel');
+
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
             loadDatagridData('#manager-panel', data);
@@ -23,7 +23,7 @@ function getPageLogs(pageNumber) {
     });
 }
 
-$(function() {
+function initDatagrid() {
     $('#manager-panel').datagrid({
         rownumbers : true,
         pagination : true,
@@ -68,6 +68,28 @@ $(function() {
             align : 'center'
         } ] ]
     });
+}
+
+var searchParams = {};
+
+function setAdvancedSearchParams(json) {
+    searchParams = json;
+}
+
+function getAdvancedSearchParams() {
+    return searchParams;
+}
+
+/**
+ * Advanced search
+ */
+function advancedSearch() {
+    setAdvancedSearchParams($('#search-form').serializeJson());
+    getPageLogs(startPage);
+}
+
+$(function() {
+    initDatagrid();
 
     $('#manager-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
@@ -80,4 +102,6 @@ $(function() {
     $(window).resize(function() {
         $('#manager-panel').datagrid('resize');
     });
+
+    $('#advanced-search-btn').click(advancedSearch);
 });

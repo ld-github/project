@@ -13,18 +13,20 @@ var URLS = {
  */
 function getPageLogs() {
     var args = {
-        'page.currentPage' : getDatagridPaginationPageNum('#logs-panel'),
-        'page.pageSize' : getDatagridPaginationPageSize('#logs-panel')
+        'page.currentPage' : getDatagridPaginationPageNum(LOGS_PANEL),
+        'page.pageSize' : getDatagridPaginationPageSize(LOGS_PANEL)
     };
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
-            loadDatagridData('#logs-panel', data);
+            loadDatagridData(LOGS_PANEL, data);
         }
     });
 }
 
+var LOGS_PANEL = '#logs-panel';
+
 function initDatagrid() {
-    $('#logs-panel').datagrid({
+    $(LOGS_PANEL).datagrid({
         rownumbers : true,
         pagination : true,
         singleSelect : true,
@@ -64,7 +66,7 @@ function initDatagrid() {
 $(function() {
     initDatagrid();
 
-    $('#logs-panel').datagrid('getPager').pagination({
+    $(LOGS_PANEL).datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
             getPageLogs();
         },
@@ -73,6 +75,6 @@ $(function() {
     getPageLogs(startPage);
 
     $(window).resize(function() {
-        $('#logs-panel').datagrid('resize');
+        $(LOGS_PANEL).datagrid('resize');
     });
 });

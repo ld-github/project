@@ -14,19 +14,21 @@ var URLS = {
  */
 function getPageManager() {
     var args = getAdvancedSearchParams();
-    args['page.currentPage'] = getDatagridPaginationPageNum('#manager-panel');
-    args['page.pageSize'] = getDatagridPaginationPageSize('#manager-panel');
+    args['page.currentPage'] = getDatagridPaginationPageNum(MANAGER_PANEL);
+    args['page.pageSize'] = getDatagridPaginationPageSize(MANAGER_PANEL);
 
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
-            loadDatagridData('#manager-panel', data);
+            loadDatagridData(MANAGER_PANEL, data);
             initLinkBtns();
         }
     });
 }
 
+var MANAGER_PANEL = '#manager-panel';
+
 function initDatagrid() {
-    $('#manager-panel').datagrid({
+    $(MANAGER_PANEL).datagrid({
         rownumbers : true,
         pagination : true,
         singleSelect : true,
@@ -165,14 +167,14 @@ function changeLinkBtnsOnSelectRow(available) {
  */
 function advancedSearch() {
     setAdvancedSearchParams($('#search-form').serializeJson());
-    setDatagridPager('#manager-panel', startPage, getDatagridPaginationPageSize('#manager-panel'));
+    setDatagridPager(MANAGER_PANEL, startPage, getDatagridPaginationPageSize(MANAGER_PANEL));
     getPageManager();
 }
 
 $(function() {
     initDatagrid();
 
-    $('#manager-panel').datagrid({
+    $(MANAGER_PANEL).datagrid({
         onSelect : function(index, row) {
             if (undefined == row.id) {
                 return;
@@ -181,7 +183,7 @@ $(function() {
         },
     });
 
-    $('#manager-panel').datagrid('getPager').pagination({
+    $(MANAGER_PANEL).datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
             getPageManager();
         },
@@ -190,7 +192,7 @@ $(function() {
     getPageManager(startPage);
 
     $(window).resize(function() {
-        $('#manager-panel').datagrid('resize');
+        $(MANAGER_PANEL).datagrid('resize');
     });
 
     $('#advanced-search-btn').click(advancedSearch);

@@ -152,6 +152,16 @@ function loadDatagridData(id, data) {
 }
 
 /**
+ * Get datagrid select row
+ * 
+ * @param id
+ * @returns
+ */
+function getDatagridSelectRow(id) {
+    return $(id).datagrid('getSelected');
+}
+
+/**
  * Remove toolbar menu
  * 
  * @param id

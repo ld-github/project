@@ -8,10 +8,11 @@ var URLS = {
 };
 
 /**
+ * Get page manager
  * 
  * @param pageNumber
  */
-function getPageManagers() {
+function getPageManager() {
     var args = getAdvancedSearchParams();
     args['page.currentPage'] = getDatagridPaginationPageNum('#manager-panel');
     args['page.pageSize'] = getDatagridPaginationPageSize('#manager-panel');
@@ -19,6 +20,7 @@ function getPageManagers() {
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
             loadDatagridData('#manager-panel', data);
+            initLinkBtns();
         }
     });
 }
@@ -68,62 +70,94 @@ function initDatagrid() {
             align : 'center'
         } ] ],
         toolbar : [ {
-            id : 'add-manager',
+            id : 'add-manager-btn',
             text : '添加',
             iconCls : 'icon-add',
             handler : function() {
             }
         }, '-', {
-            id : 'show-manager',
+            id : 'show-manager-btn',
             text : '查看',
             iconCls : 'icon-save',
+            disabled : true,
             handler : function() {
             }
         }, '-', {
-            id : 'update-manager',
+            id : 'update-manager-btn',
             text : '修改',
             iconCls : 'icon-edit',
+            disabled : true,
             handler : function() {
             }
         }, '-', {
-            id : 'delete-manager',
+            id : 'delete-manager-btn',
             text : '删除',
             iconCls : 'icon-remove',
+            disabled : true,
             handler : function() {
             }
         }, '-', {
-            id : 'disable-manager',
+            id : 'disable-manager-btn',
             text : '禁用',
             iconCls : 'icon-no',
+            disabled : true,
             handler : function() {
             }
         }, '-', {
-            id : 'enable-manager',
+            id : 'enable-manager-btn',
             text : '启用',
             iconCls : 'icon-ok',
+            disabled : true,
             handler : function() {
             }
         } ]
     });
-    disableLinkBtn();
 }
 
 var searchParams = {};
 
+/**
+ * Set advanced search params
+ * 
+ * @param json
+ */
 function setAdvancedSearchParams(json) {
     searchParams = json;
 }
 
+/**
+ * Get advanced search params
+ * 
+ * @returns {___anonymous_searchParams}
+ */
 function getAdvancedSearchParams() {
     return searchParams;
 }
 
-function disableLinkBtn() {
-    $('#show-manager').linkbutton('disable');
-    $('#update-manager').linkbutton('disable');
-    $('#delete-manager').linkbutton('disable');
-    $('#disable-manager').linkbutton('disable');
-    $('#enable-manager').linkbutton('disable');
+/**
+ * Init link bottons
+ */
+function initLinkBtns() {
+    $('a[id$="-manager-btn"]').linkbutton('disable');
+    $('#add-manager-btn').linkbutton('enable');
+}
+
+/**
+ * Change buttons status when datagrid select row
+ * 
+ * @param available
+ */
+function changeLinkBtnsOnSelectRow(available) {
+    $('#show-manager-btn').linkbutton('enable');
+    $('#update-manager-btn').linkbutton('enable');
+    $('#delete-manager-btn').linkbutton('enable');
+    if (available) {
+        $('#disable-manager-btn').linkbutton('enable');
+        $('#enable-manager-btn').linkbutton('disable');
+    } else {
+        $('#disable-manager-btn').linkbutton('disable');
+        $('#enable-manager-btn').linkbutton('enable');
+    }
 }
 
 /**
@@ -132,24 +166,28 @@ function disableLinkBtn() {
 function advancedSearch() {
     setAdvancedSearchParams($('#search-form').serializeJson());
     setDatagridPager('#manager-panel', startPage, getDatagridPaginationPageSize('#manager-panel'));
-    getPageManagers();
+    getPageManager();
 }
 
 $(function() {
     initDatagrid();
 
-    $('#manager-panel').datagrid('getPager').pagination({
-        onSelectPage : function(pageNumber, size) {
-            getPageManagers();
-        },
-    });
-
     $('#manager-panel').datagrid({
         onSelect : function(index, row) {
+            if (undefined == row.id) {
+                return;
+            }
+            changeLinkBtnsOnSelectRow(row.available);
         },
     });
 
-    getPageManagers(startPage);
+    $('#manager-panel').datagrid('getPager').pagination({
+        onSelectPage : function(pageNumber, size) {
+            getPageManager();
+        },
+    });
+
+    getPageManager(startPage);
 
     $(window).resize(function() {
         $('#manager-panel').datagrid('resize');

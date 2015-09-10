@@ -68,6 +68,12 @@ function initDatagrid() {
             align : 'center'
         } ] ],
         toolbar : [ {
+            id : 'add-manager',
+            text : '添加',
+            iconCls : 'icon-add',
+            handler : function() {
+            }
+        }, '-', {
             id : 'show-manager',
             text : '查看',
             iconCls : 'icon-save',
@@ -77,12 +83,6 @@ function initDatagrid() {
             id : 'update-manager',
             text : '修改',
             iconCls : 'icon-edit',
-            handler : function() {
-            }
-        }, '-', {
-            id : 'add-manager',
-            text : '添加',
-            iconCls : 'icon-add',
             handler : function() {
             }
         }, '-', {
@@ -105,6 +105,7 @@ function initDatagrid() {
             }
         } ]
     });
+    disableLinkBtn();
 }
 
 var searchParams = {};
@@ -115,6 +116,14 @@ function setAdvancedSearchParams(json) {
 
 function getAdvancedSearchParams() {
     return searchParams;
+}
+
+function disableLinkBtn() {
+    $('#show-manager').linkbutton('disable');
+    $('#update-manager').linkbutton('disable');
+    $('#delete-manager').linkbutton('disable');
+    $('#disable-manager').linkbutton('disable');
+    $('#enable-manager').linkbutton('disable');
 }
 
 /**
@@ -132,6 +141,11 @@ $(function() {
     $('#manager-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
             getPageManagers();
+        },
+    });
+
+    $('#manager-panel').datagrid({
+        onSelect : function(index, row) {
         },
     });
 

@@ -113,6 +113,20 @@ function getDatagridPaginationPageNum(id) {
 }
 
 /**
+ * Set page currentPage and pageSize by datagrid pager
+ * 
+ * @param id
+ * @param args
+ * @returns {___anonymous3180_3183}
+ */
+function setPaginationPageParams(id, args) {
+    args = undefined == args ? {} : args;
+    args['page.currentPage'] = getDatagridPaginationPageNum(id);
+    args['page.pageSize'] = getDatagridPaginationPageSize(id);
+    return args;
+}
+
+/**
  * Set Datagrid pager
  * 
  * @param pageNumber

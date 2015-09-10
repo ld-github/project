@@ -14,8 +14,7 @@ var URLS = {
  */
 function getPageManager() {
     var args = getAdvancedSearchParams();
-    args['page.currentPage'] = getDatagridPaginationPageNum(MANAGER_PANEL);
-    args['page.pageSize'] = getDatagridPaginationPageSize(MANAGER_PANEL);
+    setPaginationPageParams(MANAGER_PANEL, args);
 
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {

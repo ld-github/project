@@ -12,10 +12,7 @@ var URLS = {
  * @param pageNumber
  */
 function getPageLogs() {
-    var args = {
-        'page.currentPage' : getDatagridPaginationPageNum(LOGS_PANEL),
-        'page.pageSize' : getDatagridPaginationPageSize(LOGS_PANEL)
-    };
+    var args = setPaginationPageParams(LOGS_PANEL);
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
             loadDatagridData(LOGS_PANEL, data);

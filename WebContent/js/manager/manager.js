@@ -68,15 +68,39 @@ function initDatagrid() {
             align : 'center'
         } ] ],
         toolbar : [ {
+            id : 'show-manager',
+            text : '查看',
+            iconCls : 'icon-save',
+            handler : function() {
+            }
+        }, '-', {
+            id : 'update-manager',
+            text : '修改',
+            iconCls : 'icon-edit',
+            handler : function() {
+            }
+        }, '-', {
             id : 'add-manager',
             text : '添加',
             iconCls : 'icon-add',
             handler : function() {
             }
-        }, {
+        }, '-', {
             id : 'delete-manager',
             text : '删除',
             iconCls : 'icon-remove',
+            handler : function() {
+            }
+        }, '-', {
+            id : 'disable-manager',
+            text : '禁用',
+            iconCls : 'icon-no',
+            handler : function() {
+            }
+        }, '-', {
+            id : 'enable-manager',
+            text : '启用',
+            iconCls : 'icon-ok',
             handler : function() {
             }
         } ]

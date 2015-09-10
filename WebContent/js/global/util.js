@@ -150,3 +150,16 @@ function loadDatagridData(id, data) {
         total : data.page == null ? 0 : data.page.total
     });
 }
+
+/**
+ * Remove toolbar menu
+ * 
+ * @param id
+ * @param removeNext
+ */
+function removeToolBarMenu(id, removeNext) {
+    if (removeNext) {
+        $(id).parent().next().remove();
+    }
+    $(id).parent().remove();
+}

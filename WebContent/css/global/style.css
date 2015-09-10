@@ -48,7 +48,7 @@ ul, ol {
     height: 40px;
     line-height: 40px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #BDBDBD;
     font-size: 20px;
     font-weight: bold;
@@ -58,8 +58,8 @@ ul, ol {
     position: relative;
     width: 100%;
     height: auto;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #BDBDBD;
 }
 
@@ -69,4 +69,8 @@ ul, ol {
 
 .default-control {
     width: 180px !important;
+}
+
+.pagination {
+    border-radius: 0px;
 }

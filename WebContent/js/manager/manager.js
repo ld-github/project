@@ -30,7 +30,7 @@ function initDatagrid() {
         singleSelect : true,
         fitColumns : true,
         striped : true,
-        height : 310,
+        height : 340,
         columns : [ [ {
             field : 'username',
             title : '账号',
@@ -66,7 +66,20 @@ function initDatagrid() {
             title : '创建时间',
             width : 100,
             align : 'center'
-        } ] ]
+        } ] ],
+        toolbar : [ {
+            id : 'add-manager',
+            text : '添加',
+            iconCls : 'icon-add',
+            handler : function() {
+            }
+        }, {
+            id : 'delete-manager',
+            text : '删除',
+            iconCls : 'icon-remove',
+            handler : function() {
+            }
+        } ]
     });
 }
 

@@ -11,9 +11,9 @@ var URLS = {
  * 
  * @param pageNumber
  */
-function getPageLogs(pageNumber) {
+function getPageLogs() {
     var args = {
-        'page.currentPage' : pageNumber,
+        'page.currentPage' : getDatagridPaginationPageNum('#logs-panel'),
         'page.pageSize' : getDatagridPaginationPageSize('#logs-panel')
     };
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
@@ -66,7 +66,7 @@ $(function() {
 
     $('#logs-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
-            getPageLogs(pageNumber);
+            getPageLogs();
         },
     });
 

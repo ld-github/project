@@ -11,9 +11,9 @@ var URLS = {
  * 
  * @param pageNumber
  */
-function getPageLogs(pageNumber) {
+function getPageManagers() {
     var args = getAdvancedSearchParams();
-    args['page.currentPage'] = pageNumber;
+    args['page.currentPage'] = getDatagridPaginationPageNum('#manager-panel');
     args['page.pageSize'] = getDatagridPaginationPageSize('#manager-panel');
 
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
@@ -85,7 +85,8 @@ function getAdvancedSearchParams() {
  */
 function advancedSearch() {
     setAdvancedSearchParams($('#search-form').serializeJson());
-    getPageLogs(startPage);
+    setDatagridPager('#manager-panel', startPage, getDatagridPaginationPageSize('#manager-panel'));
+    getPageManagers();
 }
 
 $(function() {
@@ -93,11 +94,11 @@ $(function() {
 
     $('#manager-panel').datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
-            getPageLogs(pageNumber);
+            getPageManagers();
         },
     });
 
-    getPageLogs(startPage);
+    getPageManagers(startPage);
 
     $(window).resize(function() {
         $('#manager-panel').datagrid('resize');

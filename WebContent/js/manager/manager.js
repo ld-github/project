@@ -177,6 +177,8 @@ function advancedSearch() {
 
 /**
  * Change manager available
+ * 
+ * @param available
  */
 function changeAvailable(available) {
     var m = getDatagridSelectRow(MANAGER_PANEL);

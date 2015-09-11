@@ -176,6 +176,17 @@ function getDatagridSelectRow(id) {
 }
 
 /**
+ * Get datagrid select row index
+ * 
+ * @param id
+ * @param row
+ * @returns
+ */
+function getDatagridSelectRowIndex(id, row) {
+    return $(id).datagrid('getRowIndex', row);
+}
+
+/**
  * Remove toolbar menu
  * 
  * @param id

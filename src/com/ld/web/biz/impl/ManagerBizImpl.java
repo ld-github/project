@@ -79,4 +79,12 @@ public class ManagerBizImpl implements ManagerBiz {
         return managerDao.getPage(where, params, orders, page);
     }
 
+    @Override
+    public Manager changeAvailable(Manager manager) {
+        Manager m = managerDao.getUniqueResult(manager.getId());
+        m.setAvailable(manager.getAvailable());
+        managerDao.update(m);
+        return m;
+    }
+
 }

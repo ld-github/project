@@ -5,6 +5,7 @@ var startPage = 1;
  */
 var URLS = {
     GET_PAGE_RECORDS : '../manager!getPageRecords.action',
+    CHANGE_AVAILABLE : '../manager!changeAvailable.action'
 };
 
 /**
@@ -103,6 +104,8 @@ function initDatagrid() {
             iconCls : 'icon-no',
             disabled : true,
             handler : function() {
+                var msg = '确定禁用选中管理员?';
+                new Message(msg).confirm(changeAvailable, false);
             }
         }, '-', {
             id : 'enable-manager-btn',
@@ -110,6 +113,8 @@ function initDatagrid() {
             iconCls : 'icon-ok',
             disabled : true,
             handler : function() {
+                var msg = '确定启用选中管理员?';
+                new Message(msg).confirm(changeAvailable, true);
             }
         } ]
     });
@@ -168,6 +173,27 @@ function advancedSearch() {
     setAdvancedSearchParams($('#search-form').serializeJson());
     setDatagridPager(MANAGER_PANEL, startPage, getDatagridPaginationPageSize(MANAGER_PANEL));
     getPageManager();
+}
+
+/**
+ * Change manager available
+ */
+function changeAvailable(available) {
+    var m = getDatagridSelectRow(MANAGER_PANEL);
+    var index = getDatagridSelectRowIndex(MANAGER_PANEL, m);
+    var args = {
+        'manager.id' : m.id,
+        'manager.available' : available
+    };
+    $.post(URLS.CHANGE_AVAILABLE, args, function(data) {
+        if (data && data.status) {
+            var manager = data.manager;
+            updateDatagridRow(MANAGER_PANEL, index, manager);
+            changeLinkBtnsOnSelectRow(manager.available);
+        } else {
+            new Message(data.message).show(false);
+        }
+    });
 }
 
 $(function() {

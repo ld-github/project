@@ -48,4 +48,12 @@ public interface ManagerBiz {
      * @return
      */
     Page<Manager> getPage(Long exceptMid, String username, Boolean available, Page<Manager> page);
+
+    /**
+     * Change manager available
+     * 
+     * @param manager
+     * @return
+     */
+    Manager changeAvailable(Manager manager);
 }

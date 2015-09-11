@@ -67,8 +67,7 @@ function login() {
         if (data.status) {
             location.href = "main.html";
             return;
-        }
-        if (data.message) {
+        } else {
             new Message(data.message).show(false);
         }
         changeKaptcha();

@@ -53,17 +53,19 @@ public class ManagerAction extends ServerAction {
         String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
             super.putResult(false, "验证码输入错误");
-            logger.info(String.format("Username %s login verification code error...", manager.getUsername()));
             return SUCCESS;
         }
         String password = CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword()));
-        Manager u = managerBiz.login(manager.getUsername(), password);
-        boolean success = null != u;
-        if (success) {
-            super.putSessionManager(u);
+        Manager m = managerBiz.login(manager.getUsername(), password);
+        if (null == m) {
+            super.putResult(false, "账号或密码错误");
+            logger.info(String.format("Username %s login failed...", manager.getUsername()));
+            return SUCCESS;
         }
-        super.putResult(success, success ? "用户登录成功" : "用户名或密码错误");
-        logger.info(String.format("Username %s login %s...", manager.getUsername(), success ? "success" : "failed"));
+        if (m.getAvailable()) {
+            super.putSessionManager(m);
+        }
+        super.putResult(m.getAvailable(), m.getAvailable() ? "登录成功" : "该账号被禁用");
         return SUCCESS;
     }
 
@@ -97,6 +99,24 @@ public class ManagerAction extends ServerAction {
             return available == 1 ? true : false;
         }
         return null;
+    }
+
+    /**
+     * Change manager available
+     * 
+     * @return
+     * @throws Exception
+     */
+    public String changeAvailable() throws Exception {
+        try {
+            Manager m = managerBiz.changeAvailable(manager);
+            super.putResult(true, "修改成功");
+            super.putResult("manager", m);
+        } catch (Exception e) {
+            super.putResult(false, "修改失败");
+            logger.error(String.format("Change manager available error: %s", e.getMessage()), e);
+        }
+        return SUCCESS;
     }
 
     public Manager getManager() {

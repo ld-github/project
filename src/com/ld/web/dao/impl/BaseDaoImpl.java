@@ -83,7 +83,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T getUniqueResult(final Long primaryKey) throws Exception {
+    public T getUniqueResult(final Long primaryKey) {
         String hql = "from " + this.getClassName() + " o where o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {
@@ -232,14 +232,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public Object getUniqueResultBySql(String sql, Map<String, Object> params) {
+    public Object getUniqueResultBySql(String sql, Map<String, Object> params) throws Exception {
         Query q = this.getCurrentSession().createSQLQuery(sql);
         setParams(q, params);
         return q.uniqueResult();
     }
 
     @Override
-    public Object getUniqueResultByHql(String hql, Map<String, Object> params) {
+    public Object getUniqueResultByHql(String hql, Map<String, Object> params) throws Exception {
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.uniqueResult();

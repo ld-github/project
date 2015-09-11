@@ -58,6 +58,7 @@ public interface BaseDao<T> {
      * @param where
      * @param params
      * @return
+     * @throws Exception
      */
     T getUniqueResult(String where, Map<String, Object> params) throws Exception;
 
@@ -67,7 +68,7 @@ public interface BaseDao<T> {
      * @param primaryKey
      * @return
      */
-    T getUniqueResult(Long primaryKey) throws Exception;
+    T getUniqueResult(Long primaryKey);
 
     /**
      * Get unique result by order
@@ -184,7 +185,7 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    Object getUniqueResultBySql(String sql, Map<String, Object> params);
+    Object getUniqueResultBySql(String sql, Map<String, Object> params) throws Exception;
 
     /**
      * Get uniqueResult by hql
@@ -193,5 +194,5 @@ public interface BaseDao<T> {
      * @param params
      * @return
      */
-    Object getUniqueResultByHql(String hql, Map<String, Object> params);
+    Object getUniqueResultByHql(String hql, Map<String, Object> params) throws Exception;
 }

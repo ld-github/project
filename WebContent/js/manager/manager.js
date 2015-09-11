@@ -76,20 +76,23 @@ function initDatagrid() {
             text : '添加',
             iconCls : 'icon-add',
             handler : function() {
+                new ManagerEditor().init(EDITOR_STATUS.NEW);
             }
         }, '-', {
             id : 'show-manager-btn',
             text : '查看',
-            iconCls : 'icon-save',
+            iconCls : 'icon-print',
             disabled : true,
             handler : function() {
+                new ManagerEditor().init(EDITOR_STATUS.VIEW);
             }
         }, '-', {
             id : 'update-manager-btn',
-            text : '修改',
+            text : '编辑',
             iconCls : 'icon-edit',
             disabled : true,
             handler : function() {
+                new ManagerEditor().init(EDITOR_STATUS.EDIT);
             }
         }, '-', {
             id : 'delete-manager-btn',
@@ -197,6 +200,78 @@ function changeAvailable(available) {
         }
     });
 }
+
+/**
+ * Editor status
+ */
+var EDITOR_STATUS = {
+    NEW : 1,
+    EDIT : 2,
+    VIEW : 3
+};
+
+var MANAGER_EDITOR_PANEL = "#manager-editor-panel";
+
+/**
+ * Manager editor
+ */
+var ManagerEditor = function() {
+    this.title = '';
+    this.iconCls = '';
+    this.buttons = [];
+
+    this.init = function(editorStatus) {
+        document.getElementById("manager-editor-form").reset();
+        $('#manager-editor-form').show();
+
+        if (editorStatus == EDITOR_STATUS.NEW) {
+            this.title = '添加管理员信息';
+            this.iconCls = "icon-add";
+            var saveBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                    new ManagerEditor().init(EDITOR_STATUS.NEW);
+                }
+            };
+            this.buttons.push(saveBtn);
+        }
+        if (editorStatus == EDITOR_STATUS.EDIT) {
+            this.title = '编辑管理员信息';
+            this.iconCls = 'icon-edit';
+            var updateBtn = {
+                text : '保存',
+                iconCls : 'icon-save',
+                handler : function() {
+                }
+            };
+            this.buttons.push(updateBtn);
+        }
+        if (editorStatus == EDITOR_STATUS.VIEW) {
+            this.title = '查看管理员信息';
+            this.iconCls = 'icon-print';
+        }
+
+        var cancelBtn = {
+            text : '关闭',
+            iconCls : 'icon-cancel',
+            handler : function() {
+                $(MANAGER_EDITOR_PANEL).dialog('close');
+            }
+        };
+        this.buttons.push(cancelBtn);
+
+        $(MANAGER_EDITOR_PANEL).dialog({
+            title : this.title,
+            iconCls : this.iconCls,
+            width : 300,
+            height : 240,
+            cache : false,
+            modal : true,
+            buttons : this.buttons
+        });
+    };
+};
 
 $(function() {
     initDatagrid();

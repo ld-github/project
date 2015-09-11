@@ -21,6 +21,18 @@ var ActionForm = function() {
 };
 
 /**
+ * Load form value to json
+ * 
+ * @param id
+ * @param json
+ */
+function formLoadJson(id, json) {
+    for ( var o in json) {
+        $(id + ' input[name$="' + o + '"]').val(json[o]);
+    }
+}
+
+/**
  * Jquery serializeArray to serializeJson
  */
 (function($) {

@@ -17,7 +17,7 @@ var MENUS = [ {
     } ]
 }, {
     title : '日志记录',
-    iconCls : 'icon-save',
+    iconCls : 'icon-print',
     submenus : [ {
         title : '异常信息',
         url : 'exceptionLog.html'

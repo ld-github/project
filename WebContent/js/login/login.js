@@ -89,7 +89,7 @@ function initSystem() {
     $.post(URLS.INIT_SYSTEM, args, function(data) {
         if (data.status) {
             new Message('系统初始化成功').show(true);
-            $('#cover-panel').css('display', 'none');
+            $('#cover-panel').hide();
             $('#system-config-form').fadeOut("slow");
             keyEnterListener();
         } else {
@@ -116,7 +116,7 @@ function checkSystem() {
     $.post(URLS.CHECK_SYSTEM, function(data) {
         if (data.status) {
             $('#system-config-form').fadeIn("slow");
-            $('#cover-panel').css('display', 'block');
+            $('#cover-panel').show();
             /**
              * Initialization system configuration
              */

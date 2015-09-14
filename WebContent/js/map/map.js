@@ -36,22 +36,20 @@ var DEVICE_TYPES = {
  * @param geo
  */
 function showMenu(e, geo) {
-    $("#cover-panel").css({
-        'display' : 'block',
-    });
+    $("#cover-panel").show();
     var menu = $('#menu-panel');
     menu.empty();
 
     $('<li>').html('添加二维码信息').click(function() {
-        $('#cover-panel').css('display', 'none');
-        menu.css('display', 'none');
+        $('#cover-panel').hide();
+        menu.hide();
         initEditorPanel(EDITOR_STATUS.NEW, DEVICE_TYPES.CODE, null);
         setGeo(geo);
     }).appendTo(menu);
 
     $('<li>').html('添加wifi设备信息').click(function() {
-        $('#cover-panel').css('display', 'none');
-        menu.css('display', 'none');
+        $('#cover-panel').hide();
+        menu.hide();
         initEditorPanel(EDITOR_STATUS.NEW, DEVICE_TYPES.WIFI, null);
         setGeo(geo);
     }).appendTo(menu);
@@ -155,7 +153,9 @@ function appendPoint(id, type, title, longitude, latitude) {
         coordinates : [ longitude, latitude ],
     };
 
-    var img = '<img src="' + src + '" title="' + title + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude + ', ' + latitude + ')">';
+    var img = '<img src="' + src + '" title="' + title
+            + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude
+            + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
 };
 
@@ -171,7 +171,8 @@ var EDITOR_STATUS = {
 /**
  * Delete Devices by id and type
  * 
- * @param :{id : id,type : type }
+ * @param :{id :
+ *            id,type : type }
  */
 function deleteDevice(params) {
     var id = params.id;
@@ -415,12 +416,14 @@ $(function() {
     function shapeFunction(e, geo) {
         type: 'LineString', g_map.geomap('option', 'mode', 'drawPoint');
         showMenu(e, geo);
-    };
+    }
+    ;
 
     function positionEventHandler(e, geo) {
         // console.log('longitude: ' + geo.coordinates[0] + '\t latitude: ' +
         // geo.coordinates[1]);
-    };
+    }
+    ;
 
     g_map = new Map().createMap(container, zoom, maxLevelPixelWidth, maxLevelPixelHeight, mapFactor, tilePixelWidth,
             tilePixelHeight, mapLevels, mapFolderName, shapeFunction, positionEventHandler);
@@ -429,8 +432,8 @@ $(function() {
      */
 
     $('#cover-panel').click(function() {
-        $(this).css('display', 'none');
-        $('#menu-panel').css('display', 'none');
+        $(this).hide();
+        $('#menu-panel').hide();
     });
 
 });

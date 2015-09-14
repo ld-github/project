@@ -42,7 +42,7 @@ public class DESUtil {
      */
     protected static String toHex(byte[] bytes) {
         if (bytes == null || bytes.length == 0) {
-            throw new IllegalArgumentException("转换的数据为空");
+            throw new IllegalArgumentException("Convert value is null...");
         }
         String value = "", temp = "";
         for (byte b : bytes) {

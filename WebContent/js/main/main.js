@@ -2,16 +2,22 @@
  * @author LD
  */
 var MENUS = [ {
+    title : '档案管理',
+    iconCls : 'icon-user',
+    submenus : [ {
+        title : '客户信息',
+        url : 'manager.html'
+    }, {
+        title : '车辆信息',
+        url : 'manager.html'
+    } ]
+}, {
     title : '系统设置',
     iconCls : 'icon-setting',
     submenus : [ {
-        title : '地图',
+        title : '地图维护',
         url : 'map.html'
-    } ]
-}, {
-    title : '用户管理',
-    iconCls : 'icon-user',
-    submenus : [ {
+    }, {
         title : '管理员维护',
         url : 'manager.html'
     } ]

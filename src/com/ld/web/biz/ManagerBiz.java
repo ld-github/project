@@ -56,4 +56,12 @@ public interface ManagerBiz {
      * @return
      */
     Manager changeAvailable(Manager manager);
+
+    /**
+     * Get manager by id
+     * 
+     * @param id
+     * @return
+     */
+    Manager get(Long id);
 }

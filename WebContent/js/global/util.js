@@ -21,15 +21,31 @@ var ActionForm = function() {
 };
 
 /**
- * Load form value to json
+ * Load form value from json
  * 
- * @param id
+ * @param formId
  * @param json
  */
-function formLoadJson(id, json) {
-    for ( var o in json) {
-        $(id + ' input[name$="' + o + '"]').val(json[o]);
-    }
+function formLoadJson(formId, json) {
+    var inputs = $(formId + ' :input');
+    $.each(inputs, function(i, item) {
+        var input = $(item);
+        var key = input.attr('name');
+        if (key != undefined) {
+            var keys = key.split('.');
+            var value = null;
+            for (var i = 0; i < keys.length; i++) {
+                if (null == value) {
+                    value = json[keys[i]];
+                } else {
+                    value = value[keys[i]];
+                }
+            }
+            if (undefined != value && null != value) {
+                input.val(value);
+            }
+        }
+    });
 }
 
 /**
@@ -125,7 +141,7 @@ function getDatagridPaginationPageNum(id) {
 }
 
 /**
- * Set page currentPage and pageSize by datagrid pager
+ * Set args params page currentPage and pageSize by datagrid pager
  * 
  * @param id
  * @param args

@@ -87,4 +87,9 @@ public class ManagerBizImpl implements ManagerBiz {
         return m;
     }
 
+    @Override
+    public Manager get(Long id) {
+        return managerDao.getUniqueResult(id);
+    }
+
 }

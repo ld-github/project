@@ -119,6 +119,17 @@ public class ManagerAction extends ServerAction {
         return SUCCESS;
     }
 
+    /**
+     * Get manager
+     * 
+     * @return
+     * @throws Exception
+     */
+    public String getManagerInfo() throws Exception {
+        super.putResult("manager", managerBiz.get(manager.getId()));
+        return SUCCESS;
+    }
+
     public Manager getManager() {
         return manager;
     }

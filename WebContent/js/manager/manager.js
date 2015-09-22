@@ -5,7 +5,8 @@ var startPage = 1;
  */
 var URLS = {
     GET_PAGE_RECORDS : '../manager!getPageRecords.action',
-    CHANGE_AVAILABLE : '../manager!changeAvailable.action'
+    CHANGE_AVAILABLE : '../manager!changeAvailable.action',
+    GET_MANAGER : '../manager!getManagerInfo.action',
 };
 
 /**
@@ -54,7 +55,7 @@ function initDatagrid() {
             }
         }, {
             field : 'available',
-            title : '是否可用',
+            title : '是否启用',
             width : 60,
             align : 'center',
             formatter : function(value, row, index) {
@@ -85,6 +86,7 @@ function initDatagrid() {
             disabled : true,
             handler : function() {
                 new ManagerEditor().init(EDITOR_STATUS.VIEW);
+                showManager();
             }
         }, '-', {
             id : 'update-manager-btn',
@@ -202,6 +204,19 @@ function changeAvailable(available) {
 }
 
 /**
+ * Show datagrid select row manager info
+ */
+function showManager() {
+    var args = {
+        'manager.id' : getDatagridSelectRow(MANAGER_PANEL).id,
+    };
+    $.post(URLS.GET_MANAGER, args, function(data) {
+        formLoadJson(MANAGER_EDITOR_PANEL, data);
+        $('#edit-manager-administrator').val(data.manager.administrator ? 1 : 0);
+    });
+}
+
+/**
  * Editor status
  */
 var EDITOR_STATUS = {
@@ -210,7 +225,8 @@ var EDITOR_STATUS = {
     VIEW : 3
 };
 
-var MANAGER_EDITOR_PANEL = "#manager-editor-panel";
+var MANAGER_EDITOR_PANEL = '#manager-editor-panel';
+var MANAGER_EDITOR_FORM = '#manager-editor-form';
 
 /**
  * Manager editor
@@ -221,17 +237,17 @@ var ManagerEditor = function() {
     this.buttons = [];
 
     this.init = function(editorStatus) {
-        document.getElementById("manager-editor-form").reset();
-        $('#manager-editor-form').show();
+        document.getElementById('manager-editor-form').reset();
+        $(MANAGER_EDITOR_FORM).show();
 
         if (editorStatus == EDITOR_STATUS.NEW) {
             this.title = '添加管理员信息';
-            this.iconCls = "icon-add";
+            this.iconCls = 'icon-add';
             var saveBtn = {
                 text : '保存',
                 iconCls : 'icon-save',
                 handler : function() {
-                    new ManagerEditor().init(EDITOR_STATUS.NEW);
+                    console.log($(MANAGER_EDITOR_FORM).serializeJson());
                 }
             };
             this.buttons.push(saveBtn);

@@ -28,7 +28,7 @@ public enum Gender {
                 return i;
             }
         }
-        return null;
+        return UNKNOWN;
     }
 
     private Gender(int value) {

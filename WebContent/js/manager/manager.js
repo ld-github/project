@@ -15,7 +15,7 @@ var URLS = {
  * @param pageNumber
  */
 function getPageManager() {
-    var args = getAdvancedSearchParams();
+    var args = getSearchParams();
     setPaginationPageParams(MANAGER_PANEL, args);
 
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
@@ -128,20 +128,20 @@ function initDatagrid() {
 var searchParams = {};
 
 /**
- * Set advanced search params
+ * Set search params
  * 
  * @param json
  */
-function setAdvancedSearchParams(json) {
+function setSearchParams(json) {
     searchParams = json;
 }
 
 /**
- * Get advanced search params
+ * Get search params
  * 
  * @returns {___anonymous_searchParams}
  */
-function getAdvancedSearchParams() {
+function getSearchParams() {
     return searchParams;
 }
 
@@ -172,10 +172,10 @@ function changeLinkBtnsOnSelectRow(available) {
 }
 
 /**
- * Advanced search
+ * Search by search form params
  */
-function advancedSearch() {
-    setAdvancedSearchParams($('#search-form').serializeJson());
+function search() {
+    setSearchParams($('#search-form').serializeJson());
     setDatagridPager(MANAGER_PANEL, startPage, getDatagridPaginationPageSize(MANAGER_PANEL));
     getPageManager();
 }
@@ -313,5 +313,5 @@ $(function() {
         $(MANAGER_PANEL).datagrid('resize');
     });
 
-    $('#advanced-search-btn').click(advancedSearch);
+    $('#search-btn').click(search);
 });

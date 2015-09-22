@@ -6,7 +6,7 @@ var MENUS = [ {
     iconCls : 'icon-info',
     submenus : [ {
         title : '客户信息',
-        url : 'manager.html'
+        url : 'customer.html'
     }, {
         title : '车辆信息',
         url : 'manager.html'

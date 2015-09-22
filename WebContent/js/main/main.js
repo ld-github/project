@@ -3,12 +3,61 @@
  */
 var MENUS = [ {
     title : '档案管理',
-    iconCls : 'icon-user',
+    iconCls : 'icon-info',
     submenus : [ {
         title : '客户信息',
         url : 'manager.html'
     }, {
         title : '车辆信息',
+        url : 'manager.html'
+    }, {
+        title : '银行档案',
+        url : 'manager.html'
+    }, {
+        title : '保险商档',
+        url : 'manager.html'
+    } ]
+}, {
+    title : '订单管理',
+    iconCls : 'icon-info',
+    submenus : [ {
+        title : '预定单',
+        url : 'map.html'
+    }, {
+        title : '销售单',
+        url : 'manager.html'
+    } ]
+}, {
+    title : '租车管理',
+    iconCls : 'icon-info',
+    submenus : [ {
+        title : '潜客跟踪',
+        url : 'manager.html'
+    }, {
+        title : '车辆调配',
+        url : 'map.html'
+    }, {
+        title : '租车管理',
+        url : 'manager.html'
+    } ]
+}, {
+    title : '车辆管理',
+    iconCls : 'icon-info',
+    submenus : [ {
+        title : '客户关怀',
+        url : 'map.html'
+    }, {
+        title : '保单管理',
+        url : 'manager.html'
+    } ]
+}, {
+    title : '储存管理',
+    iconCls : 'icon-info',
+    submenus : [ {
+        title : '入库单',
+        url : 'map.html'
+    }, {
+        title : '退车单',
         url : 'manager.html'
     } ]
 }, {

@@ -67,7 +67,7 @@ function initDatagrid() {
                 }
             }
         }, {
-            field : 'createTime',
+            field : 'createDateTime',
             title : '创建时间',
             width : 100,
             align : 'center'

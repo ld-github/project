@@ -51,7 +51,7 @@ public class ExceptionLog implements Serializable {
 
     private ExceptionType exceptionType;
 
-    private Date createTime;
+    private Date createDatetime;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -131,12 +131,12 @@ public class ExceptionLog implements Serializable {
     @JSON(format = "yyyy-MM-dd HH:mm:ss")
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreateDatetime() {
+        return createDatetime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateDatetime(Date createDatetime) {
+        this.createDatetime = createDatetime;
     }
 
 }

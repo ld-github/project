@@ -38,7 +38,7 @@ public class Manager implements Serializable {
 
     private String password;
 
-    private Date createTime;
+    private Date createDatetime;
 
     private boolean administrator;
 
@@ -76,12 +76,12 @@ public class Manager implements Serializable {
     @JSON(format = "yyyy-MM-dd HH:mm:ss")
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreateDatetime() {
+        return createDatetime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreateDatetime(Date createDatetime) {
+        this.createDatetime = createDatetime;
     }
 
     @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")

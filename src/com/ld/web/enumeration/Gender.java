@@ -2,20 +2,19 @@ package com.ld.web.enumeration;
 
 /**
  * 
- *<p>Title: ExceptionType</p>
+ *<p>Title: Gender</p>
  *<p>Copyright: Copyright (c) 2015</p>
- *<p>Description: 异常类型</p>
+ *<p>Description: 性别</p>
  *
  *@author LD
  *
  *@date 2015-09-22
  */
-public enum ExceptionType {
-
+public enum Gender {
     /**
-     * MANAGER:管理员 USER:用户
+     * MAN:男 WOMAN:女 UNKNOWN:未知
      */
-    MANAGER(0), USER(1);
+    MAN(0), WOMAN(1), UNKNOWN(2);
 
     private int value = 0;
 
@@ -23,8 +22,8 @@ public enum ExceptionType {
         return this.value;
     }
 
-    public static ExceptionType get(int value) {
-        for (ExceptionType i : ExceptionType.values()) {
+    public static Gender get(int value) {
+        for (Gender i : Gender.values()) {
             if (value == i.value) {
                 return i;
             }
@@ -32,7 +31,7 @@ public enum ExceptionType {
         return null;
     }
 
-    private ExceptionType(int value) {
+    private Gender(int value) {
         this.value = value;
     }
 }

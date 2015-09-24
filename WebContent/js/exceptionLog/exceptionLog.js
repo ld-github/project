@@ -52,7 +52,7 @@ function initDatagrid() {
             title : '异常信息',
             width : 200,
         }, {
-            field : 'createDateTime',
+            field : 'createDatetime',
             title : '发生时间',
             width : 100,
             align : 'center'

@@ -28,6 +28,9 @@ function getPageManager() {
 
 var MANAGER_PANEL = '#manager-panel';
 
+/**
+ * Init datagrid
+ */
 function initDatagrid() {
     $(MANAGER_PANEL).datagrid({
         rownumbers : true,
@@ -67,7 +70,7 @@ function initDatagrid() {
                 }
             }
         }, {
-            field : 'createDateTime',
+            field : 'createDatetime',
             title : '创建时间',
             width : 100,
             align : 'center'

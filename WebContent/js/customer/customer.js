@@ -211,8 +211,8 @@ var CustomerEditor = function() {
         $(CUSTOMER_EDITOR_PANEL).dialog({
             title : this.title,
             iconCls : this.iconCls,
-            width : 900,
-            height : 400,
+            width : 1040,
+            height : 450,
             cache : false,
             modal : true,
             buttons : this.buttons

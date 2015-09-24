@@ -2,3 +2,12 @@
     display: none;
     margin: 15px 27px;
 }
+
+.serach-panel  {
+    margin-bottom: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.form-inline {
+    margin-bottom: 5px;
+}

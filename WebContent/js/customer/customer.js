@@ -37,10 +37,20 @@ function initDatagrid() {
         height : 340,
         columns : [ [ {
             field : 'username',
-            title : '账号',
+            title : '姓名',
             width : 100,
         }, {
-            field : 'createDateTime',
+            field : 'telNo',
+            title : '手机号码',
+            width : 100,
+            align : 'center'
+        }, {
+            field : 'gender',
+            title : '性别',
+            width : 100,
+            align : 'center'
+        }, {
+            field : 'createDatetime',
             title : '创建时间',
             width : 100,
             align : 'center'
@@ -201,8 +211,8 @@ var CustomerEditor = function() {
         $(CUSTOMER_EDITOR_PANEL).dialog({
             title : this.title,
             iconCls : this.iconCls,
-            width : 300,
-            height : 240,
+            width : 900,
+            height : 400,
             cache : false,
             modal : true,
             buttons : this.buttons

@@ -287,6 +287,7 @@ var ManagerEditor = function() {
             height : 240,
             cache : false,
             modal : true,
+            collapsible : true,
             buttons : this.buttons
         });
     };

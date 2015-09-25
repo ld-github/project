@@ -215,6 +215,7 @@ var CustomerEditor = function() {
             height : 450,
             cache : false,
             modal : true,
+            collapsible : true,
             buttons : this.buttons
         });
     };

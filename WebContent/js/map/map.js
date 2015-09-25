@@ -8,7 +8,7 @@ var g_geo = null;
  */
 function setGeo(geo) {
     g_geo = geo;
-};
+}
 
 /**
  * Get g_geo
@@ -17,7 +17,7 @@ function setGeo(geo) {
  */
 function getGeo() {
     return g_geo;
-};
+}
 
 var IMG_URLS = {
     WIFI : '../images/wifi.png',
@@ -59,7 +59,7 @@ function showMenu(e, geo) {
         left : e.pageX + 'px',
         display : 'block'
     });
-};
+}
 
 var KEY_WHICH = {
     LEFT : 1,
@@ -84,7 +84,7 @@ function showDeviceInfo(id, type) {
             id : id
         });
     }
-};
+}
 
 /**
  * Operate device when user mousedown the point
@@ -135,7 +135,7 @@ function operateDevice(e, obj, id, type, longitude, latitude) {
             e.stopPropagation();
         }
     }
-};
+}
 
 /**
  * Add point to map
@@ -157,7 +157,7 @@ function appendPoint(id, type, title, longitude, latitude) {
             + '" class="device-item" onmousedown="operateDevice(event, this, ' + id + ', ' + type + ', ' + longitude
             + ', ' + latitude + ')">';
     g_map.geomap("append", point, img);
-};
+}
 
 /**
  * Editor status
@@ -171,8 +171,7 @@ var EDITOR_STATUS = {
 /**
  * Delete Devices by id and type
  * 
- * @param :{id :
- *            id,type : type }
+ * @param :{id :id,type : type }
  */
 function deleteDevice(params) {
     var id = params.id;
@@ -186,7 +185,7 @@ function deleteDevice(params) {
     if (type == DEVICE_TYPES.CODE) {
         $(EDITOR_CONTAINER.CODE).dialog('close');
     }
-};
+}
 
 /**
  * Init wifi editor
@@ -277,7 +276,7 @@ var WifiEditor = function(container) {
             buttons : this.buttons
         });
     };
-};
+}
 
 /**
  * Init Code editor
@@ -417,13 +416,11 @@ $(function() {
         type: 'LineString', g_map.geomap('option', 'mode', 'drawPoint');
         showMenu(e, geo);
     }
-    ;
 
     function positionEventHandler(e, geo) {
         // console.log('longitude: ' + geo.coordinates[0] + '\t latitude: ' +
         // geo.coordinates[1]);
     }
-    ;
 
     g_map = new Map().createMap(container, zoom, maxLevelPixelWidth, maxLevelPixelHeight, mapFactor, tilePixelWidth,
             tilePixelHeight, mapLevels, mapFolderName, shapeFunction, positionEventHandler);

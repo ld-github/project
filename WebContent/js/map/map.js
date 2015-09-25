@@ -276,7 +276,7 @@ var WifiEditor = function(container) {
             buttons : this.buttons
         });
     };
-}
+};
 
 /**
  * Init Code editor

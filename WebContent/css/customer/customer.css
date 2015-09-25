@@ -18,3 +18,7 @@
     padding-left: 3px;
     padding-right: 3px;
 }
+
+.default-control {
+    width: 150px !important;
+}

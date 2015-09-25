@@ -283,7 +283,7 @@ var ManagerEditor = function() {
         $(MANAGER_EDITOR_PANEL).dialog({
             title : this.title,
             iconCls : this.iconCls,
-            width : 300,
+            width : 350,
             height : 240,
             cache : false,
             modal : true,

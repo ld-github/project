@@ -1,4 +1,9 @@
 #manager-editor-form {
     display: none;
-    margin: 15px 27px;
+    margin: 15px auto;
+    margin-left: 27px;
+}
+
+.addon-fixed-width {
+    width: 100px !important;
 }

@@ -221,8 +221,19 @@ var CustomerEditor = function() {
     };
 };
 
+/**
+ * Init dateBox
+ */
+function initDateBox() {
+    $('#date-of-birth').datebox({
+        editable : false,
+        panelWidth : 150,
+    });
+}
+
 $(function() {
     initDatagrid();
+    initDateBox();
 
     $(CUSTOMER_PANEL).datagrid({
         onSelect : function(index, row) {

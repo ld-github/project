@@ -22,3 +22,13 @@
 .default-control {
     width: 150px !important;
 }
+
+.datebox, .datebox .textbox-text, .datebox .textbox-addon {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    height: 34px !important;
+}
+
+.datebox .textbox-addon .textbox-icon {
+    height: 32px !important;
+}

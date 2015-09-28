@@ -1,11 +1,10 @@
 package com.ld.web.util;
 
-import it.sauronsoftware.base64.Base64;
-
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 
 import sun.misc.BASE64Decoder;
@@ -35,7 +34,7 @@ public class CharacterTool {
      * @return
      */
     public static String base64Decode(String str) {
-        return null == str ? null : Base64.decode(str, "UTF-8");
+        return null == str ? null : new String(Base64.decodeBase64(str));
     }
 
     /**
@@ -45,7 +44,7 @@ public class CharacterTool {
      * @return
      */
     public static String base64Encode(String str) {
-        return Base64.encode(str, "UTF-8");
+        return Base64.encodeBase64String(str.getBytes());
     }
 
     /**

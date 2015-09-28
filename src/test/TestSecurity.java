@@ -1,7 +1,5 @@
 package test;
 
-import it.sauronsoftware.base64.Base64;
-
 import com.ld.web.util.CharacterTool;
 
 /**
@@ -19,10 +17,5 @@ public class TestSecurity {
         String str = "admin";
         System.out.println(CharacterTool.sha(str));
         System.out.println(CharacterTool.sha(str).length());
-
-        String encoded = Base64.encode(",!@#$%^&*()_+{}:<>?ASSDFGFDG！", "UTF-8");
-        System.out.println(encoded);
-        String decoded = Base64.decode(encoded, "UTF-8");
-        System.out.println(decoded);
     }
 }

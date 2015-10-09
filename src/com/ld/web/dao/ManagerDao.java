@@ -1,5 +1,6 @@
 package com.ld.web.dao;
 
+import com.ld.web.bean.Page;
 import com.ld.web.bean.model.Manager;
 
 /**
@@ -20,4 +21,15 @@ public interface ManagerDao extends BaseDao<Manager> {
      * @return
      */
     Manager query(String username, String password) throws Exception;
+
+    /**
+     * Get page Manager
+     * 
+     * @param exceptMid
+     * @param username
+     * @param available
+     * @param page
+     * @return
+     */
+    Page<Manager> getPage(Long exceptMid, String username, Boolean available, Page<Manager> page);
 }

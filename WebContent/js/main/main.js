@@ -2,72 +2,186 @@
  * @author LD
  */
 var MENUS = [ {
-    title : '档案管理',
+    title : '租赁管理',
     iconCls : 'icon-info',
     submenus : [ {
-        title : '客户信息',
+        title : '租车辆查询',
         url : 'customer.html'
     }, {
-        title : '车辆信息',
+        title : '订单排队系统',
         url : 'manager.html'
     }, {
-        title : '银行档案',
+        title : '车辆预订',
         url : 'manager.html'
     }, {
-        title : '保险商档',
-        url : 'manager.html'
-    } ]
-}, {
-    title : '订单管理',
-    iconCls : 'icon-info',
-    submenus : [ {
-        title : '预定单',
-        url : 'map.html'
-    }, {
-        title : '销售单',
-        url : 'manager.html'
-    } ]
-}, {
-    title : '租车管理',
-    iconCls : 'icon-info',
-    submenus : [ {
-        title : '潜客跟踪',
+        title : '订单管理',
         url : 'manager.html'
     }, {
-        title : '车辆调配',
-        url : 'map.html'
+        title : '出车登记及合同打印',
+        url : 'manager.html'
     }, {
-        title : '租车管理',
+        title : '出车车辆变更管理',
+        url : 'manager.html'
+    }, {
+        title : '车辆续租管理',
+        url : 'manager.html'
+    }, {
+        title : '车辆结算及打印',
+        url : 'manager.html'
+    }, {
+        title : '车辆违章管理',
+        url : 'manager.html'
+    }, {
+        title : '历史结算管理',
         url : 'manager.html'
     } ]
 }, {
     title : '车辆管理',
     iconCls : 'icon-info',
     submenus : [ {
-        title : '客户关怀',
+        title : '车型管理',
         url : 'map.html'
     }, {
-        title : '保单管理',
+        title : '车辆基本信息维护',
+        url : 'map.html'
+    }, {
+        title : '车船税支出管理',
+        url : 'manager.html'
+    }, {
+        title : '保险费支出管理',
+        url : 'map.html'
+    }, {
+        title : '维修保养费支出管理',
+        url : 'manager.html'
+    }, {
+        title : '加油费支出管理',
+        url : 'map.html'
+    }, {
+        title : '租赁费用标准设置',
+        url : 'manager.html'
+    }, {
+        title : '司机信息管理',
+        url : 'manager.html'
+    }, {
+        title : '车辆调拨管理',
+        url : 'map.html'
+    }, {
+        title : '内部用车管理',
         url : 'manager.html'
     } ]
 }, {
-    title : '储存管理',
+    title : '车辆监控',
     iconCls : 'icon-info',
     submenus : [ {
-        title : '入库单',
+        title : '车辆监控定位',
+        url : 'manager.html'
+    }, {
+        title : '车辆跟踪',
         url : 'map.html'
     }, {
-        title : '退车单',
+        title : '轨迹回放',
+        url : 'manager.html'
+    }, {
+        title : '车辆信息锁定',
+        url : 'manager.html'
+    }, {
+        title : '车辆行驶距离统计',
+        url : 'map.html'
+    }, {
+        title : '行驶时间统计',
+        url : 'manager.html'
+    }, {
+        title : '停车查询',
+        url : 'manager.html'
+    }, {
+        title : '车辆报警',
+        url : 'map.html'
+    }, {
+        title : '车辆越界',
+        url : 'manager.html'
+    }, {
+        title : '车辆超速报警',
         url : 'manager.html'
     } ]
 }, {
-    title : '系统设置',
-    iconCls : 'icon-setting',
+    title : '客户管理',
+    iconCls : 'icon-info',
     submenus : [ {
-        title : '地图维护',
+        title : '会员基本信息管理',
         url : 'map.html'
     }, {
-        title : '管理员维护',
+        title : '会员消费及积分管理',
+        url : 'manager.html'
+    }, {
+        title : '会员违章信息管理',
+        url : 'map.html'
+    }, {
+        title : '事故信息管理',
+        url : 'manager.html'
+    }, {
+        title : '会员当前订单',
+        url : 'map.html'
+    }, {
+        title : '会员在租车辆',
+        url : 'manager.html'
+    }, {
+        title : '会员历史租赁记录管理',
+        url : 'map.html'
+    }, {
+        title : '客户咨询记录',
+        url : 'manager.html'
+    }, {
+        title : '客户销售管理',
+        url : 'map.html'
+    }, {
+        title : '优惠电子码管理',
+        url : 'manager.html'
+    }, {
+        title : '短信发送接收管理',
+        url : 'map.html'
+    } ]
+}, {
+    title : '财务管理',
+    iconCls : 'icon-info',
+    submenus : [ {
+        title : '车辆统计',
+        url : 'map.html'
+    }, {
+        title : '每日经营报表',
+        url : 'manager.html'
+    }, {
+        title : '月度经营报表',
+        url : 'manager.html'
+    }, {
+        title : '车辆收入统计',
+        url : 'manager.html'
+    }, {
+        title : '车辆收益统计',
+        url : 'manager.html'
+    }, {
+        title : '会员充值统计',
+        url : 'manager.html'
+    }, {
+        title : '公司管理成本维护',
+        url : 'manager.html'
+    } ]
+}, {
+    title : '维护管理',
+    iconCls : 'icon-setting',
+    submenus : [ {
+        title : '系统用户管理',
+        url : 'manager.html'
+    }, {
+        title : '分店组织管理',
+        url : 'manager.html'
+    }, {
+        title : '角色权限管理',
+        url : 'manager.html'
+    }, {
+        title : '系统日志管理',
+        url : 'manager.html'
+    }, {
+        title : '数据备份管理',
         url : 'manager.html'
     } ]
 }, {

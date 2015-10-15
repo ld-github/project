@@ -72,4 +72,9 @@ public class ManagerBizImpl implements ManagerBiz {
         return managerDao.getUniqueResult(id);
     }
 
+    @Override
+    public boolean checkUsername(String username) {
+        return managerDao.getTotal(username) > 0;
+    }
+
 }

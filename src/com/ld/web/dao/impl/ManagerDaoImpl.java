@@ -56,4 +56,15 @@ public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao {
         orders.put("o.id", "asc");
         return super.getPage(where, params, orders, page);
     }
+
+    @Override
+    public long getTotal(final String username) {
+        String where = "where o.username=:username";
+        return super.getTotal(where, new HashMap<String, Object>() {
+            private static final long serialVersionUID = 3916983047863873704L;
+            {
+                put("username", username);
+            }
+        });
+    }
 }

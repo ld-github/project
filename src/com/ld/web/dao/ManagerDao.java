@@ -32,4 +32,12 @@ public interface ManagerDao extends BaseDao<Manager> {
      * @return
      */
     Page<Manager> getPage(Long exceptMid, String username, Boolean available, Page<Manager> page);
+
+    /**
+     * Get total by username
+     * 
+     * @param username
+     * @return
+     */
+    long getTotal(String username);
 }

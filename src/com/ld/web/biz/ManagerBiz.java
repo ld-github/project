@@ -64,4 +64,12 @@ public interface ManagerBiz {
      * @return
      */
     Manager get(Long id);
+
+    /**
+     * Check username is exist
+     * 
+     * @param username
+     * @return
+     */
+    boolean checkUsername(String username);
 }

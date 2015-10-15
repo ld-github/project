@@ -33,7 +33,7 @@ public class ManagerBizImpl implements ManagerBiz {
     private ManagerDao managerDao;
 
     @Override
-    public void saveUser(Manager manager) {
+    public void save(Manager manager) {
         manager.setCreateDatetime(new Date());
         manager.setAvailable(true);
         managerDao.save(manager);

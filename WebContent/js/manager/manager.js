@@ -6,7 +6,7 @@ var startPage = 1;
 var URLS = {
     GET_PAGE_RECORDS : '../manager!getPageRecords.action',
     CHANGE_AVAILABLE : '../manager!changeAvailable.action',
-    GET_MANAGER : '../manager!getManagerInfo.action',
+    GET_MANAGER : '../manager!get.action',
 };
 
 /**

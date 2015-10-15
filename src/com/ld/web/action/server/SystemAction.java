@@ -54,7 +54,7 @@ public class SystemAction extends ServerAction {
         try {
             manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
             manager.setAdministrator(true);
-            managerBiz.saveUser(manager);
+            managerBiz.save(manager);
             super.putResult(true);
         } catch (Exception e) {
             super.putResult(false);

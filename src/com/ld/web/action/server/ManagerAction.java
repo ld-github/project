@@ -125,8 +125,28 @@ public class ManagerAction extends ServerAction {
      * @return
      * @throws Exception
      */
-    public String getManagerInfo() throws Exception {
+    public String get() throws Exception {
         super.putResult("manager", managerBiz.get(manager.getId()));
+        return SUCCESS;
+    }
+
+    /**
+     * Save Manager
+     */
+    @Override
+    public String save() throws Exception {
+        if (!managerBiz.checkUsername(manager.getUsername())) {
+            super.putResult(false, "登录账号已存在");
+            return SUCCESS;
+        }
+        try {
+            manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+            managerBiz.save(manager);
+            super.putResult(true, "保存成功");
+        } catch (Exception e) {
+            logger.error(String.format("Save manager info error by: %s", e.getMessage()), e);
+            super.putResult(false, "保存失败");
+        }
         return SUCCESS;
     }
 

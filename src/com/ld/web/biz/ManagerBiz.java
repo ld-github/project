@@ -20,7 +20,7 @@ public interface ManagerBiz {
      * @param manager
      * 
      */
-    void saveUser(Manager manager);
+    void save(Manager manager);
 
     /**
      * Get manager count

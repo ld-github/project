@@ -33,15 +33,15 @@ function formLoadJson(formId, json) {
         var key = input.attr('name');
         if (key != undefined) {
             var keys = key.split('.');
-            var value = null;
+            var value = undefined;
             for (var i = 0; i < keys.length; i++) {
-                if (null == value) {
+                if (undefined == value) {
                     value = json[keys[i]];
                 } else {
                     value = value[keys[i]];
                 }
             }
-            if (undefined != value && null != value) {
+            if (undefined != value) {
                 input.val(value);
             }
         }

@@ -41,6 +41,8 @@ public class ManagerAction extends ServerAction {
 
     private int available = -1;
 
+    private int administrator = -1;
+
     /**
      * Manager login
      * 
@@ -94,13 +96,6 @@ public class ManagerAction extends ServerAction {
         return SUCCESS;
     }
 
-    private Boolean getAvailable(int available) {
-        if (available > -1) {
-            return available == 1 ? true : false;
-        }
-        return null;
-    }
-
     /**
      * Change manager available
      * 
@@ -143,6 +138,7 @@ public class ManagerAction extends ServerAction {
             }
 
             manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+            manager.setAdministrator(getAdministrator(this.administrator));
             managerBiz.save(manager);
             super.putResult(true, "保存成功");
         } catch (Exception e) {
@@ -150,6 +146,14 @@ public class ManagerAction extends ServerAction {
             super.putResult(false, "保存失败");
         }
         return SUCCESS;
+    }
+
+    private Boolean getAvailable(int available) {
+        return available > -1 ? available == 1 ? true : false : null;
+    }
+
+    private Boolean getAdministrator(int administrator) {
+        return administrator > -1 ? administrator == 1 ? true : false : null;
     }
 
     public Manager getManager() {
@@ -182,6 +186,14 @@ public class ManagerAction extends ServerAction {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    public int getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(int administrator) {
+        this.administrator = administrator;
     }
 
 }

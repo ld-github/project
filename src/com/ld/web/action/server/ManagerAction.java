@@ -135,11 +135,13 @@ public class ManagerAction extends ServerAction {
      */
     @Override
     public String save() throws Exception {
-        if (!managerBiz.checkUsername(manager.getUsername())) {
-            super.putResult(false, "登录账号已存在");
-            return SUCCESS;
-        }
         try {
+            if (!managerBiz.checkUsername(manager.getUsername())) {
+                logger.error(String.format("Save manager info error by username: %s is exist!", manager.getUsername()));
+                super.putResult(false, "登录账号已存在");
+                return SUCCESS;
+            }
+
             manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
             managerBiz.save(manager);
             super.putResult(true, "保存成功");

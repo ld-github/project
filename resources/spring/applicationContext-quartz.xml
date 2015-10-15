@@ -1,0 +1,31 @@
+<beans 
+    xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+                  http://www.springframework.org/schema/beans
+                  http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/context
+                  http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="serverJob" class="com.ld.web.quartz.ServerJob"></bean>
+    <bean id="serverJobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="serverJob" />
+        <property name="targetMethod" value="work" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <bean id="serverJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="serverJobTask" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/1 * * * ?</value>
+        </property>
+    </bean>
+    <bean id="serverJobScheduler" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="serverJobTrigger" />
+            </list>
+        </property>
+    </bean>
+</beans>

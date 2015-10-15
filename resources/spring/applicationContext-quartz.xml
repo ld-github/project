@@ -21,6 +21,7 @@
             <value>0 0/1 * * * ?</value>
         </property>
     </bean>
+
     <bean id="serverJobScheduler" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>

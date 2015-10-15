@@ -18,6 +18,6 @@ public class ServerJob {
     private static final Logger logger = Logger.getLogger(ServerJob.class);
 
     public void work() throws JobExecutionException {
-        logger.info("Server timed tasks started...");
+        logger.info("Server timed tasks start up...");
     }
 }

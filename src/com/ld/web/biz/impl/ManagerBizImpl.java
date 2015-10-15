@@ -41,7 +41,7 @@ public class ManagerBizImpl implements ManagerBiz {
 
     @Override
     public long getUserCount() {
-        return managerDao.getTotal(null, null);
+        return managerDao.getTotal();
     }
 
     @Override

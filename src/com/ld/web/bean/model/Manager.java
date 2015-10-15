@@ -32,17 +32,17 @@ public class Manager implements Serializable {
 
     private static final long serialVersionUID = 4284572555216108008L;
 
-    private Long id;
+    private Long id; // 主键
 
-    private String username;
+    private String username; // 登录名
 
-    private String password;
+    private String password; // 密码
 
-    private Date createDatetime;
+    private Date createDatetime; // 创建时间
 
-    private boolean administrator;
+    private boolean administrator; // 是否是超级管理员
 
-    private boolean available;
+    private boolean available; // 是否可用
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -34,15 +34,15 @@ public class Customer implements Serializable {
 
     private static final long serialVersionUID = -5315517141478453167L;
 
-    private Long id;
+    private Long id; // 主键
 
-    private String username;
+    private String username; // 用户名
 
-    private String telNo;
+    private String telNo; // 电话号码
 
-    private Gender gender;
+    private Gender gender; // 性别
 
-    private Date createDatetime;
+    private Date createDatetime; // 创建时间
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

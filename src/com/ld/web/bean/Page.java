@@ -19,13 +19,13 @@ public class Page<T> implements Serializable {
 
     private static final long serialVersionUID = 6464430746475414041L;
 
-    private int currentPage;
+    private int currentPage; // 当前页码
 
-    private int pageSize;
+    private int pageSize; // 分页大小
 
-    private Long total;
+    private Long total; // 总条数
 
-    private List<T> records;
+    private List<T> records; // 数据
 
     public int getCurrentPage() {
         return currentPage;

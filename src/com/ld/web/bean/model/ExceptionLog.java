@@ -35,23 +35,23 @@ public class ExceptionLog implements Serializable {
 
     private static final long serialVersionUID = -6693993663180010828L;
 
-    private Long id;
+    private Long id; // 主键
 
-    private String uid;
+    private String uid; // 用户id
 
-    private String username;
+    private String username; // 用户姓名
 
-    private String className;
+    private String className; // 类名
 
-    private String method;
+    private String method; // 方法名
 
-    private String level;
+    private String level; // 级别
 
-    private String message;
+    private String message; // 异常消息
 
-    private ExceptionType exceptionType;
+    private ExceptionType exceptionType; // 异常类型
 
-    private Date createDatetime;
+    private Date createDatetime;// 创建时间
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

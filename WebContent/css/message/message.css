@@ -1,0 +1,57 @@
+#message-editor-form {
+    display: none;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.serach-panel {
+    margin-bottom: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.form-inline {
+    margin-bottom: 5px;
+}
+
+.addon-fixed-width {
+    width: 90px !important;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.title-control {
+    width: 880px !important;
+}
+
+.default-control {
+    width: 150px !important;
+}
+
+.datetime-control {
+    width: 180px !important;
+}
+
+.prompt-add-on {
+    color: red !important;
+    background: none !important;
+    border: none !important;
+}
+
+.img-control {
+    width: 34px !important;
+    background: url("../../images/image.png");
+    background-size: 33px 32px;
+    cursor: pointer;
+}
+
+.datebox, .datebox .textbox-text, .datebox .textbox-addon {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    height: 34px !important;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.datebox .textbox-addon .textbox-icon {
+    height: 32px !important;
+}

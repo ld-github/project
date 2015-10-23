@@ -10,6 +10,9 @@ var MENUS = [ {
     }, {
         title : '地图管理',
         url : 'map.html'
+    }, {
+        title : '消息推送',
+        url : 'message.html'
     } ]
 }, {
     title : '日志记录',

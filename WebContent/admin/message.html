@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>消息发布</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../css/global/style.css">
+<link rel="stylesheet" type="text/css" href="../css/message/message.css">
+
+<!--[if lte IE 9]>
+<script src="../plugins/bootstrap/js/respond.min.js"></script>
+<script src="../plugins/bootstrap/js/html5shiv.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../plugins/jquery.min.js"></script>
+<script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../plugins/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../plugins/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/global/util.js"></script>
+<script type="text/javascript" src="../js/global/ajaxListener.js"></script>
+</head>
+<body>
+    <div id="main-panel">
+        <div class="title-panel">消息信息列表</div>
+        <div class="serach-panel">
+            <form class="form-inline" id="search-form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">标题</div>
+                        <input type="text" class="form-control default-control" name="message.title" placeholder="标题">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="search-btn">搜 索</button>
+            </form>
+        </div>
+        <div id="message-panel"></div>
+    </div>
+    <div id="message-editor-panel">
+        <form id="message-editor-form">
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon addon-fixed-width">标题名称</div>
+                        <input type="text" class="form-control title-control" name="message.title" placeholder="标题名称">
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon addon-fixed-width">标题图片</div>
+                        <div class="form-control img-control"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon addon-fixed-width">推送时间</div>
+                        <input type="text" class="form-control datetime-control" id="send-datetime" name="customer.sendDatetime">
+                        <span class="input-group-addon prompt-add-on">注:不设置推送时间, 默认立刻推送</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="loading"></div>
+
+    <script type="text/javascript" src="../js/message/message.js"></script>
+</body>
+</html>

@@ -284,7 +284,7 @@ var ManagerEditor = function() {
             title : this.title,
             iconCls : this.iconCls,
             width : 350,
-            height : 240,
+            height : 250,
             cache : false,
             modal : true,
             collapsible : true,

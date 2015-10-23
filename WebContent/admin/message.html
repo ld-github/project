@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="../plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="../plugins/jquery-easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="../plugins/uploader/css/webuploader.css">
+<link rel="stylesheet" type="text/css" href="../plugins/uploader/css/style.css">
 <link rel="stylesheet" type="text/css" href="../css/global/style.css">
 <link rel="stylesheet" type="text/css" href="../css/message/message.css">
 
@@ -23,6 +25,8 @@
 <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../plugins/jquery-easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../plugins/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../plugins/uploader/webuploader.min.js"></script>
+<script type="text/javascript" src="../plugins/uploader/upload.js"></script>
 <script type="text/javascript" src="../js/global/util.js"></script>
 <script type="text/javascript" src="../js/global/ajaxListener.js"></script>
 </head>
@@ -56,7 +60,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon addon-fixed-width">标题图片</div>
-                        <div class="form-control img-control"></div>
+                        <div class="form-control img-control" id="upload-title-image"></div>
                     </div>
                 </div>
             </div>
@@ -70,6 +74,9 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div id="uploader-panel">
+        <div id="uploader-box"></div>
     </div>
     <div id="loading"></div>
 

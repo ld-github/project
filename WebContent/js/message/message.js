@@ -149,7 +149,29 @@ var MessageEditor = function() {
     };
 };
 
+/**
+ * 初始化上传控件
+ */
+function initUploader() {
+    var uploader = new Uploader().init('#uploader-box');
+
+    $('#uploader-panel').css('display', 'block');
+    uploader.onUploadBeforeSend = function(object, data, headers) {
+    };
+    uploader.onUploadSuccess = function(file, response) {
+    };
+    $('#uploader-panel').dialog({
+        width : 680,
+        height : 460,
+        modal : true,
+        title : '文件上传',
+        iconCls : 'icon-save',
+    });
+}
+
 $(function() {
     initDateBox();
     initDatagrid();
+
+    $('#upload-title-image').click(initUploader);
 });

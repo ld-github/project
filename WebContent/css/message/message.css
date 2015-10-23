@@ -55,3 +55,7 @@
 .datebox .textbox-addon .textbox-icon {
     height: 32px !important;
 }
+
+#uploader-panel {
+    display: none;
+}

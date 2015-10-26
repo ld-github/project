@@ -150,4 +150,6 @@ $(function() {
             $('#content-panel').tabs('resize');
         }
     });
+
+    $('#right-box').show();
 });

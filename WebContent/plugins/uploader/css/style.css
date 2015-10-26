@@ -7,7 +7,9 @@
 }
 
 #uploader .queueList {
-    margin: 20px;
+    margin: 10px 10px 0px 10px;
+    height: 240px;
+    overflow: auto;
 }
 
 .element-invisible {
@@ -18,10 +20,10 @@
 
 #uploader .placeholder {
     border: 3px dashed #e6e6e6;
-    min-height: 238px;
-    padding-top: 158px;
+    min-height: 178px;
+    padding-top: 98px;
     text-align: center;
-    background: url(../images/image.png) center 93px no-repeat;
+    background: url(../images/image.png) center 33px no-repeat;
     color: #cccccc;
     font-size: 18px;
     position: relative;
@@ -90,7 +92,7 @@
     height: 110px;
     background: url(../images/bg.png) no-repeat;
     text-align: center;
-    margin: 0 8px 20px 0;
+    margin: 0 5px 10px 0;
     position: relative;
     display: inline;
     float: left;
@@ -220,8 +222,7 @@
 #uploader .filelist div.file-panel {
     position: absolute;
     height: 0;
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80000000', endColorstr='#80000000')
-        \0;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80000000', endColorstr='#80000000')\0;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
     top: 0;
@@ -269,7 +270,7 @@
 #uploader .statusBar {
     height: 63px;
     border-top: 1px solid #dadada;
-    padding: 0 20px;
+    padding: 0 10px;
     line-height: 63px;
     vertical-align: middle;
     position: relative;
@@ -313,7 +314,7 @@
 #uploader .statusBar .btns {
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 10px;
     line-height: 40px;
 }
 

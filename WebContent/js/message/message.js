@@ -163,8 +163,8 @@ function initUploader() {
     $('#uploader-panel').show();
 
     $('#uploader-panel').dialog({
-        width : 680,
-        height : 460,
+        width : 627,
+        height : 355,
         modal : true,
         title : '文件上传',
         iconCls : 'icon-save',

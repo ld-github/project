@@ -25,6 +25,10 @@ body {
     width: 200px;
 }
 
+#right-box {
+    display: none;
+}
+
 .center-panel {
     background: #eee;
 }

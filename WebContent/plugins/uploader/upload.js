@@ -115,7 +115,7 @@ var Uploader = function() {
                         delete window['expressinstallcallback'];
                     };
 
-                    var swf = './expressInstall.swf';
+                    var swf = '../plugins/uploader/swf/expressInstall.swf';
                     // insert flash object
                     var html = '<object type="application/' + 'x-shockwave-flash" data="' + swf + '" ';
 
@@ -123,9 +123,8 @@ var Uploader = function() {
                         html += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
                     }
 
-                    html += 'width="100%" height="100%" style="outline:0">' + '<param name="movie" value="' + swf
-                            + '" />' + '<param name="wmode" value="transparent" />'
-                            + '<param name="allowscriptaccess" value="always" />' + '</object>';
+                    html += 'width="100%" height="100%" style="outline:0">' + '<param name="movie" value="' + swf + '" />' 
+                        + '<param name="wmode" value="transparent" />' + '<param name="allowscriptaccess" value="always" />' + '</object>';
 
                     container.html(html);
 
@@ -152,7 +151,7 @@ var Uploader = function() {
             },
             dnd : '#dndArea',
             paste : warp,
-            swf : '../../dist/Uploader.swf',
+            swf : '../plugins/uploader/swf/uploader.swf',
             chunked : false,
             chunkSize : 512 * 1024,
             server : '../../server/fileupload.php',

@@ -6,15 +6,15 @@ var UPLOADER_HTML = '<div id="uploader"><div class="queueList"><div id="dndArea"
 
 var Uploader = function() {
 
-    this.reload = function(warp, prompt) {
+    this.reset = function(warp, prompt) {
         $(warp).empty().html(UPLOADER_HTML);
         if (prompt != undefined) {
             $('#dndArea p').html(prompt);
         }
     };
 
-    this.init = function(warp) {
-        $(warp).empty().html(UPLOADER_HTML);
+    this.init = function(warp, prompt) {
+        this.reset(warp, prompt);
 
         var $wrap = $(warp),
         

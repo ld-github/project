@@ -155,11 +155,13 @@ var MessageEditor = function() {
 function initUploader() {
     var uploader = new Uploader().init('#uploader-box');
 
-    $('#uploader-panel').css('display', 'block');
     uploader.onUploadBeforeSend = function(object, data, headers) {
     };
     uploader.onUploadSuccess = function(file, response) {
     };
+
+    $('#uploader-panel').show();
+
     $('#uploader-panel').dialog({
         width : 680,
         height : 460,

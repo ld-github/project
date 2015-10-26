@@ -241,6 +241,7 @@ var ManagerEditor = function() {
 
     this.init = function(editorStatus) {
         document.getElementById('manager-editor-form').reset();
+
         $(MANAGER_EDITOR_FORM).show();
 
         if (editorStatus == EDITOR_STATUS.NEW) {

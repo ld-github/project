@@ -171,9 +171,17 @@ function initUploader() {
     });
 }
 
+/**
+ * 初始化编辑器
+ */
+function initEditor() {
+    var ue = UE.getEditor('editor');
+}
+
 $(function() {
     initDateBox();
     initDatagrid();
+    initEditor();
 
     $('#upload-title-image').click(initUploader);
 });

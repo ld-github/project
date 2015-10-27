@@ -1,5 +1,7 @@
 package com.ld.web.biz.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -27,8 +29,8 @@ public class ExceptionLogBizImpl implements ExceptionLogBiz {
     private ExceptionLogDao exceptionLogDao;
 
     @Override
-    public Page<ExceptionLog> getPage(Page<ExceptionLog> page) {
-        return exceptionLogDao.getPage(page);
+    public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate) {
+        return exceptionLogDao.getPage(page, beginDate, endDate);
     }
 
 }

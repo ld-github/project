@@ -1,5 +1,7 @@
 package com.ld.web.action.server;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,8 @@ import com.ld.web.action.ServerAction;
 import com.ld.web.bean.Page;
 import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.biz.ExceptionLogBiz;
+import com.ld.web.util.DateUtil;
+import com.ld.web.util.StringUtil;
 
 /**
  * 
@@ -32,13 +36,20 @@ public class ExceptionLogAction extends ServerAction {
 
     private Page<ExceptionLog> page;
 
+    private String beginDate; // 起始时间
+
+    private String endDate; // 结束时间
+
     /**
      * Get page Records ExceptionLog
      */
     @Override
     public String getPageRecords() throws Exception {
         try {
-            super.putResult(exceptionLogBiz.getPage(page));
+            String pattern = DateUtil.TEMPORALTYPE_DATE;
+            Date beginDate = StringUtil.isEmpty(this.beginDate) ? null : DateUtil.parse(this.beginDate, pattern);
+            Date endDate = StringUtil.isEmpty(this.endDate) ? null : DateUtil.parse(this.endDate, pattern);
+            super.putResult(exceptionLogBiz.getPage(page, beginDate, endDate));
         } catch (Exception e) {
             super.putResult("page", null);
             logger.error(String.format("Get ExceptionLog page error: %s", e.getMessage()), e);
@@ -52,6 +63,22 @@ public class ExceptionLogAction extends ServerAction {
 
     public Page<ExceptionLog> getPage() {
         return page;
+    }
+
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
 }

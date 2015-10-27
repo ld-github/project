@@ -1,5 +1,7 @@
 package com.ld.web.dao;
 
+import java.util.Date;
+
 import com.ld.web.bean.Page;
 import com.ld.web.bean.model.ExceptionLog;
 
@@ -18,7 +20,9 @@ public interface ExceptionLogDao extends BaseDao<ExceptionLog> {
      * Query ExceptionLog records to page
      * 
      * @param page
+     * @param endDate
+     * @param beginDate
      * @return
      */
-    Page<ExceptionLog> getPage(Page<ExceptionLog> page);
+    Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate);
 }

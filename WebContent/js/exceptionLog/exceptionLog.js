@@ -12,7 +12,8 @@ var URLS = {
  * @param pageNumber
  */
 function getPageLogs() {
-    var args = setPaginationPageParams(LOGS_PANEL);
+    var args = getSearchParams();
+    setPaginationPageParams(LOGS_PANEL, args);
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
         if (data) {
             loadDatagridData(LOGS_PANEL, data);
@@ -60,7 +61,70 @@ function initDatagrid() {
     });
 }
 
+/**
+ * Init dateBox
+ */
+function initDateBox() {
+    var beginDateButtons = $.extend([], $.fn.datebox.defaults.buttons);
+    beginDateButtons.splice(1, 0, {
+        text : '清空',
+        handler : function(target) {
+            $('#begin-date').datebox('setValue', '');
+        }
+    });
+
+    $('#begin-date').datebox({
+        editable : false,
+        panelWidth : 180,
+        buttons : beginDateButtons
+    });
+
+    var endDateButtons = $.extend([], $.fn.datebox.defaults.buttons);
+    endDateButtons.splice(1, 0, {
+        text : '清空',
+        handler : function(target) {
+            $('#end-date').datebox('setValue', '');
+        }
+    });
+
+    $('#end-date').datebox({
+        editable : false,
+        panelWidth : 180,
+        buttons : endDateButtons
+    });
+}
+
+var searchParams = {};
+
+/**
+ * Set search params
+ * 
+ * @param json
+ */
+function setSearchParams(json) {
+    searchParams = json;
+}
+
+/**
+ * Get search params
+ * 
+ * @returns {___anonymous_searchParams}
+ */
+function getSearchParams() {
+    return searchParams;
+}
+
+/**
+ * Search by search form params
+ */
+function search() {
+    setSearchParams($('#search-form').serializeJson());
+    setDatagridPager(LOGS_PANEL, startPage, getDatagridPaginationPageSize(LOGS_PANEL));
+    getPageLogs();
+}
+
 $(function() {
+    initDateBox();
     initDatagrid();
 
     $(LOGS_PANEL).datagrid('getPager').pagination({
@@ -74,4 +138,6 @@ $(function() {
     $(window).resize(function() {
         $(LOGS_PANEL).datagrid('resize');
     });
+
+    $('#search-btn').click(search);
 });

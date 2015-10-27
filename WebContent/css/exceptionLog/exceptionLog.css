@@ -2,3 +2,19 @@
     position: relative;
     margin-bottom: 10px;
 }
+
+.datetime-control {
+    width: 180px !important;
+}
+
+.datebox, .datebox .textbox-text, .datebox .textbox-addon {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    height: 34px !important;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.datebox .textbox-addon .textbox-icon {
+    height: 32px !important;
+}

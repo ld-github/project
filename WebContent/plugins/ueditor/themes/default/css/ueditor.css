@@ -1170,7 +1170,6 @@ div.edui-box {
 .edui-default .edui-dialog {
     z-index: 2000;
     position: absolute;
-
 }
 
 .edui-dialog div{
@@ -1191,6 +1190,7 @@ div.edui-box {
     position: relative;
     padding:2px 0 0 2px;
     _zoom: 1;
+    box-sizing: content-box;
 }
 
 .edui-default .edui-dialog-fullscreen-flag .edui-dialog-body {
@@ -1218,6 +1218,7 @@ div.edui-box {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
     background-clip: padding-box;
+    box-sizing: content-box;
 }
 
 .edui-default .edui-dialog-foot {

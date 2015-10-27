@@ -118,7 +118,7 @@ public class ExceptionLog implements Serializable {
         this.message = message;
     }
 
-    @Column(nullable = false, columnDefinition = "INT default 0")
+    @Column(columnDefinition = "INT default 0")
     @Enumerated(EnumType.ORDINAL)
     public ExceptionType getExceptionType() {
         return exceptionType;

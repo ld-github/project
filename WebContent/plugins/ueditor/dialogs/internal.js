@@ -26,9 +26,9 @@
                 r.collapse( false );
                 r.select();
             } else {
-                node.focus()
+                node.focus();
             }
-        }, 0 )
+        }, 0 );
     };
     utils.loadFile(document,{
         href:editor.options.themePath + editor.options.theme + "/dialogbase.css?cache="+Math.random(),
@@ -54,7 +54,7 @@
                 }
                 if(content.style){
                     content = utils.extend({},content,false);
-                    content.style = content.style.replace(/url\s*\(/g,"url(" + langImgPath)
+                    content.style = content.style.replace(/url\s*\(/g,"url(" + langImgPath);
                 }
                 switch ( tagName.toLowerCase() ) {
                     case "var":

@@ -59,3 +59,8 @@
 #uploader-panel {
     display: none;
 }
+
+#editor {
+    width: 967px;
+    height: 190px;
+}

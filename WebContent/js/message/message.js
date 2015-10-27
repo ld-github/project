@@ -140,7 +140,7 @@ var MessageEditor = function() {
             title : this.title,
             iconCls : this.iconCls,
             width : 1005,
-            height : 450,
+            height : 500,
             cache : false,
             modal : true,
             collapsible : true,

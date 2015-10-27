@@ -184,4 +184,8 @@ $(function() {
     initEditor();
 
     $('#upload-title-image').click(initUploader);
+
+    $(window).resize(function() {
+        $(MESSAGE_PANEL).datagrid('resize');
+    });
 });

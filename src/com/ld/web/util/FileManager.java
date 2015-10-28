@@ -53,7 +53,7 @@ public class FileManager {
     public static void mkdirs(File directory) {
         if (!directory.exists()) {
             directory.mkdirs();
-            logger.info(String.format("Make dirs by filepath: %s", directory.getAbsoluteFile()));
+            logger.info(String.format("Make dirs by directory path: %s", directory.getAbsoluteFile()));
         }
     }
 
@@ -80,10 +80,10 @@ public class FileManager {
 
         if (!directory.exists()) {
             directory.mkdirs();
-            logger.info(String.format("Make dirs by filepath: %s", directory.getAbsoluteFile()));
+            logger.info(String.format("Make dirs by directory path: %s", directory.getAbsoluteFile()));
         }
 
-        logger.info(String.format("Create file absolute path: %s ", file.getAbsolutePath()));
+        logger.info(String.format("Create file absolute file path: %s ", file.getAbsolutePath()));
         return file.createNewFile();
     }
 
@@ -99,12 +99,12 @@ public class FileManager {
     public static File createTempFile(String prefixName, String suffixName, File directory) throws IOException {
         if (null != directory) {
             String path = directory.getAbsolutePath();
-            logger.info(String.format("Create temp file prefixName: %s, suffixName: %s, filepath: %s", prefixName, suffixName, path));
+            logger.info(String.format("Create temp file prefixName: %s, suffixName: %s, directory path: %s", prefixName, suffixName, path));
             mkdirs(path);
         }
         File tempFile = File.createTempFile(prefixName, suffixName, directory);
 
-        logger.info(String.format("Create file absolute path: %s ", tempFile.getAbsolutePath()));
+        logger.info(String.format("Create file absolute file path: %s ", tempFile.getAbsolutePath()));
         return tempFile;
     }
 

@@ -26,10 +26,9 @@ public class FileManager {
      * @return
      */
     public static String getSuffixName(String filename) {
-        logger.info(String.format("Get suffix name by filename: %s", filename));
         String suffixName = filename.substring(filename.lastIndexOf("."));
 
-        logger.info(String.format("Get suffix name: %s", suffixName));
+        logger.info(String.format("Get suffix name: %s by filename: %s", suffixName, filename));
         return suffixName;
     }
 
@@ -40,10 +39,9 @@ public class FileManager {
      * @return
      */
     public static String getPrefixName(String filename) {
-        logger.info(String.format("Get prefix name by filename: %s", filename));
         String prefixName = filename.substring(0, filename.lastIndexOf("."));
 
-        logger.info(String.format("Get prefix name: %s", prefixName));
+        logger.info(String.format("Get prefix name: %s by filename: %s", prefixName, filename));
         return prefixName;
     }
 
@@ -108,18 +106,6 @@ public class FileManager {
 
         logger.info(String.format("Create file absolute path: %s ", tempFile.getAbsolutePath()));
         return tempFile;
-    }
-
-    /**
-     * Create temp file
-     * 
-     * @param filename
-     * @param directory
-     * @return
-     * @throws IOException
-     */
-    public static File createTempFile(String filename, File directory) throws IOException {
-        return createTempFile(getPrefixName(filename), getSuffixName(filename), directory);
     }
 
 }

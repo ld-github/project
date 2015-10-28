@@ -3,6 +3,7 @@ package com.ld.web.util;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -83,7 +84,7 @@ public class FileManager {
             logger.info(String.format("Make dirs by directory path: %s", directory.getAbsoluteFile()));
         }
 
-        logger.info(String.format("Create file absolute file path: %s ", file.getAbsolutePath()));
+        logger.info(String.format("Create file absolute path: %s ", file.getAbsolutePath()));
         return file.createNewFile();
     }
 
@@ -104,8 +105,26 @@ public class FileManager {
         }
         File tempFile = File.createTempFile(prefixName, suffixName, directory);
 
-        logger.info(String.format("Create file absolute file path: %s ", tempFile.getAbsolutePath()));
+        logger.info(String.format("Create file absolute path: %s ", tempFile.getAbsolutePath()));
         return tempFile;
     }
 
+    /**
+     * Copy srcFile to destFile
+     * 
+     * @param srcFile
+     * @param destFile
+     * @return
+     */
+    public static boolean copyFile(File srcFile, File destFile) {
+        mkdirs(destFile.getParentFile());
+
+        try {
+            FileUtils.copyFile(srcFile, destFile);
+            return true;
+        } catch (IOException e) {
+            logger.error(String.format("Copy file error by: %s", e.getMessage()), e);
+            return false;
+        }
+    }
 }

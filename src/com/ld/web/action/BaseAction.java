@@ -1,11 +1,13 @@
 package com.ld.web.action;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -40,6 +42,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport {
 
     private static final long serialVersionUID = 624599246438196900L;
+
+    private static final Logger logger = Logger.getLogger(BaseAction.class);
 
     private final String RESULT_CODE = "code";
     private final String RESULT_PAGE = "page";
@@ -148,6 +152,25 @@ public class BaseAction extends ActionSupport {
      */
     public HttpServletResponse takeResponse() {
         return ServletActionContext.getResponse();
+    }
+
+    /**
+     * Write str to response
+     * 
+     * @param resp
+     * @param str
+     */
+    public void writeString(String str) {
+        try {
+            logger.info(String.format("Response data: %s", str));
+
+            HttpServletResponse resp = takeResponse();
+            resp.setHeader("Content-type", "text/html;charset=UTF-8");
+            resp.setCharacterEncoding("utf-8");
+            resp.getOutputStream().write(str.getBytes("utf-8"));
+        } catch (IOException e) {
+            logger.error(String.format("Response data error by %s", e.getMessage()), e);
+        }
     }
 
     /**

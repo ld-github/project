@@ -1,3 +1,12 @@
+var startPage = 1;
+
+/**
+ * Action urls
+ */
+var URLS = {
+    File_UPLOAD : '../file!upload.action',
+};
+
 /**
  * Init dateBox
  */
@@ -107,6 +116,8 @@ var MessageEditor = function() {
                 iconCls : 'icon-save',
                 handler : function() {
                     console.log($(MESSAGE_EDITOR_FORM).serializeJson());
+                    uploader.reset();
+                    alert("reset");
                 }
             };
             this.buttons.push(saveBtn);
@@ -149,15 +160,25 @@ var MessageEditor = function() {
     };
 };
 
+var uploader = null;
+
 /**
  * 初始化上传控件
  */
 function initUploader() {
-    var uploader = new Uploader().init('#uploader-box');
+    uploader = new Uploader().init('#uploader-box');
+    uploader.option('server', URLS.File_UPLOAD);
 
     uploader.onUploadBeforeSend = function(object, data, headers) {
+
     };
+
     uploader.onUploadSuccess = function(file, response) {
+        alert(response.status);
+    };
+
+    uploader.onUploadError = function(file, reason) {
+        alert(reason);
     };
 
     $('#uploader-panel').show();

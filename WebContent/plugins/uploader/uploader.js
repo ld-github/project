@@ -4,20 +4,27 @@ var UPLOADER_HTML = '<div id="uploader"><div class="queueList"><div id="dndArea"
         + '</div><div class="info"></div><div class="btns"><div id="filePicker2"></div><div class="uploadBtn">开始上传</div>'
         + '</div></div></div>';
 
+var ERROR_TYPE = {
+        'Q_EXCEED_NUM_LIMIT' : '文件数量超出限制',
+        'Q_EXCEED_SIZE_LIMIT' : '添加的文件总大小超出限制',
+        'Q_TYPE_DENIED' : '文件类型不匹配',
+        'F_EXCEED_SIZE' : '单个文件大小超出限制',
+        'F_DUPLICATE' : '文件重复',
+    };
+
 var Uploader = function() {
 
-    this.reset = function(warp, prompt) {
-        $(warp).empty().html(UPLOADER_HTML);
+    this.reset = function(container, prompt) {
+        $(container).empty().html(UPLOADER_HTML);
         if (prompt != undefined) {
             $('#dndArea p').html(prompt);
         }
     };
 
-    this.init = function(warp, prompt) {
-        this.reset(warp, prompt);
+    this.init = function(container, prompt) {
+        this.reset(container, prompt);
 
-        var $wrap = $(warp),
-        
+        var $wrap = $('#uploader'),
 
         // 图片容器
         $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList')),
@@ -94,7 +101,6 @@ var Uploader = function() {
         uploader;
 
         if (!WebUploader.Uploader.support('flash') && WebUploader.browser.ie) {
-
             // flash 安装了但是版本过低。
             if (flashVersion) {
                 (function(container) {
@@ -122,18 +128,17 @@ var Uploader = function() {
                     if (WebUploader.browser.ie) {
                         html += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
                     }
-
-                    html += 'width="100%" height="100%" style="outline:0">' + '<param name="movie" value="' + swf + '" />' 
-                        + '<param name="wmode" value="transparent" />' + '<param name="allowscriptaccess" value="always" />' + '</object>';
+                    html += 'width="100%" height="100%" style="outline:0">' 
+                             + '<param name="movie" value="' + swf + '" />' 
+                             + '<param name="wmode" value="transparent" />'
+                             + '<param name="allowscriptaccess" value="always" />'
+                             + '</object>';
 
                     container.html(html);
-
                 })($wrap);
-
             } else {
                 $wrap.html('<a href="http://www.adobe.com/go/getflashplayer" target="_blank" border="0"><img alt="get flash player" src="http://www.adobe.com/macromedia/style_guide/images/160x41_Get_Flash_Player.jpg" /></a>');
             }
-
             return;
         } else if (!WebUploader.Uploader.support()) {
             new Message('Web Uploader 不支持您的浏览器').show(false);
@@ -146,15 +151,12 @@ var Uploader = function() {
                 id : '#filePicker',
                 label : '点击选择图片'
             },
-            formData : {
-                uid : 123
-            },
             dnd : '#dndArea',
-            paste : warp,
+            paste : '#uploader',
             swf : '../plugins/uploader/swf/uploader.swf',
             chunked : false,
             chunkSize : 512 * 1024,
-            server : '../../server/fileupload.php',
+            server : '../file!upload.action',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -166,7 +168,7 @@ var Uploader = function() {
             disableGlobalDnd : true,
             fileNumLimit : 300,
             fileSizeLimit : 200 * 1024 * 1024, // 200 M
-            fileSingleSizeLimit : 50 * 1024 * 1024 // 50 M
+            fileSingleSizeLimit : 50 * 1024 * 1024, // 50 M
         });
 
         // 拖拽时不接受 js, txt 文件。
@@ -207,11 +209,10 @@ var Uploader = function() {
 
         // 当有文件添加进来时执行，负责view的创建
         function addFile(file) {
-            var $li = $('<li id="' + file.id + '">' + '<p class="title">' + file.name + '</p>'
-                    + '<p class="imgWrap"></p>' + '<p class="progress"><span></span></p>' + '</li>'),
+            var $li = $('<li id="' + file.id + '">' + '<p class="title">' + file.name + '</p>' + '<p class="imgWrap"></p>' + '<p class="progress"><span></span></p>' + '</li>'),
 
-            $btns = $('<div class="file-panel">' + '<span class="cancel">删除</span>' + '<span class="rotateRight">向右旋转</span>' 
-                    + '<span class="rotateLeft">向左旋转</span></div>').appendTo($li), $prgress = $li.find('p.progress span'), $wrap = $li.find('p.imgWrap'), $info = $('<p class="error"></p>'),
+            $btns = $('<div class="file-panel">' + '<span class="cancel">删除</span>' + '<span class="rotateRight">向右旋转</span>' + '<span class="rotateLeft">向左旋转</span></div>')
+                    .appendTo($li), $prgress = $li.find('p.progress span'), $wrap = $li.find('p.imgWrap'), $info = $('<p class="error"></p>'),
 
             showError = function(code) {
                 switch (code) {
@@ -234,7 +235,6 @@ var Uploader = function() {
             if (file.getStatus() === 'invalid') {
                 showError(file.statusText);
             } else {
-                // @todo lazyload
                 $wrap.text('预览中');
                 uploader.makeThumb(file, function(error, src) {
                     var img;
@@ -342,10 +342,10 @@ var Uploader = function() {
                     // easing: 'linear',
                     // step: function( now ) {
                     // now = now * Math.PI / 180;
-    
+
                     // var cos = Math.cos( now ),
                     // sin = Math.sin( now );
-    
+
                     // $wrap.css( 'filter',
                     // "progid:DXImageTransform.Microsoft.Matrix(M11=" + cos +
                     // ",M12=" + (-sin) + ",M21=" + sin + ",M22=" + cos +
@@ -499,7 +499,6 @@ var Uploader = function() {
 
             removeFile(file);
             updateTotalProgress();
-
         };
 
         uploader.on('all', function(type) {
@@ -519,7 +518,8 @@ var Uploader = function() {
         });
 
         uploader.onError = function(code) {
-            new Message('Eroor: ' + code).show(false);
+            var msg = ERROR_TYPE[code];
+            new Message('错误: ' + (msg ? msg : code)).show(false);
         };
 
         $upload.on('click', function() {
@@ -541,7 +541,8 @@ var Uploader = function() {
         });
 
         $info.on('click', '.ignore', function() {
-            new Message('todo').show();
+            uploader.reset();
+            new Message("已忽略失败文件").show();
         });
 
         $upload.addClass('state-' + state);

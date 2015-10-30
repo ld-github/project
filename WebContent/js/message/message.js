@@ -175,10 +175,11 @@ function initUploader() {
 
     uploader.onUploadSuccess = function(file, response) {
         alert(response.status);
-    };
+        if (response.status) {
 
-    uploader.onUploadError = function(file, reason) {
-        alert(reason);
+        } else {
+            file.setStatus('error', 'server');
+        }
     };
 
     $('#uploader-panel').show();

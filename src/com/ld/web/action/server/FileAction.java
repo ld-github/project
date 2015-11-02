@@ -41,6 +41,9 @@ public class FileAction extends ServerAction {
         try {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
 
+            String realPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
+            logger.info(String.format("Upload get parent path by realPath: %s", realPath));
+
             super.putResult(true, String.format("文件: %s上传成功", fileFileName));
             logger.info(String.format("Upload file %s success", fileFileName));
         } catch (Exception e) {

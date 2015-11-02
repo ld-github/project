@@ -95,7 +95,9 @@ public class FileAction extends ServerAction {
                 throw new RuntimeException("Copy destFile from srcFile error!");
             }
             logger.info(String.format("Copy file to: %s", destFileDir));
-            Attachment att = new Attachment(filename, fileFileName, destFilePath, requestUrl, destFileDir, title, alt, remark, new Date());
+
+            Date createDatetime = DateUtil.parseNow(DateUtil.TEMPORALTYPE_TIMESTAMP);
+            Attachment att = new Attachment(filename, fileFileName, destFilePath, requestUrl, destFileDir, title, alt, remark, createDatetime);
 
             attachmentBiz.save(att);
             super.putResult(true, String.format("文件: %s上传成功", fileFileName));

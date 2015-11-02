@@ -18,7 +18,7 @@ public class FileAction extends ServerAction {
 
     private static final Logger logger = Logger.getLogger(FileAction.class);
 
-    private static final String UPLOAD_FOLDER = "project-upload";
+    private static final String UPLOAD_FOLDER = "upload";
 
     private File file;
 
@@ -47,11 +47,13 @@ public class FileAction extends ServerAction {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
 
             String realPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
+            String projectName = super.takeRequest().getContextPath().substring(1);
+
             logger.info(String.format("Upload get parent path by realPath: %s", realPath));
             String date = DateUtil.formatNow(DateUtil.TEMPORALTYPE_DATE);
             String uuid = UUID.randomUUID().toString().replace("-", "");
             String fileName = uuid + FileManager.getSuffixName(this.fileFileName);
-            String destFilePath = realPath + File.separator + UPLOAD_FOLDER + File.separator + date;
+            String destFilePath = realPath + File.separator + projectName + "-" + UPLOAD_FOLDER + File.separator + date;
 
             File destFile = new File(destFilePath + File.separator + fileName);
             if (!FileManager.createFile(destFile)) {

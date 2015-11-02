@@ -59,7 +59,9 @@ public class FileAction extends ServerAction {
             if (!FileManager.createFile(destFile)) {
                 throw new RuntimeException("Create dest file error!");
             }
-            FileManager.copyFile(file, destFile);
+            if (!FileManager.copyFile(file, destFile)) {
+                throw new RuntimeException("Copy destFile from srcFile error!");
+            }
             logger.info(String.format("Copy file to: %s", destFilePath));
 
             super.putResult(true, String.format("文件: %s上传成功", fileFileName));

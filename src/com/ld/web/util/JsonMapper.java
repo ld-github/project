@@ -90,10 +90,10 @@ public class JsonMapper {
      * @see #fromJson(String, JavaType)
      */
     public <T> T toObject(String json, Class<T> clazz) {
-        if (StringUtil.isEmpty(json)) {
-            return null;
-        }
         try {
+            if (StringUtil.isEmpty(json)) {
+                return null;
+            }
             return mapper.readValue(json, clazz);
         } catch (IOException e) {
             logger.error(String.format("Parse json string to object error: %s", json), e);
@@ -108,10 +108,10 @@ public class JsonMapper {
      */
     @SuppressWarnings("unchecked")
     public <T> T toObject(String json, TypeReference<?> typeRefer) {
-        if (StringUtil.isEmpty(json)) {
-            return null;
-        }
         try {
+            if (StringUtil.isEmpty(json)) {
+                return null;
+            }
             return (T) mapper.readValue(json, typeRefer);
         } catch (IOException e) {
             logger.error(String.format("Parse json string to object error: %s", json), e);

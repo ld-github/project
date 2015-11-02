@@ -149,7 +149,7 @@ var Uploader = function() {
         uploader = WebUploader.create({
             pick : {
                 id : '#filePicker',
-                label : '点击选择图片'
+                label : '点击选择文件'
             },
             dnd : '#dndArea',
             paste : '#uploader',
@@ -386,7 +386,7 @@ var Uploader = function() {
             var text = '', stats;
 
             if (state === 'ready') {
-                text = '选中' + fileCount + '张图片，共' + WebUploader.formatSize(fileSize) + '。';
+                text = '选中' + fileCount + '个文件，共' + WebUploader.formatSize(fileSize) + '。';
             } else if (state === 'confirm') {
                 stats = uploader.getStats();
                 if (stats.uploadFailNum) {

@@ -41,11 +41,12 @@ public class FileAction extends ServerAction {
         try {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
 
-            super.putResult(true, "上传文件成功");
-            System.out.println(1 / 0);
+            super.putResult(true, String.format("文件: %s上传成功", fileFileName));
+            logger.info(String.format("Upload file %s success", fileFileName));
         } catch (Exception e) {
-            logger.error(String.format("Upload file error by: %s", e.getMessage()), e);
             super.putResult(false, String.format("文件: %s上传失败", fileFileName));
+            super.takeResponse().setStatus(500);
+            logger.error(String.format("Upload file %s error by: %s", fileFileName, e.getMessage()), e);
         }
         super.writeString(JsonMapper.getInstance().toJson(super.getResult()));
         return NONE;

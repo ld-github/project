@@ -174,11 +174,8 @@ function initUploader() {
     };
 
     uploader.onUploadSuccess = function(file, response) {
-        alert(response.status);
         if (response.status) {
 
-        } else {
-            file.setStatus('error', 'server');
         }
     };
 

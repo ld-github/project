@@ -63,7 +63,6 @@ public class FileAction extends ServerAction {
     /**
      * Upload other params
      */
-
     private String title; // 标题
 
     private String alt; // 属性

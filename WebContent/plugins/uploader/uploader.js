@@ -456,7 +456,7 @@ var Uploader = function() {
             case 'finish':
                 stats = uploader.getStats();
                 if (stats.successNum) {
-                    new Message('上传成功').show();
+                    new Message('成功上传' + stats.successNum + "个文件").show();
                 } else {
                     state = 'done';
                     location.reload();

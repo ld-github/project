@@ -1,11 +1,14 @@
 package com.ld.web.action.server;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 
 import com.ld.web.action.ServerAction;
+import com.ld.web.util.DateUtil;
+import com.ld.web.util.FileManager;
 import com.ld.web.util.JsonMapper;
 
 @Action(value = "file")
@@ -14,6 +17,8 @@ public class FileAction extends ServerAction {
     private static final long serialVersionUID = 4857983949040220967L;
 
     private static final Logger logger = Logger.getLogger(FileAction.class);
+
+    private static final String UPLOAD_FOLDER = "project-upload";
 
     private File file;
 
@@ -43,6 +48,17 @@ public class FileAction extends ServerAction {
 
             String realPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
             logger.info(String.format("Upload get parent path by realPath: %s", realPath));
+            String date = DateUtil.formatNow(DateUtil.TEMPORALTYPE_DATE);
+            String uuid = UUID.randomUUID().toString().replace("-", "");
+            String fileName = uuid + FileManager.getSuffixName(this.fileFileName);
+            String destFilePath = realPath + File.separator + UPLOAD_FOLDER + File.separator + date;
+
+            File destFile = new File(destFilePath + File.separator + fileName);
+            if (!FileManager.createFile(destFile)) {
+                throw new RuntimeException("Create dest file error!");
+            }
+            FileManager.copyFile(file, destFile);
+            logger.info(String.format("Copy file to: %s", destFilePath));
 
             super.putResult(true, String.format("文件: %s上传成功", fileFileName));
             logger.info(String.format("Upload file %s success", fileFileName));

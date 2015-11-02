@@ -99,7 +99,7 @@ public class FileAction extends ServerAction {
 
             attachmentBiz.save(att);
             super.putResult(true, String.format("文件: %s上传成功", fileFileName));
-            super.putResult("attId", att.getId());
+            super.putResult("attachment", att);
             logger.info(String.format("Upload file %s success", fileFileName));
         } catch (Exception e) {
             super.putResult(false, String.format("文件: %s上传失败", fileFileName));

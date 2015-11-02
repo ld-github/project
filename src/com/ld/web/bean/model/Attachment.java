@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  *<p>Title: Attachment</p>
@@ -78,6 +80,7 @@ public class Attachment implements Serializable {
         this.realname = realname;
     }
 
+    @JsonIgnore
     @Column(length = 255, nullable = false)
     public String getFilepath() {
         return filepath;
@@ -96,6 +99,7 @@ public class Attachment implements Serializable {
         this.requestUrl = requestUrl;
     }
 
+    @JsonIgnore
     @Column(length = 255, nullable = false)
     public String getDir() {
         return dir;

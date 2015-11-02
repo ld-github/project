@@ -175,7 +175,7 @@ function initUploader() {
 
     uploader.onUploadSuccess = function(file, response) {
         if (response.status) {
-            alert(response.attId);
+            console.log(response.attachment);
         }
     };
 

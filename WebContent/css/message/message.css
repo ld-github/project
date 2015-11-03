@@ -1,7 +1,7 @@
 #message-editor-form {
     display: none;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .serach-panel {
@@ -20,7 +20,7 @@
 }
 
 .title-control {
-    width: 880px !important;
+    width: 860px !important;
 }
 
 .default-control {
@@ -61,6 +61,6 @@
 }
 
 #editor {
-    width: 969px;
+    width: 950px !important;
     height: 190px;
 }

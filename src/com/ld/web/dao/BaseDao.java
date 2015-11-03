@@ -155,8 +155,7 @@ public interface BaseDao<T> {
      * @param page
      * @return
      */
-    Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders,
-            Page<T> page);
+    Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page);
 
     /**
      * Get list by sql

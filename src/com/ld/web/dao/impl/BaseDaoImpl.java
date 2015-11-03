@@ -193,8 +193,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params,
-            LinkedHashMap<String, String> orders, Page<T> page) {
+    public Page<T> getPageBySql(String sql, String totalSql, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page) {
         sql = sql + this.getOrder(orders);
         Query q = this.getCurrentSession().createSQLQuery(sql);
         q.setResultTransformer(Transformers.aliasToBean(getClazz()));

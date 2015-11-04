@@ -16,6 +16,8 @@ import javax.persistence.UniqueConstraint;
 import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * <p>Title: Manager</p>
@@ -44,6 +46,7 @@ public class Manager implements Serializable {
 
     private boolean available; // 是否可用
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {

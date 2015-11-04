@@ -24,7 +24,6 @@ public class ServerJob {
         try {
             logger.info("Server timed tasks start up...");
             MDC.put(ExceptionType.EXCEPTION_TYPE, ExceptionType.SYSTEM.value());
-            System.out.println(1 / 0);
         } catch (Exception e) {
             logger.error(String.format("Server timed tasks error by: %s", e.getMessage()), e);
         }

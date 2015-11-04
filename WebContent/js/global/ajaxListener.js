@@ -20,6 +20,7 @@ $(function() {
      */
     $(document).ajaxError(function(event, request, settings) {
         $('#loading').hide();
+        new Message('加载错误...').show(false);
         if (request.status == 403) {
             new Message('用户登录已过期，请重新登录...').show(false);
             setTimeout(function() {

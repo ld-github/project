@@ -46,9 +46,9 @@ public class Manager implements Serializable {
 
     private boolean available; // 是否可用
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JSON(serialize = false)
     public Long getId() {
         return id;
     }

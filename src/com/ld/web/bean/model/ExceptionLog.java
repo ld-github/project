@@ -72,7 +72,7 @@ public class ExceptionLog implements Serializable {
         this.uid = uid;
     }
 
-    @Column(length = 32, nullable = false)
+    @Column(length = 32)
     public String getUsername() {
         return username;
     }

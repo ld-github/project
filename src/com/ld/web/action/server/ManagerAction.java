@@ -50,7 +50,7 @@ public class ManagerAction extends ServerAction {
      * @throws Exception
      */
     public String login() throws Exception {
-        logger.info(String.format("Username %s request login...", manager.getUsername()));
+        logger.info(String.format("Username: %s request login...", manager.getUsername()));
 
         String kaptcha = (String) super.takeSession().get(Constants.KAPTCHA_SESSION_KEY);
         if (!kaptcha.equals(this.kaptcha)) {
@@ -61,7 +61,7 @@ public class ManagerAction extends ServerAction {
         Manager m = managerBiz.login(manager.getUsername(), password);
         if (null == m) {
             super.putResult(false, "账号或密码错误");
-            logger.info(String.format("Username %s login failed...", manager.getUsername()));
+            logger.info(String.format("Username: %s login failed...", manager.getUsername()));
             return SUCCESS;
         }
         if (m.getAvailable()) {

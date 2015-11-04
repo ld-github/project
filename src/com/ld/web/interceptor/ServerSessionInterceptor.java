@@ -4,6 +4,7 @@ import org.apache.log4j.MDC;
 
 import com.ld.web.action.ServerAction;
 import com.ld.web.bean.model.Manager;
+import com.ld.web.enumeration.ExceptionType;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -24,7 +25,8 @@ public class ServerSessionInterceptor extends MethodFilterInterceptor {
     private static final long serialVersionUID = -4873322877077133583L;
 
     /**
-     * Check session whether or not hava login manager, if not, return Action.login
+     * Check session whether or not hava login manager, if not, return
+     * Action.login
      * 
      */
     @Override
@@ -34,8 +36,8 @@ public class ServerSessionInterceptor extends MethodFilterInterceptor {
         if (null == manager) {
             return Action.LOGIN;
         }
-        MDC.put("uid", manager.getId());
-        MDC.put("username", manager.getUsername());
+        MDC.put(ExceptionType.UID, manager.getId());
+        MDC.put(ExceptionType.USERNAME, manager.getUsername());
         return invocation.invoke();
     }
 }

@@ -22,7 +22,7 @@ public class ServerMDCInterceptor extends MethodFilterInterceptor {
 
     @Override
     protected String doIntercept(ActionInvocation invocation) throws Exception {
-        MDC.put("exceptionType", ExceptionType.MANAGER.value());
+        MDC.put(ExceptionType.EXCEPTION_TYPE, ExceptionType.MANAGER.value());
         return invocation.invoke();
     }
 

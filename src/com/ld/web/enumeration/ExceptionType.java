@@ -13,9 +13,9 @@ package com.ld.web.enumeration;
 public enum ExceptionType {
 
     /**
-     * MANAGER:管理员 USER:用户
+     * MANAGER:管理员 USER:用户 SYSTEM:系统
      */
-    MANAGER(0), USER(1);
+    MANAGER(0), USER(1), SYSTEM(2);
 
     private int value = 0;
 
@@ -35,4 +35,8 @@ public enum ExceptionType {
     private ExceptionType(int value) {
         this.value = value;
     }
+
+    public static final String UID = "uid";
+    public static final String USERNAME = "username";
+    public static final String EXCEPTION_TYPE = "exceptionType";
 }

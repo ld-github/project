@@ -29,7 +29,7 @@ public enum ExceptionType {
                 return i;
             }
         }
-        return null;
+        return SYSTEM;
     }
 
     private ExceptionType(int value) {

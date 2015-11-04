@@ -16,8 +16,6 @@ import javax.persistence.UniqueConstraint;
 import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Type;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * 
  * <p>Title: Manager</p>

@@ -1,6 +1,7 @@
 package test;
 
 import com.ld.web.util.CharacterTool;
+import com.ld.web.util.SignUtil;
 
 /**
  * 
@@ -17,5 +18,8 @@ public class TestSecurity {
         String str = "admin";
         System.out.println(CharacterTool.sha(str));
         System.out.println(CharacterTool.sha(str).length());
+        String json = "\"abc\"";
+        String key = "zhax";
+        System.out.println(SignUtil.signJson(json, key));
     }
 }

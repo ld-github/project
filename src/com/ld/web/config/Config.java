@@ -42,4 +42,7 @@ public class Config {
             logger.error(String.format("Load config error by: %s", e.getMessage()), e);
         }
     }
+
+    public static final String REQ_PARAMS_JSON = "json";
+    public static final String REQ_PARAMS_SIGNATURE = "signature";
 }

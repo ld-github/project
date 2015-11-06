@@ -104,8 +104,8 @@ public class FileAction extends ServerAction {
             super.putResult("attachment", att);
             logger.info(String.format("Upload file %s success", fileFileName));
         } catch (Exception e) {
-            super.putResult(false, String.format("文件: %s上传失败", fileFileName));
             super.takeResponse().setStatus(500);
+            super.putResult(false, String.format("文件: %s上传失败", fileFileName));
             logger.error(String.format("Upload file %s error by: %s", fileFileName, e.getMessage()), e);
         }
         super.writeString(JsonMapper.getInstance().toJson(super.getResult()));

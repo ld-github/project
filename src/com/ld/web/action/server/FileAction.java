@@ -69,6 +69,11 @@ public class FileAction extends ServerAction {
 
     private String remark; // 备注
 
+    /**
+     * Download file params
+     */
+    private String downloadFilePath;
+
     public String upload() throws Exception {
         try {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
@@ -80,12 +85,12 @@ public class FileAction extends ServerAction {
             String date = DateUtil.formatNow(DateUtil.TEMPORALTYPE_DATE);
             String uuid = UUID.randomUUID().toString().replace("-", "");
             String filename = uuid + FileManager.getSuffixName(this.fileFileName);
-            String fileDir = File.separator + projectName + "-" + UPLOAD_FOLDER + File.separator + date + File.separator;
 
-            String destFileDir = realPath + fileDir;
+            String requestfileDir = File.separator + projectName + "-" + UPLOAD_FOLDER + File.separator + date + File.separator;
+            String destFileDir = realPath + requestfileDir;
             String destFilePath = destFileDir + filename;
 
-            String requestUrl = fileDir + filename;
+            String requestUrl = requestfileDir + filename;
 
             File destFile = new File(destFileDir + filename);
             if (!FileManager.createFile(destFile)) {
@@ -198,6 +203,14 @@ public class FileAction extends ServerAction {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getDownloadFilePath() {
+        return downloadFilePath;
+    }
+
+    public void setDownloadFilePath(String downloadFilePath) {
+        this.downloadFilePath = downloadFilePath;
     }
 
 }

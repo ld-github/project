@@ -17,12 +17,12 @@ import com.ld.web.bean.model.Privilege;
 public interface PrivilegeBiz {
 
     /**
-     * Save Privilege
+     * Save or update Privilege
      * 
      * @param privilege
      * @return
      */
-    boolean save(Privilege privilege);
+    boolean saveOrUpdate(Privilege privilege);
 
     /**
      * Get all Privilege
@@ -38,4 +38,9 @@ public interface PrivilegeBiz {
      * @return
      */
     Privilege get(Long id);
+
+    /**
+     * Truncate table Privilege
+     */
+    void truncate();
 }

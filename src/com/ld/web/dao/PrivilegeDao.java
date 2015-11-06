@@ -14,4 +14,10 @@ import com.ld.web.bean.model.Privilege;
  */
 public interface PrivilegeDao extends BaseDao<Privilege> {
 
+    /**
+     * Turncate table
+     * 
+     * @return
+     */
+    void truncate();
 }

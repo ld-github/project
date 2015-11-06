@@ -76,4 +76,20 @@ public class Privilege implements Serializable {
         this.description = description;
     }
 
+    public Privilege(List<Privilege> items, String name, String description) {
+        this.items = items;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Privilege(Long id, List<Privilege> items, String name, String description) {
+        this.id = id;
+        this.items = items;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Privilege() {
+    }
+
 }

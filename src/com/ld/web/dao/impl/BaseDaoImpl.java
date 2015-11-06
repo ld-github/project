@@ -266,4 +266,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return q.list();
     }
 
+    @Override
+    public int executeUpdateSql(String sql, Map<String, Object> params) {
+        Query q = this.getCurrentSession().createSQLQuery(sql);
+        setParams(q, params);
+        return q.executeUpdate();
+    }
+
 }

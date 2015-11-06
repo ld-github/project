@@ -32,12 +32,12 @@ public class PrivilegeBizImpl implements PrivilegeBiz {
     private PrivilegeDao privilegeDao;
 
     @Override
-    public boolean save(Privilege privilege) {
+    public boolean saveOrUpdate(Privilege privilege) {
         try {
-            privilegeDao.save(privilege);
+            privilegeDao.saveOrUpdate(privilege);
             return true;
         } catch (Exception e) {
-            logger.error(String.format("Save privilege error by: %s", e.getMessage(), e));
+            logger.error(String.format("Save or update privilege error by: %s", e.getMessage(), e));
             return false;
         }
     }
@@ -50,6 +50,11 @@ public class PrivilegeBizImpl implements PrivilegeBiz {
     @Override
     public Privilege get(Long id) {
         return privilegeDao.getUniqueResult(id);
+    }
+
+    @Override
+    public void truncate() {
+        privilegeDao.truncate();
     }
 
 }

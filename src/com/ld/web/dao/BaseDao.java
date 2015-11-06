@@ -194,4 +194,12 @@ public interface BaseDao<T> {
      * @return
      */
     Object getUniqueResultByHql(String hql, Map<String, Object> params) throws Exception;
+
+    /**
+     * ExecuteUpdate
+     * 
+     * @param hql
+     * @return
+     */
+    int executeUpdateSql(String sql, Map<String, Object> params);
 }

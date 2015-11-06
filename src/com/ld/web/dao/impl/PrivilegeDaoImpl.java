@@ -18,4 +18,10 @@ import com.ld.web.dao.PrivilegeDao;
 @Repository
 public class PrivilegeDaoImpl extends BaseDaoImpl<Privilege> implements PrivilegeDao {
 
+    @Override
+    public void truncate() {
+        String hql = "TRUNCATE TABLE t_privilege";
+        super.executeUpdateSql(hql, null);
+    }
+
 }

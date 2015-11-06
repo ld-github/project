@@ -37,8 +37,7 @@ public class SimpleMailSender implements Serializable {
     /**
      * 以文本格式发送邮件
      * 
-     * @param mailInfo
-     *            待发送的邮件信息
+     * @param mailInfo 待发送的邮件信息
      * @return
      */
     public static void sendTextMail(MailSenderInfo mailInfo) throws Exception {
@@ -64,8 +63,7 @@ public class SimpleMailSender implements Serializable {
     /**
      * 以HTML格式发送邮件
      * 
-     * @param mailInfo
-     *            待发送的邮件信息
+     * @param mailInfo 待发送的邮件信息
      * @return
      */
     public static void sendHtmlMail(MailSenderInfo mailInfo) throws Exception {

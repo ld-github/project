@@ -23,8 +23,8 @@ public class ServerJob {
     public void work() throws JobExecutionException {
         try {
             logger.info("Server timed tasks start up...");
-            MDC.put(ExceptionType.EXCEPTION_TYPE, ExceptionType.SYSTEM.value());
         } catch (Exception e) {
+            MDC.put(ExceptionType.EXCEPTION_TYPE, ExceptionType.SYSTEM.value());
             logger.error(String.format("Server timed tasks error by: %s", e.getMessage()), e);
         }
     }

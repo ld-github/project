@@ -226,3 +226,12 @@ function removeToolBarMenu(id, removeNext) {
     }
     $(id).parent().remove();
 }
+
+var CHECK_SESSION_URL = '../manager!takeLoginManager.action';
+
+/**
+ * Check Session
+ */
+function checkSession() {
+    $.post(CHECK_SESSION_URL);
+}

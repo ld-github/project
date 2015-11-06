@@ -170,7 +170,7 @@ function initUploader() {
     uploader.option('server', URLS.File_UPLOAD);
 
     uploader.onUploadBeforeSend = function(object, data, headers) {
-
+        checkSession();
     };
 
     uploader.onUploadSuccess = function(file, response) {

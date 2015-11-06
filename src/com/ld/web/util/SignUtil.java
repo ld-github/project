@@ -41,11 +41,8 @@ public class SignUtil {
      */
     public static String signJson(String json, String key) {
         String signature = sign(json, key);
-        StringBuffer sb = new StringBuffer(Config.REQ_PARAMS_JSON + "=");
-        sb.append(json);
-        sb.append("&");
-        sb.append(Config.REQ_PARAMS_SIGNATURE + "=");
-        sb.append(signature);
+        StringBuffer sb = new StringBuffer(Config.REQ_PARAMS_JSON + "=" + json);
+        sb.append("&" + Config.REQ_PARAMS_SIGNATURE + "=" + signature);
         String signJson = sb.toString();
         logger.info(String.format("Sign json result: %s", signJson));
         return signJson;

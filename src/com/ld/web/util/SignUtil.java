@@ -5,6 +5,16 @@ import org.apache.log4j.Logger;
 
 import com.ld.web.config.Config;
 
+/**
+*
+*<p>Title: SignUtil</p>
+*<p>Copyright: Copyright (c) 2015</p>
+*<p>Description: MD5根据json和key签名</p>
+*
+*@author LD
+*
+*@date 2015-11-06
+*/
 public class SignUtil {
 
     private static Logger logger = Logger.getLogger(SignUtil.class);

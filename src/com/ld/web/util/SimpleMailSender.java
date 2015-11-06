@@ -37,7 +37,8 @@ public class SimpleMailSender implements Serializable {
     /**
      * 以文本格式发送邮件
      * 
-     * @param mailInfo 待发送的邮件信息
+     * @param mailInfo
+     *            待发送的邮件信息
      * @return
      */
     public static void sendTextMail(MailSenderInfo mailInfo) throws Exception {
@@ -63,7 +64,8 @@ public class SimpleMailSender implements Serializable {
     /**
      * 以HTML格式发送邮件
      * 
-     * @param mailInfo 待发送的邮件信息
+     * @param mailInfo
+     *            待发送的邮件信息
      * @return
      */
     public static void sendHtmlMail(MailSenderInfo mailInfo) throws Exception {
@@ -95,12 +97,13 @@ public class SimpleMailSender implements Serializable {
      * 
      * @param username
      * @return
+     * @throws Exception
      */
-    private static MailSenderInfo chooseServer(MailSenderInfo mailInfo) {
+    private static MailSenderInfo chooseServer(MailSenderInfo mailInfo) throws Exception {
         String username = mailInfo.getUsername();
         String identification = username.substring(username.lastIndexOf("@"), username.length());
         if (!SERVERS_INFOS.containsKey(identification)) {
-            return mailInfo;
+            throw new Exception("Set the sender email errors");
         }
         String[] serverInfo = SERVERS_INFOS.get(identification);
         mailInfo.setServerHost(serverInfo[0]);

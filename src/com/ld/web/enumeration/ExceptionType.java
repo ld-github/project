@@ -15,7 +15,7 @@ public enum ExceptionType {
     /**
      * MANAGER:管理员 USER:用户 SYSTEM:系统
      */
-    MANAGER(0), USER(1), SYSTEM(2);
+    SYSTEM(0), MANAGER(1), USER(2), ;
 
     private int value = 0;
 

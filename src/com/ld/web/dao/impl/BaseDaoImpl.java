@@ -60,7 +60,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public List<T> getList(String where, Map<String, Object> params, LinkedHashMap<String, String> orders) {
         where = where == null ? "" : where;
-        String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
+        String hql = "FROM " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.list();
@@ -75,7 +75,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public T getUniqueResult(String where, Map<String, Object> params) throws Exception {
         where = where == null ? "" : where;
-        String hql = "from " + this.getClassName() + " o " + where;
+        String hql = "FROM " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return (T) q.uniqueResult();
@@ -84,7 +84,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T getUniqueResult(final Long primaryKey) {
-        String hql = "from " + this.getClassName() + " o where o.id=:id";
+        String hql = "FROM " + this.getClassName() + " o WHERE o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {
             private static final long serialVersionUID = 8568462066745554547L;
@@ -102,7 +102,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public int update(String where, Map<String, Object> params) {
-        String hql = "update " + this.getClassName() + " o " + where;
+        String hql = "UPDATE " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.executeUpdate();
@@ -110,7 +110,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public void delete(final Long primaryKey) {
-        String hql = "delete " + this.getClassName() + " o where o.id=:id";
+        String hql = "DELETE " + this.getClassName() + " o WHERE o.id=:id";
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {
             private static final long serialVersionUID = -4864915463081917504L;
@@ -130,7 +130,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public Page<T> getPage(String where, Map<String, Object> params, LinkedHashMap<String, String> orders, Page<T> page) {
         where = where == null ? "" : where;
-        String hql = "from " + this.getClassName() + " o " + where + this.getOrder(orders);
+        String hql = "FROM " + this.getClassName() + " o " + where + this.getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         if (null != page) {
@@ -148,7 +148,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public Long getTotal(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
-        String hql = "select count(o) from " + this.getClassName() + " o " + where;
+        String hql = "SELECT COUNT(o) FROM " + this.getClassName() + " o " + where;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return (Long) q.uniqueResult();
@@ -169,7 +169,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         if (null == orders || orders.isEmpty()) {
             return "";
         }
-        StringBuffer sb = new StringBuffer("order by");
+        StringBuffer sb = new StringBuffer("ORDER BY");
         for (String key : orders.keySet()) {
             sb.append(" ").append(key).append(" ").append(orders.get(key)).append(",");
         }
@@ -248,7 +248,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public T getUniqueResultByOrder(String where, Map<String, Object> params, LinkedHashMap<String, String> orders) {
         where = where == null ? "" : where;
-        String hql = "from " + this.getClassName() + " o " + where + getOrder(orders);
+        String hql = "FROM " + this.getClassName() + " o " + where + getOrder(orders);
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         q.setFirstResult(0);

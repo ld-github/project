@@ -12,13 +12,20 @@
     <constant name="struts.configuration.xml.reload" value="true" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
 
-    <package name="server-default" extends="json-default" namespace="/">
+    <package name="base-default" extends="json-default" namespace="/">
+        <global-results>
+            <result name="login" type="httpheader">
+                <param name="error">403</param>
+            </result>
+        </global-results>
+    </package>
+
+    <package name="server-default" extends="base-default" namespace="/">
         <interceptors>
             <interceptor name="serverSessionInterceptor" class="com.ld.web.interceptor.ServerSessionInterceptor">
                 <param name="excludeMethods">login, checkSystem, initSystem</param>
             </interceptor>
             <interceptor name="serverMDCInterceptor" class="com.ld.web.interceptor.ServerMDCInterceptor">
-                <param name="excludeMethods"></param>
             </interceptor>
             <interceptor-stack name="baseStack">
                 <interceptor-ref name="serverMDCInterceptor" />
@@ -27,20 +34,6 @@
             </interceptor-stack>
         </interceptors>
         <default-interceptor-ref name="baseStack"></default-interceptor-ref>
-
-        <global-results>
-            <result name="login" type="httpheader">
-                <param name="error">403</param>
-            </result>
-        </global-results>
-    </package>
-
-    <package name="base-default" extends="json-default" namespace="/">
-        <global-results>
-            <result name="login" type="httpheader">
-                <param name="error">403</param>
-            </result>
-        </global-results>
     </package>
 
 </struts>

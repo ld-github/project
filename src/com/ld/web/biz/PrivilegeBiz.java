@@ -40,6 +40,14 @@ public interface PrivilegeBiz {
     Privilege get(Long id);
 
     /**
+     * Delete Privilege
+     * 
+     * @param privilege
+     * @return
+     */
+    boolean delete(Privilege privilege);
+
+    /**
      * Truncate table Privilege
      */
     void truncate();

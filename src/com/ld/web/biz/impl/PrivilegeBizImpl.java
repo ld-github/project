@@ -57,4 +57,15 @@ public class PrivilegeBizImpl implements PrivilegeBiz {
         privilegeDao.truncate();
     }
 
+    @Override
+    public boolean delete(Privilege privilege) {
+        try {
+            privilegeDao.delete(privilege);
+            return true;
+        } catch (Exception e) {
+            logger.error(String.format("Delete privilege error by: %s", e.getMessage()), e);
+        }
+        return false;
+    }
+
 }

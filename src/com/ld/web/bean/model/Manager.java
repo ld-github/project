@@ -64,8 +64,8 @@ public class Manager implements Serializable {
         this.username = username;
     }
 
-    @JSON(serialize = false)
     @Column(nullable = false)
+    @JSON(serialize = false)
     public String getPassword() {
         return password;
     }

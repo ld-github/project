@@ -133,7 +133,7 @@ public class ManagerAction extends ServerAction {
         try {
             if (!managerBiz.checkUsername(manager.getUsername())) {
                 logger.error(String.format("Save manager info error by username: %s is exist!", manager.getUsername()));
-                super.putResult(false, "登录账号已存在");
+                super.putResult(false, "账号已存在");
                 return SUCCESS;
             }
 

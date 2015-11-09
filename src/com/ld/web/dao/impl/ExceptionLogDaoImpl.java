@@ -26,7 +26,7 @@ public class ExceptionLogDaoImpl extends BaseDaoImpl<ExceptionLog> implements Ex
 
     @Override
     public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate) {
-        String where = "where 1=1 ";
+        String where = "WHERE 1=1 ";
         Map<String, Object> params = new HashMap<String, Object>();
         if (null != beginDate) {
             where += "and o.createDatetime >=:beginDate ";

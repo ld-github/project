@@ -26,7 +26,7 @@ public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao {
 
     @Override
     public Manager query(final String username, final String password) throws Exception {
-        String where = "where o.username=:username and o.password=:password";
+        String where = "WHERE o.username=:username AND o.password=:password";
         return super.getUniqueResult(where, new HashMap<String, Object>() {
             private static final long serialVersionUID = -6854809444774680421L;
             {
@@ -38,14 +38,14 @@ public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao {
 
     @Override
     public Page<Manager> getPage(Long exceptMid, String username, Boolean available, Page<Manager> page) {
-        String where = "where 1=1 ";
+        String where = "WHERE 1=1 ";
         Map<String, Object> params = new HashMap<String, Object>();
         if (null != exceptMid) {
             where += "and o.id !=:exceptMid ";
             params.put("exceptMid", exceptMid);
         }
         if (!StringUtil.isEmpty(username)) {
-            where += "and o.username like :username ";
+            where += "and o.username LIKE :username ";
             params.put("username", "%" + username + "%");
         }
         if (null != available) {
@@ -53,13 +53,13 @@ public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao {
             params.put("available", available);
         }
         LinkedHashMap<String, String> orders = new LinkedHashMap<String, String>();
-        orders.put("o.id", "asc");
+        orders.put("o.id", "ASC");
         return super.getPage(where, params, orders, page);
     }
 
     @Override
     public long getTotal(final String username) {
-        String where = "where o.username=:username";
+        String where = "WHERE o.username=:username";
         return super.getTotal(where, new HashMap<String, Object>() {
             private static final long serialVersionUID = 3916983047863873704L;
             {

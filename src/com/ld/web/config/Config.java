@@ -6,7 +6,6 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 
-import com.ld.web.action.BaseAction;
 import com.ld.web.enumeration.ExceptionType;
 
 /**
@@ -21,7 +20,7 @@ import com.ld.web.enumeration.ExceptionType;
  */
 public class Config {
 
-    private static final Logger logger = Logger.getLogger(BaseAction.class);
+    private static final Logger logger = Logger.getLogger(Config.class);
 
     private static final String CONFIG_FILE = "config.properties";
 

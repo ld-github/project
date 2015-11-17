@@ -1,6 +1,7 @@
 package com.ld.web.action.server;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.UUID;
 
@@ -8,6 +9,8 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 
 import com.ld.web.action.ServerAction;
 import com.ld.web.bean.model.Attachment;
@@ -27,11 +30,16 @@ import com.ld.web.util.JsonMapper;
  *@date 2015-11-02
  */
 @Action(value = "file")
+@Results({ @Result(type = "stream", 
+        name = FileAction.RESULT_STREAM, 
+        params = { "contentType", "${fileContentType}", "inputName", "inputStream", "contentDisposition", "attachment;filename=${fileFileName}" }) })
 public class FileAction extends ServerAction {
 
     private static final long serialVersionUID = 4857983949040220967L;
 
     private static final Logger logger = Logger.getLogger(FileAction.class);
+
+    public static final String RESULT_STREAM = "stream";
 
     private static final String UPLOAD_FOLDER = "upload";
 
@@ -74,6 +82,14 @@ public class FileAction extends ServerAction {
      */
     private String downloadFilePath;
 
+    private InputStream inputStream; // 文件流
+
+    /**
+     * Upload File
+     * 
+     * @return
+     * @throws Exception
+     */
     public String upload() throws Exception {
         try {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
@@ -115,6 +131,19 @@ public class FileAction extends ServerAction {
         }
         super.writeString(JsonMapper.getInstance().toJson(super.getResult()));
         return NONE;
+    }
+
+    /**
+     * Download File
+     * 
+     * @return
+     * @throws Exception
+     */
+    public String download() throws Exception {
+        logger.info(String.format("File download path: %s", downloadFilePath));
+
+        
+        return RESULT_STREAM;
     }
 
     public File getFile() {
@@ -211,6 +240,14 @@ public class FileAction extends ServerAction {
 
     public void setDownloadFilePath(String downloadFilePath) {
         this.downloadFilePath = downloadFilePath;
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
     }
 
 }

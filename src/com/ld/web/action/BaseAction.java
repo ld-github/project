@@ -21,7 +21,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * Result is status default json, result excludeProperties example:
+ * Result type default json, example:
+ * 
  * @Result(type = "json",
  *                   name = UserAction.SAVE,
  *                   params = {"root", "result", "excludeProperties", "users\\[\\d+\\].(password|username){1}, user.(id|password){1}"

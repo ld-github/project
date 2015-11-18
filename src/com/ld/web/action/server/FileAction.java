@@ -35,7 +35,7 @@ import com.ld.web.util.JsonMapper;
         name = FileAction.RESULT_STREAM, 
         params = { "contentType", "application/octet-stream;charset=ISO8859-1", "inputName", "inputStream", 
             "contentDisposition", "attachment;filename=\"${fileFileName}\"", "bufferSize", "1024", 
-            "contentLength", "\"${size}\"", "allowCaching", "false" }) 
+            "contentLength", "\"${contentLength}\"", "allowCaching", "false" }) 
 })
 public class FileAction extends ServerAction {
 
@@ -88,6 +88,8 @@ public class FileAction extends ServerAction {
 
     private InputStream inputStream; // 文件流
 
+    private long contentLength; // 文件长度
+
     /**
      * Upload File
      * 
@@ -98,8 +100,8 @@ public class FileAction extends ServerAction {
         try {
             logger.info(String.format("Upload file contentType: %s, fileName: %s, fileSize: %s", fileContentType, fileFileName, file.length()));
 
-            String realPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
-            logger.info(String.format("Upload get parent path by realPath: %s", realPath));
+            String mainPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
+            logger.info(String.format("Upload get parent path by servletContext realPath: %s", mainPath));
 
             String projectName = super.takeRequest().getContextPath().substring(1);
             String date = DateUtil.formatNow(DateUtil.TEMPORALTYPE_DATE);
@@ -107,7 +109,7 @@ public class FileAction extends ServerAction {
             String filename = uuid + FileManager.getSuffixName(this.fileFileName);
 
             String requestfileDir = File.separator + projectName + "-" + UPLOAD_FOLDER + File.separator + date + File.separator;
-            String destFileDir = realPath + requestfileDir;
+            String destFileDir = mainPath + requestfileDir;
             String destFilePath = destFileDir + filename;
 
             String requestUrl = requestfileDir + filename;
@@ -146,15 +148,39 @@ public class FileAction extends ServerAction {
     public String download() throws Exception {
         logger.info(String.format("File download path: %s", downloadFilePath));
 
-        File file = new File(downloadFilePath);
+        File file = getFile(downloadFilePath);
         if (!file.exists()) {
+            logger.error(String.format("File: %s not exist!", downloadFilePath));
             return NONE;
         }
-        size = file.length() + "";
+        contentLength = file.length();
         fileFileName = file.getName();
         inputStream = new FileInputStream(file);
 
         return RESULT_STREAM;
+    }
+
+    /**
+     * Get file by downloadFilePath
+     * 
+     * @param downloadFilePath
+     * @return
+     */
+    private File getFile(String downloadFilePath) {
+        String mainPath = new File(super.takeRequest().getServletContext().getRealPath("")).getParent();
+        return new File(mainPath + downloadFilePath);
+    }
+
+    /**
+     * Check file exist
+     * 
+     * @return
+     * @throws Exception
+     */
+    public String checkFileExist() throws Exception {
+        File file = getFile(downloadFilePath);
+        super.putResult(file.exists(), file.exists() ? "文件存在" : "文件不存在");
+        return SUCCESS;
     }
 
     public File getFile() {
@@ -259,6 +285,14 @@ public class FileAction extends ServerAction {
 
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
+    }
+
+    public long getContentLength() {
+        return contentLength;
+    }
+
+    public void setContentLength(long contentLength) {
+        this.contentLength = contentLength;
     }
 
 }

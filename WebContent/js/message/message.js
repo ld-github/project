@@ -4,7 +4,7 @@ var startPage = 1;
  * Action urls
  */
 var URLS = {
-    File_UPLOAD : '../file!upload.action',
+    FILE_UPLOAD : '../file!upload.action',
 };
 
 /**
@@ -167,7 +167,7 @@ var uploader = null;
  */
 function initUploader() {
     uploader = new Uploader().init('#uploader-box');
-    uploader.option('server', URLS.File_UPLOAD);
+    uploader.option('server', URLS.FILE_UPLOAD);
 
     uploader.onUploadBeforeSend = function(object, data, headers) {
         checkSession();
@@ -195,10 +195,10 @@ function initUploader() {
 }
 
 /**
- * 初始化编辑器
+ * Init UeEditor
  */
 function initEditor() {
-    var ue = UE.getEditor('editor');
+    UE.getEditor('editor');
 }
 
 $(function() {

@@ -235,3 +235,35 @@ var CHECK_SESSION_URL = '../manager!takeLoginManager.action';
 function checkSession() {
     $.post(CHECK_SESSION_URL);
 }
+
+var FILE_CHECK = '../file!checkFileExist.action';
+var FILE_DOWNLOAD = '../file!download.action';
+
+/**
+ * Download File
+ * 
+ * @param downloadFilePath
+ */
+function downloadFile(downloadFilePath) {
+    var params = {
+        downloadFilePath : downloadFilePath
+    };
+    $.post(FILE_CHECK, params, function(data) {
+        if (data.status) {
+            var downloadFileForm = $('<FORM>').attr({
+                id : 'downloadFileForm',
+                action : FILE_DOWNLOAD
+            }).appendTo('body');
+
+            $('<INPUT>').val(downloadFilePath).attr({
+                name : 'downloadFilePath',
+                type : 'hidden'
+            }).appendTo(downloadFileForm);
+
+            downloadFileForm.submit();
+            downloadFileForm.remove();
+        } else {
+            new Message(data.message).show(false);
+        }
+    });
+}

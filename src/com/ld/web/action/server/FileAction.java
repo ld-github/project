@@ -1,6 +1,7 @@
 package com.ld.web.action.server;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.UUID;
@@ -32,7 +33,10 @@ import com.ld.web.util.JsonMapper;
 @Action(value = "file")
 @Results({ @Result(type = "stream", 
         name = FileAction.RESULT_STREAM, 
-        params = { "contentType", "${fileContentType}", "inputName", "inputStream", "contentDisposition", "attachment;filename=${fileFileName}" }) })
+        params = { "contentType", "application/octet-stream;charset=ISO8859-1", "inputName", "inputStream", 
+            "contentDisposition", "attachment;filename=\"${fileFileName}\"", "bufferSize", "1024", 
+            "contentLength", "\"${size}\"", "allowCaching", "false" }) 
+})
 public class FileAction extends ServerAction {
 
     private static final long serialVersionUID = 4857983949040220967L;
@@ -142,7 +146,14 @@ public class FileAction extends ServerAction {
     public String download() throws Exception {
         logger.info(String.format("File download path: %s", downloadFilePath));
 
-        
+        File file = new File(downloadFilePath);
+        if (!file.exists()) {
+            return NONE;
+        }
+        size = file.length() + "";
+        fileFileName = file.getName();
+        inputStream = new FileInputStream(file);
+
         return RESULT_STREAM;
     }
 

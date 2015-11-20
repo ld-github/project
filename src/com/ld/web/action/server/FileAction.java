@@ -34,9 +34,11 @@ import com.ld.web.util.JsonMapper;
 @Results({ @Result(
         type = "stream", 
         name = FileAction.RESULT_STREAM, 
-        params = { "contentType", "application/octet-stream;charset=ISO8859-1", "inputName", "inputStream", 
+        params = { 
+            "contentType", "application/octet-stream;charset=ISO8859-1", "inputName", "inputStream", 
             "contentDisposition", "attachment;filename=\"${fileFileName}\"", "bufferSize", "1024", 
-            "contentLength", "\"${contentLength}\"", "allowCaching", "false" }) 
+            "contentLength", "\"${contentLength}\"", "allowCaching", "false" 
+        })
 })
 public class FileAction extends ServerAction {
 

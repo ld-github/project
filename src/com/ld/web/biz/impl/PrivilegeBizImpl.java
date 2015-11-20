@@ -64,8 +64,8 @@ public class PrivilegeBizImpl implements PrivilegeBiz {
             return true;
         } catch (Exception e) {
             logger.error(String.format("Delete privilege error by: %s", e.getMessage()), e);
+            return false;
         }
-        return false;
     }
 
 }

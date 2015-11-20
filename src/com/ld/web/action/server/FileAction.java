@@ -31,7 +31,8 @@ import com.ld.web.util.JsonMapper;
  *@date 2015-11-02
  */
 @Action(value = "file")
-@Results({ @Result(type = "stream", 
+@Results({ @Result(
+        type = "stream", 
         name = FileAction.RESULT_STREAM, 
         params = { "contentType", "application/octet-stream;charset=ISO8859-1", "inputName", "inputStream", 
             "contentDisposition", "attachment;filename=\"${fileFileName}\"", "bufferSize", "1024", 

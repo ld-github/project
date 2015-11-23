@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import com.ld.web.bean.mail.MailSenderInfo;
-import com.ld.web.bean.mail.MyAuthenticator;
+import com.ld.web.bean.mail.MailAuthenticator;
 
 /**
  * 
@@ -42,12 +42,12 @@ public class SimpleMailSender implements Serializable {
      * @return
      */
     public static void sendTextMail(MailSenderInfo mailInfo) throws Exception {
-        MyAuthenticator authenticator = null;
+        MailAuthenticator authenticator = null;
         mailInfo = chooseServer(mailInfo);
         Properties pro = mailInfo.getProperties();
         // 如果需要身份认证，则创建一个密码验证器
         if (mailInfo.isValidate()) {
-            authenticator = new MyAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
+            authenticator = new MailAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
         }
         Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
         Message msg = new MimeMessage(sendMailSession);
@@ -69,12 +69,12 @@ public class SimpleMailSender implements Serializable {
      * @return
      */
     public static void sendHtmlMail(MailSenderInfo mailInfo) throws Exception {
-        MyAuthenticator authenticator = null;
+        MailAuthenticator authenticator = null;
         mailInfo = chooseServer(mailInfo);
         Properties pro = mailInfo.getProperties();
         // 如果需要身份认证，则创建一个密码验证器
         if (mailInfo.isValidate()) {
-            authenticator = new MyAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
+            authenticator = new MailAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
         }
         Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
         Message msg = new MimeMessage(sendMailSession);

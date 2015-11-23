@@ -103,7 +103,7 @@ public class SimpleMailSender implements Serializable {
         String username = mailInfo.getUsername();
         String identification = username.substring(username.lastIndexOf("@"), username.length());
         if (!SERVERS_INFOS.containsKey(identification)) {
-            throw new Exception("Set the sender email errors");
+            throw new Exception("Set the sender email error...");
         }
         String[] serverInfo = SERVERS_INFOS.get(identification);
         mailInfo.setServerHost(serverInfo[0]);

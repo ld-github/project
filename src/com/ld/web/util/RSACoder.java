@@ -29,7 +29,7 @@ import javax.crypto.Cipher;
 public class RSACoder {
 
     private static final String RSA = "RSA";
-    private static final String MD5WITHRSA = "MD5withRSA";
+    private static final String MD5_WITH_RSA = "MD5withRSA";
 
     private static final String PUBLIC_KEY = "RSAPublicKey";
     private static final String PRIVATE_KEY = "RSAPrivateKey";
@@ -48,7 +48,7 @@ public class RSACoder {
 
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         PrivateKey priKey = keyFactory.generatePrivate(pkcs8KeySpec);
-        Signature signature = Signature.getInstance(MD5WITHRSA);
+        Signature signature = Signature.getInstance(MD5_WITH_RSA);
         signature.initSign(priKey);
         signature.update(data);
 
@@ -72,7 +72,7 @@ public class RSACoder {
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         PublicKey pubKey = keyFactory.generatePublic(keySpec);
 
-        Signature signature = Signature.getInstance(MD5WITHRSA);
+        Signature signature = Signature.getInstance(MD5_WITH_RSA);
         signature.initVerify(pubKey);
         signature.update(data);
 

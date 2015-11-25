@@ -179,10 +179,6 @@ function initUploader() {
         }
     };
 
-    uploader.on('uploadError', function(file, reason) {
-        console.log(reason);
-    });
-
     $('#uploader-panel').show();
 
     $('#uploader-panel').dialog({

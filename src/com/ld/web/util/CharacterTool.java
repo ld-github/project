@@ -128,7 +128,7 @@ public class CharacterTool {
      * @param input
      * @return
      */
-    public static String sha(String input) {
+    public static String sha256(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance(SHA256);
             md.update(input.getBytes("UTF-8"));

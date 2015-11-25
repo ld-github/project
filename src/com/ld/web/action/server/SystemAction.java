@@ -52,7 +52,7 @@ public class SystemAction extends ServerAction {
      */
     public String initSystem() throws Exception {
         try {
-            manager.setPassword(CharacterTool.sha(CharacterTool.base64Decode(manager.getPassword())));
+            manager.setPassword(CharacterTool.sha256(CharacterTool.base64Decode(manager.getPassword())));
             manager.setAdministrator(true);
             managerBiz.save(manager);
             super.putResult(true);

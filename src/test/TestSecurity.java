@@ -16,8 +16,8 @@ import com.ld.web.util.SignUtil;
 public class TestSecurity {
     public static void main(String[] args) {
         String str = "admin";
-        System.out.println(CharacterTool.sha(str));
-        System.out.println(CharacterTool.sha(str).length());
+        System.out.println(CharacterTool.sha256(str));
+        System.out.println(CharacterTool.sha256(str).length());
         String json = "\"abc\"";
         String key = "zhax";
         System.out.println(SignUtil.signJson(json, key));

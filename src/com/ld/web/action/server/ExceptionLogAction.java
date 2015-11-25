@@ -49,6 +49,7 @@ public class ExceptionLogAction extends ServerAction {
             String pattern = DateUtil.TEMPORALTYPE_DATE;
             Date beginDate = StringUtil.isEmpty(this.beginDate) ? null : DateUtil.parse(this.beginDate, pattern);
             Date endDate = StringUtil.isEmpty(this.endDate) ? null : DateUtil.parse(this.endDate, pattern);
+
             super.putResult(exceptionLogBiz.getPage(page, beginDate, endDate));
         } catch (Exception e) {
             super.putResult("page", null);

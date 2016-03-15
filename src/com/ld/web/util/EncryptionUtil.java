@@ -1,5 +1,6 @@
 package com.ld.web.util;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 
 import javax.crypto.Cipher;
@@ -11,7 +12,11 @@ import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 /**
  * 
@@ -28,11 +33,53 @@ public class EncryptionUtil {
     private static Logger logger = Logger.getLogger(EncryptionUtil.class);
 
     private static final String MD5 = "MD5";
+    private static final String SHA256 = "SHA-256";
     private static final String DES = "DES";
     private static final String HMAC_SHA1 = "HmacSHA1";
     private static final String DESEDE = "DESede";
 
     private static final String CIPHER_ALGORITHM_CBC = "DESede/CBC/PKCS5Padding";
+
+    /**
+     * Base64 decode
+     * 
+     * @param str
+     * @return
+     */
+    public static String base64Decode(String str) {
+        return null == str ? null : new String(Base64.decodeBase64(str));
+    }
+
+    /**
+     * Base64 encode
+     * 
+     * @param str
+     * @return
+     */
+    public static String base64Encode(String str) {
+        return Base64.encodeBase64String(str.getBytes());
+    }
+
+    /**
+     * Base64 decode buffer
+     * 
+     * @param str
+     * @return
+     * @throws IOException
+     */
+    public static byte[] base64DecodeBuffer(String str) throws IOException {
+        return new BASE64Decoder().decodeBuffer(str);
+    }
+
+    /**
+     * Base64 encode buffer
+     * 
+     * @param bytes
+     * @return
+     */
+    public static String base64EecodeBuffer(byte[] bytes) {
+        return new BASE64Encoder().encodeBuffer(bytes);
+    }
 
     /**
      * Md5
@@ -53,6 +100,29 @@ public class EncryptionUtil {
         } catch (Exception e) {
             // This should not happen!
             logger.error(String.format("MD5 EncryptOutHex error: %s", e.getMessage()), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Sha256 to encryption
+     * 
+     * @param input
+     * @return
+     */
+    public static String sha256(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(SHA256);
+            md.update(input.getBytes("UTF-8"));
+            byte[] data = md.digest();
+            StringBuffer result = new StringBuffer(data.length * 2);
+            for (int i = 0; i < data.length; i++) {
+                result.append(Integer.toHexString(data[i] & 0xff));
+            }
+            return result.toString();
+        } catch (Exception e) {
+            logger.error(String.format("SHA256 to encryption error: %s", e.getMessage()), e);
+            // This should not happen!
             throw new RuntimeException(e);
         }
     }

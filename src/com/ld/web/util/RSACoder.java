@@ -43,7 +43,7 @@ public class RSACoder {
      * @throws Exception
      */
     public static String sign(byte[] data, String privateKey) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(privateKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
 
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -52,7 +52,7 @@ public class RSACoder {
         signature.initSign(priKey);
         signature.update(data);
 
-        return CharacterTool.base64EecodeBuffer(signature.sign());
+        return EncryptionUtil.base64EecodeBuffer(signature.sign());
     }
 
     /**
@@ -66,7 +66,7 @@ public class RSACoder {
      * 
      */
     public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(publicKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(publicKey);
 
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -76,7 +76,7 @@ public class RSACoder {
         signature.initVerify(pubKey);
         signature.update(data);
 
-        return signature.verify(CharacterTool.base64DecodeBuffer(sign));
+        return signature.verify(EncryptionUtil.base64DecodeBuffer(sign));
     }
 
     /**
@@ -88,7 +88,7 @@ public class RSACoder {
      * @throws Exception
      */
     public static byte[] decryptByPrivateKey(byte[] data, String privateKey) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(privateKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
 
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -108,7 +108,7 @@ public class RSACoder {
      * @throws Exception
      */
     public static byte[] decryptByPublicKey(byte[] data, String publicKey) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(publicKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(publicKey);
 
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -128,7 +128,7 @@ public class RSACoder {
      * @throws Exception
      */
     public static byte[] encryptByPublicKey(byte[] data, String publicKey) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(publicKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(publicKey);
 
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -148,7 +148,7 @@ public class RSACoder {
      * @throws Exception
      */
     public static byte[] encryptByPrivateKey(byte[] data, String privateKey) throws Exception {
-        byte[] keyBytes = CharacterTool.base64DecodeBuffer(privateKey);
+        byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
 
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
@@ -168,7 +168,7 @@ public class RSACoder {
      */
     public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
         Key key = (Key) keyMap.get(PRIVATE_KEY);
-        return CharacterTool.base64EecodeBuffer(key.getEncoded());
+        return EncryptionUtil.base64EecodeBuffer(key.getEncoded());
     }
 
     /**
@@ -180,7 +180,7 @@ public class RSACoder {
      */
     public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
         Key key = (Key) keyMap.get(PUBLIC_KEY);
-        return CharacterTool.base64EecodeBuffer(key.getEncoded());
+        return EncryptionUtil.base64EecodeBuffer(key.getEncoded());
     }
 
     /**

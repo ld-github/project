@@ -2,7 +2,7 @@ package test;
 
 import java.util.Map;
 
-import com.ld.web.util.CharacterTool;
+import com.ld.web.util.EncryptionUtil;
 import com.ld.web.util.RSACoder;
 
 public class TestRsa {
@@ -20,10 +20,10 @@ public class TestRsa {
 
         byte[] encodedData = RSACoder.encryptByPrivateKey(data, privateKey);
 
-        String encodedDataStr = CharacterTool.base64EecodeBuffer(encodedData);
+        String encodedDataStr = EncryptionUtil.base64EecodeBuffer(encodedData);
         System.out.println("EncodedData str:" + encodedDataStr);
 
-        byte[] decodedData = RSACoder.decryptByPublicKey(CharacterTool.base64DecodeBuffer(encodedDataStr), publicKey);
+        byte[] decodedData = RSACoder.decryptByPublicKey(EncryptionUtil.base64DecodeBuffer(encodedDataStr), publicKey);
 
         String outputStr = new String(decodedData);
         System.out.println("加密前: " + inputStr + "\n\r" + "解密后: " + outputStr);

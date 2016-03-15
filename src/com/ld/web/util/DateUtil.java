@@ -5,21 +5,25 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 /**
  * 
  * <p>Title: DateUtil</p>
  * <p>Copyright: Copyright (c) 2015</p>
  * <p>Description:时间工具类</p>
  *
- * @author LD
+ * @author LD   
  *
  * @date 2015-08-14
  */
 public class DateUtil {
 
-    public static final String TEMPORALTYPE_TIMESTAMP = "yyyy-MM-dd hh:mm:ss";
+    private static Logger logger = Logger.getLogger(DateUtil.class);
+
+    public static final String TEMPORALTYPE_TIMESTAMP = "yyyy-MM-dd HH:mm:ss";
     public static final String TEMPORALTYPE_DATE = "yyyy-MM-dd";
-    public static final String TEMPORALTYPE_TIME = "hh:mm:ss";
+    public static final String TEMPORALTYPE_TIME = "HH:mm:ss";
 
     /**
      * 格式化时间
@@ -52,9 +56,8 @@ public class DateUtil {
      * @return
      * @throws ParseException
      */
-    public static Date parse(Date date, String pattern) throws ParseException {
-        SimpleDateFormat df = new SimpleDateFormat(pattern);
-        return df.parse(format(date, pattern));
+    public static Date parse(Date date, String pattern) {
+        return parse(format(date, pattern), pattern);
     }
 
     /**
@@ -65,9 +68,14 @@ public class DateUtil {
      * @return
      * @throws ParseException
      */
-    public static Date parse(String date, String pattern) throws ParseException {
-        SimpleDateFormat df = new SimpleDateFormat(pattern);
-        return df.parse(date);
+    public static Date parse(String date, String pattern) {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            return df.parse(date);
+        } catch (ParseException e) {
+            logger.error(String.format("Parse date error: %s", e.getMessage()), e);
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -76,7 +84,7 @@ public class DateUtil {
      * @return
      * @throws ParseException
      */
-    public static Date parseNow(String pattern) throws ParseException {
+    public static Date parseNow(String pattern) {
         return parse(new Date(), pattern);
     }
 

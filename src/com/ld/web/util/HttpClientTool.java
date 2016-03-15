@@ -43,6 +43,8 @@ public class HttpClientTool {
      * @return
      */
     public static String post(String url, Map<String, String> header, Map<String, String> params) throws Exception {
+        logger.info(String.format("Httpclient send data: %s", JsonMapper.getInstance().toJson(params)));
+
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpPost httppost = new HttpPost(url);
@@ -60,7 +62,9 @@ public class HttpClientTool {
             HttpResponse response = httpclient.execute(httppost);
             if (null != response && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 HttpEntity entity = response.getEntity();
-                return null != entity ? EntityUtils.toString(entity) : null;
+                String resp = null != entity ? EntityUtils.toString(entity) : null;
+                logger.info(String.format("Httpclient response data: %s", resp));
+                return resp;
             }
             return null;
         } catch (Exception e) {
@@ -86,7 +90,7 @@ public class HttpClientTool {
      * @return
      */
     public static String post(String url, String json) throws Exception {
-        logger.info(String.format("Httpclient request json: %s", json));
+        logger.info(String.format("Httpclient send data: %s", json));
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
@@ -95,14 +99,16 @@ public class HttpClientTool {
             if (!StringUtil.isEmpty(json)) {
                 StringEntity entity = new StringEntity(json, "utf-8");
                 entity.setContentEncoding("utf-8");
-                entity.setContentType("application/json");
+                entity.setContentType("application/x-www-form-urlencoded");
                 httppost.setEntity(entity);
             }
 
             HttpResponse response = httpclient.execute(httppost);
             if (null != response && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 HttpEntity entity = response.getEntity();
-                return null != entity ? EntityUtils.toString(entity) : null;
+                String resp = null != entity ? EntityUtils.toString(entity) : null;
+                logger.info(String.format("Httpclient response data: %s", resp));
+                return resp;
             }
             return null;
         } catch (Exception e) {

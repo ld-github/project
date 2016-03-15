@@ -10,7 +10,7 @@ import com.ld.web.action.ServerAction;
 import com.ld.web.bean.Page;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
-import com.ld.web.util.CharacterTool;
+import com.ld.web.util.EncryptionUtil;
 
 /**
  * 
@@ -57,7 +57,7 @@ public class ManagerAction extends ServerAction {
             super.putResult(false, "验证码输入错误");
             return SUCCESS;
         }
-        String password = CharacterTool.sha256(CharacterTool.base64Decode(manager.getPassword()));
+        String password = EncryptionUtil.sha256(EncryptionUtil.base64Decode(manager.getPassword()));
         Manager m = managerBiz.login(manager.getUsername(), password);
         if (null == m) {
             super.putResult(false, "账号或密码错误");
@@ -137,7 +137,7 @@ public class ManagerAction extends ServerAction {
                 return SUCCESS;
             }
 
-            manager.setPassword(CharacterTool.sha256(CharacterTool.base64Decode(manager.getPassword())));
+            manager.setPassword(EncryptionUtil.sha256(EncryptionUtil.base64Decode(manager.getPassword())));
             manager.setAdministrator(getAdministrator(this.administrator));
             managerBiz.save(manager);
             super.putResult(true, "保存成功");

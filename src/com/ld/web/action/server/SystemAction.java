@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.Action;
 import com.ld.web.action.ServerAction;
 import com.ld.web.bean.model.Manager;
 import com.ld.web.biz.ManagerBiz;
-import com.ld.web.util.CharacterTool;
+import com.ld.web.util.EncryptionUtil;
 
 /**
  * 
@@ -52,7 +52,7 @@ public class SystemAction extends ServerAction {
      */
     public String initSystem() throws Exception {
         try {
-            manager.setPassword(CharacterTool.sha256(CharacterTool.base64Decode(manager.getPassword())));
+            manager.setPassword(EncryptionUtil.sha256(EncryptionUtil.base64Decode(manager.getPassword())));
             manager.setAdministrator(true);
             managerBiz.save(manager);
             super.putResult(true);

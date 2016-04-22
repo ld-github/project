@@ -141,7 +141,7 @@ public class EncryptionUtil {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(DES);
             Cipher cipher = Cipher.getInstance(DES);
             cipher.init(Cipher.ENCRYPT_MODE, skf.generateSecret(desKeySpec));
-            return toHex(cipher.doFinal(source.getBytes("utf-8"))).toUpperCase();
+            return ByteUtil.bytesToHexString(cipher.doFinal(source.getBytes("utf-8"))).toUpperCase();
         } catch (Exception e) {
             // This should not happen!
             logger.error(String.format("Des EncryptOutHex error: %s", e.getMessage()), e);
@@ -162,7 +162,7 @@ public class EncryptionUtil {
             SecretKeySpec signingKey = new SecretKeySpec(key.getBytes("utf-8"), HMAC_SHA1);
             Mac mac = Mac.getInstance(HMAC_SHA1);
             mac.init(signingKey);
-            return toHex(mac.doFinal(source.getBytes("utf-8"))).toUpperCase();
+            return ByteUtil.bytesToHexString(mac.doFinal(source.getBytes("utf-8"))).toUpperCase();
         } catch (Exception e) {
             // This should not happen!
             logger.error(String.format("HmacSHA1 EncryptOutHex error: %s", e.getMessage()), e);
@@ -220,24 +220,6 @@ public class EncryptionUtil {
             logger.error(String.format("DESede/CBC/PKCS5Padding DecryptOutHex error: %s", e.getMessage()), e);
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * Byte转换为16进制数据
-     * 
-     * @param bytes
-     * @return
-     */
-    public static String toHex(byte[] bytes) {
-        if (bytes == null || bytes.length == 0) {
-            throw new IllegalArgumentException("ToHex encrypt data is null...");
-        }
-        String value = "", temp = "";
-        for (byte b : bytes) {
-            temp = Integer.toHexString(b & 0xff);
-            value += temp.length() == 1 ? "0" + temp : temp;
-        }
-        return value;
     }
 
 }

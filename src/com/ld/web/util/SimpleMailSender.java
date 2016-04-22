@@ -17,8 +17,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import com.ld.web.bean.mail.MailSenderInfo;
 import com.ld.web.bean.mail.MailAuthenticator;
+import com.ld.web.bean.mail.MailSenderInfo;
 
 /**
  * 

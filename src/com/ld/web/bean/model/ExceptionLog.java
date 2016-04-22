@@ -30,7 +30,7 @@ import com.ld.web.enumeration.ExceptionType;
  *@date 2015-02-15
  */
 @Entity
-@Table(name = "t_exceptionlog")
+@Table(name = "t_exception_log")
 public class ExceptionLog implements Serializable {
 
     private static final long serialVersionUID = -6693993663180010828L;

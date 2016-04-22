@@ -29,8 +29,8 @@ public class ExceptionLogBizImpl implements ExceptionLogBiz {
     private ExceptionLogDao exceptionLogDao;
 
     @Override
-    public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate) {
-        return exceptionLogDao.getPage(page, beginDate, endDate);
+    public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate, String keyword) {
+        return exceptionLogDao.getPage(page, beginDate, endDate, keyword);
     }
 
 }

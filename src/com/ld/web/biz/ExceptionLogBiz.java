@@ -22,7 +22,8 @@ public interface ExceptionLogBiz {
      * @param page
      * @param beginDate
      * @param endDate
+     * @param keyword
      * @return
      */
-    Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate);
+    Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate, String keyword);
 }

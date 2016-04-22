@@ -15,9 +15,9 @@ import com.ld.web.config.Config;
 *
 *@date 2015-11-06
 */
-public class SignUtil {
+public class SignatureUtil {
 
-    private static Logger logger = Logger.getLogger(SignUtil.class);
+    private static Logger logger = Logger.getLogger(SignatureUtil.class);
 
     /**
      * Sign by json and key
@@ -41,11 +41,12 @@ public class SignUtil {
      */
     public static String signJson(String json, String key) {
         String signature = sign(json, key);
-        StringBuffer sb = new StringBuffer(Config.REQ_PARAMS_JSON + "=" + json);
-        sb.append("&" + Config.REQ_PARAMS_SIGNATURE + "=" + signature);
-        String signJson = sb.toString();
-        logger.info(String.format("Sign json result: %s", signJson));
-        return signJson;
+        StringBuffer sb = new StringBuffer();
+        sb.append(Config.REQ_PARAMS_JSON + "=" + json + "&");
+        sb.append(Config.REQ_PARAMS_SIGNATURE + "=" + signature);
+        String data = sb.toString();
+        logger.info(String.format("Sign json result: %s", data));
+        return data;
     }
 
     /**

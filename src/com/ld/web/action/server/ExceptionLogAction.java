@@ -40,6 +40,8 @@ public class ExceptionLogAction extends ServerAction {
 
     private String endDate; // 结束时间
 
+    private String keyword; // 关键字
+
     /**
      * Get page Records ExceptionLog
      */
@@ -50,7 +52,7 @@ public class ExceptionLogAction extends ServerAction {
             Date beginDate = StringUtil.isEmpty(this.beginDate) ? null : DateUtil.parse(this.beginDate, pattern);
             Date endDate = StringUtil.isEmpty(this.endDate) ? null : DateUtil.parse(this.endDate, pattern);
 
-            super.putResult(exceptionLogBiz.getPage(page, beginDate, endDate));
+            super.putResult(exceptionLogBiz.getPage(page, beginDate, endDate, keyword));
         } catch (Exception e) {
             super.putResult("page", null);
             logger.error(String.format("Get ExceptionLog page error: %s", e.getMessage()), e);
@@ -80,6 +82,14 @@ public class ExceptionLogAction extends ServerAction {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
 }

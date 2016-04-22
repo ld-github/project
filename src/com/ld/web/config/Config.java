@@ -24,16 +24,16 @@ public class Config {
 
     private static final String CONFIG_FILE = "config.properties";
 
-    private static final String CONFIG_DEBUG = "debug";
+    private static final String CONFIG_IS_DEBUG = "is_debug";
 
-    public static Boolean debug;
+    public static Boolean isDebug;
 
     static {
         try {
             Properties config = new Properties();
             config.load(Config.class.getClassLoader().getResourceAsStream(CONFIG_FILE));
             logger.info("Load config.properties begin...");
-            debug = Boolean.valueOf(config.getProperty(CONFIG_DEBUG));
+            isDebug = Boolean.valueOf(config.getProperty(CONFIG_IS_DEBUG));
 
             logger.info("Load config.properties success...");
         } catch (IOException e) {

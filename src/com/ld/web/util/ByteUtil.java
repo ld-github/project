@@ -12,20 +12,16 @@ package com.ld.web.util;
  */
 public class ByteUtil {
 
-    public static String bytesToHexString(byte[] src) {
-        StringBuilder stringBuilder = new StringBuilder("");
-        if (src == null || src.length <= 0) {
-            return null;
+    public static String bytesToHexString(byte[] bytes) {
+        if (bytes == null || bytes.length == 0) {
+            throw new IllegalArgumentException("ToHex encrypt data is null...");
         }
-        for (int i = 0; i < src.length; i++) {
-            int v = src[i] & 0xFF;
-            String hv = Integer.toHexString(v);
-            if (hv.length() < 2) {
-                stringBuilder.append(0);
-            }
-            stringBuilder.append(hv);
+        String value = "", temp = "";
+        for (byte b : bytes) {
+            temp = Integer.toHexString(b & 0xff);
+            value += temp.length() == 1 ? "0" + temp : temp;
         }
-        return stringBuilder.toString().toUpperCase();
+        return value;
     }
 
     /**

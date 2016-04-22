@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ld.web.bean.Page;
 import com.ld.web.bean.model.ExceptionLog;
 import com.ld.web.dao.ExceptionLogDao;
-
+import com.ld.web.util.StringUtil;
 /**
  * 
  * <p>Title: ExceptionLogDaoImpl</p>
@@ -25,7 +25,7 @@ import com.ld.web.dao.ExceptionLogDao;
 public class ExceptionLogDaoImpl extends BaseDaoImpl<ExceptionLog> implements ExceptionLogDao {
 
     @Override
-    public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate) {
+    public Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate, String keyword) {
         String where = "WHERE 1=1 ";
         Map<String, Object> params = new HashMap<String, Object>();
         if (null != beginDate) {
@@ -35,6 +35,10 @@ public class ExceptionLogDaoImpl extends BaseDaoImpl<ExceptionLog> implements Ex
         if (null != endDate) {
             where += "and o.createDatetime <=:endDate ";
             params.put("endDate", endDate);
+        }
+        if (!StringUtil.isEmpty(keyword)) {
+            where += "and (o.message like :keyword or o.method like :keyword) ";
+            params.put("keyword", "%" + keyword + "%");
         }
         LinkedHashMap<String, String> orders = new LinkedHashMap<String, String>();
         orders.put("o.id", "desc");

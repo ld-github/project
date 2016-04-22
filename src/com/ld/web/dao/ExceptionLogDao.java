@@ -22,7 +22,8 @@ public interface ExceptionLogDao extends BaseDao<ExceptionLog> {
      * @param page
      * @param endDate
      * @param beginDate
+     * @param keyword
      * @return
      */
-    Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate);
+    Page<ExceptionLog> getPage(Page<ExceptionLog> page, Date beginDate, Date endDate, String keyword);
 }

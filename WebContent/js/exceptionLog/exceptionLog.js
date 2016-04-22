@@ -11,7 +11,7 @@ var URLS = {
  * 
  * @param pageNumber
  */
-function getPageLogs() {
+function getPage() {
     var args = getSearchParams();
     setPaginationPageParams(LOGS_PANEL, args);
     $.post(URLS.GET_PAGE_RECORDS, args, function(data) {
@@ -19,6 +19,37 @@ function getPageLogs() {
             loadDatagridData(LOGS_PANEL, data);
         }
     });
+}
+
+var searchParams = {};
+
+/**
+ * Set search params
+ * 
+ * @param json
+ */
+function setSearchParams(json) {
+    searchParams = json;
+    searchParams.beginDate = $('#begin-date').datebox('getValue');
+    searchParams.endDate = $('#end-date').datebox('getValue');
+}
+
+/**
+ * Get search params
+ * 
+ * @returns {___anonymous_searchParams}
+ */
+function getSearchParams() {
+    return searchParams;
+}
+
+/**
+ * Search by search form params
+ */
+function search() {
+    setSearchParams($('#search-form').serializeJson());
+    setDatagridPager(LOGS_PANEL, startPage, getDatagridPaginationPageSize(LOGS_PANEL));
+    getPage();
 }
 
 var LOGS_PANEL = '#logs-panel';
@@ -52,6 +83,9 @@ function initDatagrid() {
             field : 'message',
             title : '异常信息',
             width : 200,
+            formatter : function(value, row, index) {
+                return $('<SPAN>').append($('<SPAN>').attr('title', value).html(value)).html();
+            }
         }, {
             field : 'createDatetime',
             title : '发生时间',
@@ -86,41 +120,11 @@ function initDateBox() {
             $('#end-date').datebox('setValue', '');
         }
     });
-
     $('#end-date').datebox({
         editable : false,
         panelWidth : 180,
         buttons : endDateButtons
     });
-}
-
-var searchParams = {};
-
-/**
- * Set search params
- * 
- * @param json
- */
-function setSearchParams(json) {
-    searchParams = json;
-}
-
-/**
- * Get search params
- * 
- * @returns {___anonymous_searchParams}
- */
-function getSearchParams() {
-    return searchParams;
-}
-
-/**
- * Search by search form params
- */
-function search() {
-    setSearchParams($('#search-form').serializeJson());
-    setDatagridPager(LOGS_PANEL, startPage, getDatagridPaginationPageSize(LOGS_PANEL));
-    getPageLogs();
 }
 
 $(function() {
@@ -129,15 +133,15 @@ $(function() {
 
     $(LOGS_PANEL).datagrid('getPager').pagination({
         onSelectPage : function(pageNumber, size) {
-            getPageLogs();
+            getPage();
         },
     });
 
-    getPageLogs(startPage);
+    getPage();
+
+    $('#search-btn').click(search);
 
     $(window).resize(function() {
         $(LOGS_PANEL).datagrid('resize');
     });
-
-    $('#search-btn').click(search);
 });

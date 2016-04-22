@@ -150,8 +150,8 @@ var MessageEditor = function() {
         $(MESSAGE_EDITOR_PANEL).dialog({
             title : this.title,
             iconCls : this.iconCls,
-            width : 1005,
-            height : 505,
+            width : 975,
+            height : 455,
             cache : false,
             modal : true,
             collapsible : true,

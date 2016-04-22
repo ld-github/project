@@ -20,7 +20,7 @@
 }
 
 .title-control {
-    width: 860px !important;
+    width: 830px !important;
 }
 
 .default-control {
@@ -61,6 +61,6 @@
 }
 
 #editor {
-    width: 950px !important;
-    height: 190px;
+    width: 920px !important;
+    height: 140px;
 }

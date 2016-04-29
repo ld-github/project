@@ -44,10 +44,10 @@ public class RSACoder {
      */
     public static String sign(byte[] data, String privateKey) throws Exception {
         byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
-        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
 
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
-        PrivateKey priKey = keyFactory.generatePrivate(pkcs8KeySpec);
+        PrivateKey priKey = keyFactory.generatePrivate(keySpec);
         Signature signature = Signature.getInstance(MD5_WITH_RSA);
         signature.initSign(priKey);
         signature.update(data);
@@ -90,9 +90,9 @@ public class RSACoder {
     public static byte[] decryptByPrivateKey(byte[] data, String privateKey) throws Exception {
         byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
 
-        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
-        Key key = keyFactory.generatePrivate(pkcs8KeySpec);
+        Key key = keyFactory.generatePrivate(keySpec);
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, key);
 
@@ -110,9 +110,9 @@ public class RSACoder {
     public static byte[] decryptByPublicKey(byte[] data, String publicKey) throws Exception {
         byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(publicKey);
 
-        X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
-        Key key = keyFactory.generatePublic(x509KeySpec);
+        Key key = keyFactory.generatePublic(keySpec);
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, key);
 
@@ -130,9 +130,9 @@ public class RSACoder {
     public static byte[] encryptByPublicKey(byte[] data, String publicKey) throws Exception {
         byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(publicKey);
 
-        X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
-        Key key = keyFactory.generatePublic(x509KeySpec);
+        Key key = keyFactory.generatePublic(keySpec);
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, key);
 
@@ -150,9 +150,9 @@ public class RSACoder {
     public static byte[] encryptByPrivateKey(byte[] data, String privateKey) throws Exception {
         byte[] keyBytes = EncryptionUtil.base64DecodeBuffer(privateKey);
 
-        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
-        Key key = keyFactory.generatePrivate(pkcs8KeySpec);
+        Key key = keyFactory.generatePrivate(keySpec);
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, key);
 

@@ -109,7 +109,7 @@ public class MailSenderInfo implements Serializable {
         this.attachFileNames = attachFileNames;
     }
 
-    public boolean isValidate() {
+    public boolean getValidate() {
         return validate;
     }
 

@@ -46,7 +46,7 @@ public class SimpleMailSender implements Serializable {
         mailInfo = chooseServer(mailInfo);
         Properties pro = mailInfo.getProperties();
         // 如果需要身份认证，则创建一个密码验证器
-        if (mailInfo.isValidate()) {
+        if (mailInfo.getValidate()) {
             authenticator = new MailAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
         }
         Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
@@ -73,7 +73,7 @@ public class SimpleMailSender implements Serializable {
         mailInfo = chooseServer(mailInfo);
         Properties pro = mailInfo.getProperties();
         // 如果需要身份认证，则创建一个密码验证器
-        if (mailInfo.isValidate()) {
+        if (mailInfo.getValidate()) {
             authenticator = new MailAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
         }
         Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
@@ -102,6 +102,7 @@ public class SimpleMailSender implements Serializable {
     private static MailSenderInfo chooseServer(MailSenderInfo mailInfo) throws Exception {
         String username = mailInfo.getUsername();
         String identification = username.substring(username.lastIndexOf("@"), username.length());
+
         if (!SERVERS_INFOS.containsKey(identification)) {
             throw new Exception("Set the sender email error...");
         }

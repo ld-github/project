@@ -88,9 +88,9 @@ public class ManagerAction extends ServerAction {
         try {
             Long exceptId = takeSessionManager().getId();
             manager = null == manager ? new Manager() : manager;
-            super.putResult(managerBiz.getPage(exceptId, manager.getUsername(), getAvailable(available), page));
+            super.putResult(managerBiz.getPage(exceptId, manager.getUsername(), checkIsAvailable(available), page));
         } catch (Exception e) {
-            super.putResult("page", null);
+            super.putResult(super.RESULT_PAGE, null);
             logger.error(String.format("Get manager page error: %s", e.getMessage()), e);
         }
         return SUCCESS;
@@ -138,7 +138,7 @@ public class ManagerAction extends ServerAction {
             }
 
             manager.setPassword(EncryptionUtil.sha256(EncryptionUtil.base64Decode(manager.getPassword())));
-            manager.setAdministrator(getAdministrator(this.administrator));
+            manager.setAdministrator(checkIsAdministrator(this.administrator));
             managerBiz.save(manager);
             super.putResult(true, "保存成功");
         } catch (Exception e) {
@@ -148,11 +148,11 @@ public class ManagerAction extends ServerAction {
         return SUCCESS;
     }
 
-    private Boolean getAvailable(int available) {
+    private Boolean checkIsAvailable(int available) {
         return available > -1 ? available == 1 ? true : false : null;
     }
 
-    private Boolean getAdministrator(int administrator) {
+    private Boolean checkIsAdministrator(int administrator) {
         return administrator > -1 ? administrator == 1 ? true : false : null;
     }
 

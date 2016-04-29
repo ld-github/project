@@ -54,7 +54,7 @@ public class ExceptionLogAction extends ServerAction {
 
             super.putResult(exceptionLogBiz.getPage(page, beginDate, endDate, keyword));
         } catch (Exception e) {
-            super.putResult("page", null);
+            super.putResult(super.RESULT_PAGE, null);
             logger.error(String.format("Get ExceptionLog page error: %s", e.getMessage()), e);
         }
         return SUCCESS;

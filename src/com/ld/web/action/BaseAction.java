@@ -46,8 +46,9 @@ public class BaseAction extends ActionSupport {
 
     private static final Logger logger = Logger.getLogger(BaseAction.class);
 
+    protected final String RESULT_PAGE = "page";
+
     private final String RESULT_CODE = "code";
-    private final String RESULT_PAGE = "page";
     private final String RESULT_STATUS = "status";
     private final String RESULT_MESSAGE = "message";
 

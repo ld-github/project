@@ -11,7 +11,7 @@ var MENUS = [ {
         title : '地图管理',
         url : 'map.html'
     }, {
-        title : '消息推送',
+        title : '消息管理',
         url : 'message.html'
     } ]
 }, {

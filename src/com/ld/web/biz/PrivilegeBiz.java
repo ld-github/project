@@ -17,6 +17,13 @@ import com.ld.web.bean.model.Privilege;
 public interface PrivilegeBiz {
 
     /**
+     * Init Privilege
+     * 
+     * @return
+     */
+    void init() throws Exception;
+
+    /**
      * Save or update Privilege
      * 
      * @param privilege

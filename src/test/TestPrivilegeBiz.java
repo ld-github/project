@@ -3,7 +3,6 @@ package test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ld.web.bean.model.Privilege;
 import com.ld.web.biz.PrivilegeBiz;
 
 public class TestPrivilegeBiz {
@@ -24,8 +23,11 @@ public class TestPrivilegeBiz {
         // items.add(p2);
         // Privilege p = new Privilege(items, "test", "test");
         // privilegeBiz.saveOrUpdate(p);
-        Privilege p = privilegeBiz.get(4L);
-        System.out.println(p.getName());
-        privilegeBiz.delete(p);
+        try {
+            privilegeBiz.init();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

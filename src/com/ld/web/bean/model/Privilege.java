@@ -34,6 +34,8 @@ public class Privilege implements Serializable {
 
     private List<Privilege> items; // 子类权限
 
+    private String keyname; // 权限key
+
     private String name; // 名称
 
     private String description; // 描述
@@ -56,6 +58,15 @@ public class Privilege implements Serializable {
 
     public void setItems(List<Privilege> items) {
         this.items = items;
+    }
+
+    @Column(length = 100, nullable = false, unique = true)
+    public String getKeyname() {
+        return keyname;
+    }
+
+    public void setKeyname(String keyname) {
+        this.keyname = keyname;
     }
 
     @Column(length = 32, nullable = false)

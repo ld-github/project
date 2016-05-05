@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Type;
@@ -27,7 +26,7 @@ import org.hibernate.annotations.Type;
  * @date 2015-01-08
  */
 @Entity
-@Table(name = "t_manager", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
+@Table(name = "t_manager")
 public class Manager implements Serializable {
 
     private static final long serialVersionUID = 4284572555216108008L;

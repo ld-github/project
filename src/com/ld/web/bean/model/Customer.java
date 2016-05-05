@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import org.apache.struts2.json.annotations.JSON;
 
@@ -29,7 +30,7 @@ import com.ld.web.enumeration.Gender;
  *@date 2015-09-22
  */
 @Entity
-@Table(name = "t_customer")
+@Table(name = "t_customer", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = -5315517141478453167L;
@@ -54,7 +55,7 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    @Column(length = 32, nullable = false, unique = true)
+    @Column(length = 32, nullable = false)
     public String getUsername() {
         return username;
     }
@@ -63,7 +64,7 @@ public class Customer implements Serializable {
         this.username = username;
     }
 
-    @Column(length = 11, nullable = false, unique = true)
+    @Column(length = 11, nullable = false)
     public String getTelNo() {
         return telNo;
     }

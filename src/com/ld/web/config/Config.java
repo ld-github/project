@@ -22,7 +22,7 @@ public class Config {
 
     private static final Logger logger = Logger.getLogger(Config.class);
 
-    private static final String CONFIG_FILE = "config.properties";
+    private static final String CONFIG_FILE_NAME = "config.properties";
 
     private static final String CONFIG_IS_DEBUG = "is_debug";
 
@@ -31,7 +31,7 @@ public class Config {
     static {
         try {
             Properties config = new Properties();
-            config.load(Config.class.getClassLoader().getResourceAsStream(CONFIG_FILE));
+            config.load(Config.class.getClassLoader().getResourceAsStream(CONFIG_FILE_NAME));
             logger.info("Load config.properties begin...");
             isDebug = Boolean.valueOf(config.getProperty(CONFIG_IS_DEBUG));
 

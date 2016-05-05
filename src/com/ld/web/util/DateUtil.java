@@ -21,9 +21,13 @@ public class DateUtil {
 
     private static Logger logger = Logger.getLogger(DateUtil.class);
 
-    public static final String TEMPORALTYPE_TIMESTAMP = "yyyy-MM-dd HH:mm:ss";
-    public static final String TEMPORALTYPE_DATE = "yyyy-MM-dd";
-    public static final String TEMPORALTYPE_TIME = "HH:mm:ss";
+    public static final String TIMESTAMP = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE = "yyyy-MM-dd";
+    public static final String TIME = "HH:mm:ss";
+
+    public static final String TIMESTAMP_NO_CHAR = "yyyyMMddHHmmss";
+    public static final String DATE_NO_CHAR = "yyyyMMdd";
+    public static final String TIME_NO_CHAR = "HHmmss";
 
     /**
      * 格式化时间

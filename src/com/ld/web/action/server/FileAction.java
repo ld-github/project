@@ -107,7 +107,7 @@ public class FileAction extends ServerAction {
             logger.info(String.format("Upload get parent path by servletContext realPath: %s", mainPath));
 
             String projectName = super.takeRequest().getContextPath().substring(1);
-            String date = DateUtil.formatNow(DateUtil.TEMPORALTYPE_DATE);
+            String date = DateUtil.formatNow(DateUtil.DATE);
             String uuid = UUID.randomUUID().toString().replace("-", "");
             String filename = uuid + FileManager.getSuffixName(this.fileFileName);
 
@@ -126,7 +126,7 @@ public class FileAction extends ServerAction {
             }
             logger.info(String.format("Copy file to: %s", destFileDir));
 
-            Date createDatetime = DateUtil.parseNow(DateUtil.TEMPORALTYPE_TIMESTAMP);
+            Date createDatetime = DateUtil.parseNow(DateUtil.TIMESTAMP);
             Attachment att = new Attachment(filename, fileFileName, destFilePath, requestUrl, destFileDir, title, alt, remark, createDatetime);
 
             attachmentBiz.save(att);

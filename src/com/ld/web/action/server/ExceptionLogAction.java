@@ -48,7 +48,7 @@ public class ExceptionLogAction extends ServerAction {
     @Override
     public String getPageRecords() throws Exception {
         try {
-            String pattern = DateUtil.TEMPORALTYPE_DATE;
+            String pattern = DateUtil.DATE;
             Date beginDate = StringUtil.isEmpty(this.beginDate) ? null : DateUtil.parse(this.beginDate, pattern);
             Date endDate = StringUtil.isEmpty(this.endDate) ? null : DateUtil.parse(this.endDate, pattern);
 

@@ -14,9 +14,7 @@
 }
 
 .addon-fixed-width {
-    width: 90px !important;
-    padding-left: 3px;
-    padding-right: 3px;
+    width: 100px !important;
 }
 
 .title-control {
@@ -24,7 +22,7 @@
 }
 
 .default-control {
-    width: 150px !important;
+    width: 180px !important;
 }
 
 .datetime-control {

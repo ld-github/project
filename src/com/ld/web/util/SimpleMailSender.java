@@ -35,13 +35,13 @@ public class SimpleMailSender implements Serializable {
     private static final long serialVersionUID = -9002158219804474539L;
 
     /**
-     * 以文本格式发送邮件
+     * 发送邮件
      * 
      * @param mailInfo
      *            待发送的邮件信息
      * @return
      */
-    public static void sendTextMail(MailSenderInfo mailInfo) throws Exception {
+    public static void sendMail(MailSenderInfo mailInfo, boolean isHtml) throws Exception {
         MailAuthenticator authenticator = null;
         mailInfo = chooseServer(mailInfo);
         Properties pro = mailInfo.getProperties();
@@ -57,38 +57,15 @@ public class SimpleMailSender implements Serializable {
         msg.setRecipient(Message.RecipientType.TO, to);
         msg.setSubject(mailInfo.getSubject());
         msg.setSentDate(new Date());
-        msg.setText(mailInfo.getContent());
-        Transport.send(msg);
-    }
-
-    /**
-     * 以HTML格式发送邮件
-     * 
-     * @param mailInfo
-     *            待发送的邮件信息
-     * @return
-     */
-    public static void sendHtmlMail(MailSenderInfo mailInfo) throws Exception {
-        MailAuthenticator authenticator = null;
-        mailInfo = chooseServer(mailInfo);
-        Properties pro = mailInfo.getProperties();
-        // 如果需要身份认证，则创建一个密码验证器
-        if (mailInfo.getValidate()) {
-            authenticator = new MailAuthenticator(mailInfo.getUsername(), mailInfo.getPassword());
+        if (isHtml) {
+            Multipart mainPart = new MimeMultipart();
+            BodyPart html = new MimeBodyPart();
+            html.setContent(mailInfo.getContent(), "text/html; charset=utf-8");
+            mainPart.addBodyPart(html);
+            msg.setContent(mainPart);
+        } else {
+            msg.setText(mailInfo.getContent());
         }
-        Session sendMailSession = Session.getDefaultInstance(pro, authenticator);
-        Message msg = new MimeMessage(sendMailSession);
-        Address from = new InternetAddress(mailInfo.getFromAddress());
-        Address to = new InternetAddress(mailInfo.getToAddress());
-        Multipart mainPart = new MimeMultipart();
-        BodyPart html = new MimeBodyPart();
-        msg.setFrom(from);
-        msg.setRecipient(Message.RecipientType.TO, to);
-        msg.setSubject(mailInfo.getSubject());
-        msg.setSentDate(new Date());
-        html.setContent(mailInfo.getContent(), "text/html; charset=utf-8");
-        mainPart.addBodyPart(html);
-        msg.setContent(mainPart);
         Transport.send(msg);
     }
 

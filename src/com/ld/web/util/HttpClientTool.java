@@ -54,7 +54,6 @@ public class HttpClientTool {
                     httppost.addHeader(entry.getKey(), entry.getValue());
                 }
             }
-
             if (null != params && !params.isEmpty()) {
                 httppost.setEntity(new UrlEncodedFormEntity(getNameValuePair(params), "utf-8"));
             }
@@ -71,13 +70,7 @@ public class HttpClientTool {
             logger.error(String.format("Httpclient post exception: %s", e.getMessage()), e);
             throw new Exception(e);
         } finally {
-            if (null != httpclient) {
-                try {
-                    httpclient.close();
-                } catch (IOException e) {
-                    logger.error(String.format("Httpclient close exception: %s", e.getMessage()), e);
-                }
-            }
+            closeClient(httpclient);
         }
     }
 
@@ -90,7 +83,7 @@ public class HttpClientTool {
      * @return
      */
     public static String post(String url, String json) throws Exception {
-        logger.info(String.format("Httpclient send data: %s", json));
+        logger.info(String.format("Httpclient send json: %s", json));
 
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
@@ -115,13 +108,7 @@ public class HttpClientTool {
             logger.error(String.format("Httpclient post exception: %s", e.getMessage()), e);
             throw new Exception(e);
         } finally {
-            if (null != httpclient) {
-                try {
-                    httpclient.close();
-                } catch (IOException e) {
-                    logger.error(String.format("Httpclient close exception: %s", e.getMessage()), e);
-                }
-            }
+            closeClient(httpclient);
         }
     }
 
@@ -137,5 +124,20 @@ public class HttpClientTool {
             list.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
         }
         return list;
+    }
+
+    /**
+     * Close httpclient
+     * 
+     * @param httpclient
+     */
+    private static void closeClient(CloseableHttpClient httpclient) {
+        if (null != httpclient) {
+            try {
+                httpclient.close();
+            } catch (IOException e) {
+                logger.error(String.format("Httpclient close exception: %s", e.getMessage()), e);
+            }
+        }
     }
 }

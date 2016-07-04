@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 /**
  * 
@@ -75,7 +76,7 @@ public class JsonMapper {
         try {
             return mapper.writeValueAsString(object);
         } catch (IOException e) {
-            logger.error(String.format("Write to json string error: %s", e.getMessage()), e);
+            logger.error("Write to json string error:" + object, e);
             return null;
         }
     }
@@ -90,13 +91,13 @@ public class JsonMapper {
      * @see #fromJson(String, JavaType)
      */
     public <T> T toObject(String json, Class<T> clazz) {
+        if (StringUtil.isEmpty(json)) {
+            return null;
+        }
         try {
-            if (StringUtil.isEmpty(json)) {
-                return null;
-            }
             return mapper.readValue(json, clazz);
         } catch (IOException e) {
-            logger.error(String.format("Parse json string to object error: %s", e.getMessage()), e);
+            logger.error("Parse json string to object error:" + json, e);
             return null;
         }
     }
@@ -114,7 +115,7 @@ public class JsonMapper {
             }
             return (T) mapper.readValue(json, typeRefer);
         } catch (IOException e) {
-            logger.error(String.format("Parse json string to object error: %s", e.getMessage()), e);
+            logger.error("Parse json string to object error:" + json, e);
             return null;
         }
     }
@@ -127,6 +128,10 @@ public class JsonMapper {
     public JsonMapper enableSimple() {
         mapper.configure(Feature.ALLOW_SINGLE_QUOTES, true);
         mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(String.class, new StringUnicodeSerializer());
+        mapper.registerModule(module);
         return this;
     }
 
@@ -138,4 +143,5 @@ public class JsonMapper {
     public ObjectMapper getMapper() {
         return mapper;
     }
+
 }

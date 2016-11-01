@@ -1,6 +1,8 @@
 package test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestCharEncoding {
 
@@ -74,11 +76,21 @@ public class TestCharEncoding {
         return uStr;
     }
 
+    public static String unescapeUnicode(String str){
+        StringBuffer b=new StringBuffer();
+        Matcher m = Pattern.compile("\\\\u([0-9a-fA-F]{4})").matcher(str);
+        while(m.find())
+            b.append((char)Integer.parseInt(m.group(1),16));
+        return b.toString();
+    }
+    
     public static void main(String[] args) throws UnsupportedEncodingException {
         String str = "\u91CD\u5E86\u8D22\u7ECF\u804C\u4E1A\u5B66\u9662";
         String str1 = readUnicodeStr2(str) + "asd";
         System.out.println(str1);
+        str1 = "id: 1, bb: 哈哈";
         System.out.println(toUnicode(str1));
+        System.out.println(unescapeUnicode(str1));
         System.out.println(new String(str1.getBytes(), "utf-8"));
     }
 }

@@ -30,13 +30,13 @@ public class TestRsa {
 
         System.out.println("私钥签名——公钥验证签名");
         // 产生签名 这里的encodedData可以与下面的encodedData同时换成new int[]{2,45}
-        String sign = RSACoder.sign(encodedData, privateKey);
+        String sign = RSACoder.sign(RSACoder.SHA1_WITH_RSA, encodedData, privateKey);
         // 数字签名只要公钥人拿到签名的sign对比
         // 自己公钥通过同样的byte[]运算得到签名是否一致。是到致代表这个公钥就是对的，就是为现在发私钥人服务的。
         System.out.println("签名:\r" + sign);
 
         // 验证签名
-        boolean status = RSACoder.verify(encodedData, publicKey, sign);
+        boolean status = RSACoder.verify(RSACoder.SHA1_WITH_RSA, encodedData, publicKey, sign);
         System.out.println("状态:\r" + status);
     }
 }

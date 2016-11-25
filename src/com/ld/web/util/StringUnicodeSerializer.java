@@ -2,7 +2,6 @@ package com.ld.web.util;
 
 import java.io.IOException;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.io.CharTypes;
@@ -41,7 +40,9 @@ public class StringUnicodeSerializer extends JsonSerializer<String> {
 
     @Override
     public void serialize(String str, JsonGenerator gen, SerializerProvider provider) throws IOException, JsonProcessingException {
+
         int status = ((JsonWriteContext) gen.getOutputContext()).writeValue();
+
         switch (status) {
         case JsonWriteContext.STATUS_OK_AFTER_COLON:
             gen.writeRaw(':');
@@ -50,9 +51,10 @@ public class StringUnicodeSerializer extends JsonSerializer<String> {
             gen.writeRaw(',');
             break;
         case JsonWriteContext.STATUS_EXPECT_NAME:
-            throw new JsonGenerationException("Can not write string value here");
+            throw new IOException("Can not write string value here");
         }
         gen.writeRaw('"');
+
         for (char c : str.toCharArray()) {
             if (c >= 0x80) {
                 writeUnicodeEscape(gen, c);

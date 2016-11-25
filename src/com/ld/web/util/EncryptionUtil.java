@@ -5,10 +5,6 @@ import java.security.MessageDigest;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
-import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -22,7 +18,7 @@ import sun.misc.BASE64Encoder;
  * 
  * <p>Title: DESUtil </p>
  * <p>Copyright: Copyright (c) 2015 </p>
- * <p>Description: 加密工具类 </p>
+ * <p>Description: DES加密工具类 </p>
  * 
  * @author LD
  * 
@@ -33,12 +29,13 @@ public class EncryptionUtil {
     private static Logger logger = Logger.getLogger(EncryptionUtil.class);
 
     private static final String MD5 = "MD5";
-    private static final String SHA256 = "SHA-256";
-    private static final String DES = "DES";
     private static final String HMAC_SHA1 = "HmacSHA1";
-    private static final String DESEDE = "DESede";
+    private static final String SHA256 = "SHA-256";
 
-    private static final String CIPHER_ALGORITHM_CBC = "DESede/CBC/PKCS5Padding";
+    public static final String ALGORITHM_DES = "DES";
+    public static final String ALGORITHM_DESEDE = "DESede";
+    public static final String DES_CIPHER_ALGORITHM_CBC = "DES/CBC/PKCS5Padding";
+    public static final String DESEDE_CIPHER_ALGORITHM_CBC = "DESede/CBC/PKCS5Padding";
 
     /**
      * Base64 decode
@@ -99,7 +96,7 @@ public class EncryptionUtil {
             return md5;
         } catch (Exception e) {
             // This should not happen!
-            logger.error(String.format("MD5 EncryptOutHex error: %s", e.getMessage()), e);
+            logger.error(String.format("MD5 encryptOutHex error: %s", e.getMessage()), e);
             throw new RuntimeException(e);
         }
     }
@@ -128,28 +125,6 @@ public class EncryptionUtil {
     }
 
     /**
-     * Des
-     * 
-     * @param key
-     * @param source
-     * @return
-     * @throws Exception
-     */
-    public static String desEncryptOutHex(String source, String key) {
-        try {
-            DESKeySpec desKeySpec = new DESKeySpec(key.getBytes("utf-8"));
-            SecretKeyFactory skf = SecretKeyFactory.getInstance(DES);
-            Cipher cipher = Cipher.getInstance(DES);
-            cipher.init(Cipher.ENCRYPT_MODE, skf.generateSecret(desKeySpec));
-            return ByteUtil.bytesToHexString(cipher.doFinal(source.getBytes("utf-8"))).toUpperCase();
-        } catch (Exception e) {
-            // This should not happen!
-            logger.error(String.format("Des EncryptOutHex error: %s", e.getMessage()), e);
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
      * HmacSHA1
      * 
      * @param source
@@ -157,69 +132,94 @@ public class EncryptionUtil {
      * @return
      * @throws Exception
      */
-    public static String hmacSHA1EncryptOutHex(String source, String key) {
+    public static String hmacSHA1EncryptOutHex(String source, String key, String chanset) {
         try {
-            SecretKeySpec signingKey = new SecretKeySpec(key.getBytes("utf-8"), HMAC_SHA1);
+            chanset = StringUtil.isEmpty(chanset) ? "utf-8" : chanset;
+
             Mac mac = Mac.getInstance(HMAC_SHA1);
-            mac.init(signingKey);
-            return ByteUtil.bytesToHexString(mac.doFinal(source.getBytes("utf-8"))).toUpperCase();
+            mac.init(new SecretKeySpec(key.getBytes(chanset), HMAC_SHA1));
+
+            return toHex(mac.doFinal(source.getBytes(chanset))).toUpperCase();
         } catch (Exception e) {
             // This should not happen!
-            logger.error(String.format("HmacSHA1 EncryptOutHex error: %s", e.getMessage()), e);
+            logger.error(String.format("HmacSHA1 encryptOutHex error: %s", e.getMessage()), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String desEncryptOutHex(String algorithm, String cipherAlgorithm, String source, byte[] key, String iv, String charset) {
+        try {
+            charset = StringUtil.isEmpty(charset) ? "utf-8" : charset;
+
+            Cipher cipher = Cipher.getInstance(cipherAlgorithm);
+
+            int size = cipher.getBlockSize();
+            byte[] ivBytes = new byte[size];
+
+            if (StringUtil.isEmpty(iv)) {
+                for (int i = 0; i < size; ++i) {
+                    ivBytes[i] = 0;
+                }
+            } else {
+                ivBytes = iv.getBytes(charset);
+            }
+
+            IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+
+            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, algorithm), ivSpec);
+
+            return toHex(cipher.doFinal(source.getBytes(charset))).toUpperCase();
+        } catch (Exception e) {
+            // This should not happen!
+            logger.error(String.format("DES EncryptOutHex error: %s", e.getMessage()), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String desDecryptOutHex(String algorithm, String cipherAlgorithm, String source, byte[] key, String iv, String charset) {
+        try {
+            charset = StringUtil.isEmpty(charset) ? "utf-8" : charset;
+
+            Cipher cipher = Cipher.getInstance(cipherAlgorithm);
+
+            int size = cipher.getBlockSize();
+            byte[] ivBytes = new byte[size];
+
+            if (StringUtil.isEmpty(iv)) {
+                for (int i = 0; i < size; ++i) {
+                    ivBytes[i] = 0;
+                }
+            } else {
+                ivBytes = iv.getBytes(charset);
+            }
+
+            IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, algorithm), ivSpec);
+
+            return new String(cipher.doFinal(Base64.decodeBase64(source)), charset);
+        } catch (Exception e) {
+            // This should not happen!
+            logger.error(String.format("DES DecryptOutHex error: %s", e.getMessage()), e);
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * DESede/CBC/PKCS5Padding
+     * Byte转换为16进制数据
      * 
-     * @param source
-     * @param key
+     * @param bytes
      * @return
-     * @throws Exception
      */
-    public static String desedeEncryptOutHex(String source, String key, String iv) {
-        try {
-            DESedeKeySpec dks = new DESedeKeySpec(key.getBytes("utf-8"));
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DESEDE);
-            SecretKey secretKey = keyFactory.generateSecret(dks);
-
-            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM_CBC);
-
-            IvParameterSpec ivSpec = StringUtil.isEmpty(iv) ? null : new IvParameterSpec(iv.getBytes("utf-8"));
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
-            return ByteUtil.bytesToHexString((cipher.doFinal(source.getBytes("utf-8")))).toUpperCase();
-        } catch (Exception e) {
-            // This should not happen!
-            logger.error(String.format("DESede/CBC/PKCS5Padding EncryptOutHex error: %s", e.getMessage()), e);
-            throw new RuntimeException(e);
+    public static String toHex(byte[] bytes) {
+        if (bytes == null || bytes.length == 0) {
+            throw new IllegalArgumentException("ToHex encrypt data is null...");
         }
-    }
-
-    /**
-     * DESede/CBC/PKCS5Padding
-     * 
-     * @param source
-     * @param key
-     * @return
-     * @throws Exception
-     */
-    public static String desedeDecryptOutHex(String source, String key, String iv) {
-        try {
-            DESedeKeySpec dks = new DESedeKeySpec(key.getBytes("utf-8"));
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DESEDE);
-            SecretKey secretKey = keyFactory.generateSecret(dks);
-
-            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM_CBC);
-
-            IvParameterSpec ivSpec = StringUtil.isEmpty(iv) ? null : new IvParameterSpec(iv.getBytes("utf-8"));
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
-            return new String(cipher.doFinal(ByteUtil.hexStringToBytes(source)), "utf-8");
-        } catch (Exception e) {
-            // This should not happen!
-            logger.error(String.format("DESede/CBC/PKCS5Padding DecryptOutHex error: %s", e.getMessage()), e);
-            throw new RuntimeException(e);
+        String value = "", temp = "";
+        for (byte b : bytes) {
+            temp = Integer.toHexString(b & 0xff);
+            value += temp.length() == 1 ? "0" + temp : temp;
         }
+        return value;
     }
 
 }

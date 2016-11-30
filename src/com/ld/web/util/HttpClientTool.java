@@ -43,9 +43,11 @@ public class HttpClientTool {
 
     private static Logger logger = Logger.getLogger(HttpClientTool.class);
 
-    private static final int CONNECT_TIME_OUT = 10000;
-    private static final int SOCKET_TIME_OUT = 15000;
-    private static final int CONNECTION_REQUEST_TIMEOUT = 5000;
+    private static final HttpClientTool INSTANCE = new HttpClientTool();
+
+    private final int CONNECT_TIME_OUT = 10000;
+    private final int SOCKET_TIME_OUT = 15000;
+    private final int CONNECTION_REQUEST_TIMEOUT = 5000;
 
     /**
      * Merge mainUrl and suffixUrl
@@ -54,7 +56,7 @@ public class HttpClientTool {
      * @param suffixUrl
      * @return
      */
-    public static String mergeUrl(String mainUrl, String suffixUrl) {
+    public String mergeUrl(String mainUrl, String suffixUrl) {
         mainUrl = mainUrl.endsWith("/") || mainUrl.endsWith("!") || mainUrl.endsWith("=") ? mainUrl : mainUrl + "/";
         suffixUrl = suffixUrl.startsWith("/") ? suffixUrl.substring(1) : suffixUrl;
         return mainUrl + suffixUrl;
@@ -69,7 +71,7 @@ public class HttpClientTool {
      * @throws Exception
      * @return
      */
-    public static String post(String url, RequestConfig config, Map<String, String> header, Map<String, String> params) throws Exception {
+    public String post(String url, RequestConfig config, Map<String, String> header, Map<String, String> params) throws Exception {
         logger.info(String.format("Httpclient send data: %s", JsonMapper.getInstance().toJson(params)));
 
         CloseableHttpClient httpclient = url.startsWith("https") ? createSSLClientDefault() : HttpClients.createDefault();
@@ -114,7 +116,7 @@ public class HttpClientTool {
      * @throws Exception
      * @return
      */
-    public static String post(String url, RequestConfig config, String json) throws Exception {
+    public String post(String url, RequestConfig config, String json) throws Exception {
         logger.info(String.format("Httpclient send json: %s", json));
 
         CloseableHttpClient httpclient = url.startsWith("https") ? createSSLClientDefault() : HttpClients.createDefault();
@@ -156,7 +158,7 @@ public class HttpClientTool {
      * @throws Exception
      * @return
      */
-    public static String sendSoap(String url, String methodName, RequestConfig config, Map<String, Object> params) throws Exception {
+    public String sendSoap(String url, String methodName, RequestConfig config, Map<String, Object> params) throws Exception {
         logger.info(String.format("Httpclient send json: %s", JsonMapper.getInstance().toJson(params)));
 
         CloseableHttpClient httpclient = url.startsWith("https") ? createSSLClientDefault() : HttpClients.createDefault();
@@ -245,7 +247,7 @@ public class HttpClientTool {
      * 
      * @return
      */
-    public static RequestConfig getDefaultTimeoutConfig() {
+    public RequestConfig getDefaultTimeoutConfig() {
 
         return RequestConfig.custom()
                 .setSocketTimeout(SOCKET_TIME_OUT)
@@ -253,7 +255,12 @@ public class HttpClientTool {
                 .setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT).build();
     }
 
-    public static CloseableHttpClient createSSLClientDefault() {
+    /**
+     * Create ssl client
+     * 
+     * @return
+     */
+    public CloseableHttpClient createSSLClientDefault() {
         try {
             SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, new TrustStrategy() {
                 @Override
@@ -277,4 +284,10 @@ public class HttpClientTool {
         return HttpClients.createDefault();
     }
 
+    public static HttpClientTool getInstance() {
+        return INSTANCE;
+    }
+
+    private HttpClientTool() {
+    }
 }

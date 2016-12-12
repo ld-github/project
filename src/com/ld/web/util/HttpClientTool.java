@@ -150,51 +150,7 @@ public class HttpClientTool {
         }
     }
 
-    /**
-     * Http Post
-     * 
-     * @param url
-     * @param json
-     * @throws Exception
-     * @return
-     */
-    public String sendSoap(String url, String methodName, RequestConfig config, Map<String, Object> params) throws Exception {
-        logger.info(String.format("Httpclient send json: %s", JsonMapper.getInstance().toJson(params)));
-
-        CloseableHttpClient httpclient = url.startsWith("https") ? createSSLClientDefault() : HttpClients.createDefault();
-        try {
-            HttpPost httppost = new HttpPost(url);
-
-            if (null != config) {
-                httppost.setConfig(config);
-            }
-
-            if (!params.isEmpty()) {
-                String xml = buildSoapRequestData(methodName, params);
-                logger.info(String.format("Httpclient send xml: %s", xml));
-
-                StringEntity entity = new StringEntity(xml, "utf-8");
-                entity.setContentType("application/x-www-form-urlencoded;charset=utf-8");
-                httppost.setEntity(entity);
-            }
-
-            HttpResponse response = httpclient.execute(httppost);
-            if (null != response && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                HttpEntity entity = response.getEntity();
-                String resp = null != entity ? EntityUtils.toString(entity) : null;
-                logger.info(String.format("Httpclient response data: %s", resp));
-                return resp;
-            }
-            return null;
-        } catch (Exception e) {
-            logger.error(String.format("Httpclient post exception: %s", e.getMessage()), e);
-            throw new Exception(e);
-        } finally {
-            closeClient(httpclient);
-        }
-    }
-
-    private static String buildSoapRequestData(String methodName, Map<String, Object> params) {
+    public static String buildSoapRequestData(String methodName, Map<String, Object> params) {
         String temp = "&&&&&";
 
         StringBuffer sb = new StringBuffer();

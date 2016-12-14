@@ -112,12 +112,12 @@ public class HttpClientTool {
      * Http Post
      * 
      * @param url
-     * @param json
+     * @param data
      * @throws Exception
      * @return
      */
-    public String post(String url, RequestConfig config, String json) throws Exception {
-        logger.info(String.format("Httpclient send json: %s", json));
+    public String post(String url, RequestConfig config, String data) throws Exception {
+        logger.info(String.format("Httpclient send json: %s", data));
 
         CloseableHttpClient httpclient = url.startsWith("https") ? createSSLClientDefault() : HttpClients.createDefault();
 
@@ -128,8 +128,8 @@ public class HttpClientTool {
                 httppost.setConfig(config);
             }
 
-            if (!StringUtil.isEmpty(json)) {
-                StringEntity entity = new StringEntity(json, "utf-8");
+            if (!StringUtil.isEmpty(data)) {
+                StringEntity entity = new StringEntity(data, "utf-8");
                 entity.setContentType("application/x-www-form-urlencoded;charset=utf-8");
                 httppost.setEntity(entity);
             }

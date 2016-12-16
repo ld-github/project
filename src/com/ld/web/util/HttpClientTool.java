@@ -223,7 +223,6 @@ public class HttpClientTool {
                 public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
                     return true;
                 }
-
             }).build();
 
             HostnameVerifier allowAll = new HostnameVerifier() {
